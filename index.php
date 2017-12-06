@@ -15,7 +15,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         while ($obj = mysqli_fetch_object($result)) {
             $_SESSION['user'] = $obj;
         }
-        header("location: home.php");
+        header("location: home.php"); // redirect to home page
     } else {
         $show_err_msg = true; //ไว้ check show alert message
     }
