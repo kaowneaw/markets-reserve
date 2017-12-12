@@ -26,14 +26,27 @@ session_start();
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid pd-top">
     <h3 class="card-title">Hello</h3>
-    <div class="col-xs-12 form-group"><img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" style="max-width: 1200px"/></div>
+    <div class="map-area-wrapper">
+        <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image"/>
+    </div>
+    <div class="col-xs-12 form-group"></div>
     <div class="col-xs-12"><input type='file' id="inputFile"/></div>
 </div>
 </body>
 </html>
 <style>
+    .pd-top {
+        padding-top:25px;
+    }
+    .map-area-wrapper {
+        width:1260px;
+        height: 620px;
+        margin: 0 auto;
+        overflow:auto;
+        background-color:black;
+    }
 </style>
 <script>
     $(document).ready(function () {
