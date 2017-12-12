@@ -1,4 +1,6 @@
 <?php
+ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
+
 require('header.php');
 require('db_connect.php');
 session_start(); // Starting Session
@@ -15,7 +17,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         while ($obj = mysqli_fetch_object($result)) {
             $_SESSION['user'] = $obj;
         }
-        header("location: home.php"); // redirect to home page
+        header('Location: home.php'); // redirect to home page
+        exit(0);
     } else {
         $show_err_msg = true; //ไว้ check show alert message
     }
@@ -31,45 +34,45 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <title>Market</title>
 </head>
 <body>
-<div class="ui container">
-    <div class="ui centered segment login">
-        <form class="ui form" method="post" name="login" action="">
-            <div class="field">
-                <label>Username</label>
-                <input type="text" name="username" placeholder="Username">
-            </div>
-            <div class="field">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Password">
-            </div>
-            <div class="text-right">
-                <button class="ui button" type="submit">ตกลง</button>
-            </div>
-        </form>
-        <?php
-        if ($show_err_msg == true) {
-            echo '<div class="ui negative message" style="margin-top: 25px">' .
-                '<i class="close icon"></i>' .
-                '<p style="margin: 0;">username หรือ password ไม่ถูกต้อง</p>' .
-                '</div>';
-        }
-        ?>
+    <div class="container">
+        <div class="panel login card">
+            <form  method="POST">
+                <div class="form-group">
+                    <label for="username">ชื่อผู้ใช้งาน</label>
+                    <input type="text" name="username" placeholder="ชื่อผู้ใช้งาน" class="form-control" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="Password">รหัสผ่าน</label>
+                    <input type="password" name="password" placeholder="รหัสผ่าน" class="form-control">
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-dark" type="submit">ตกลง</button>
+                </div>
+            </form>
+            <?php
+            if ($show_err_msg == true) {
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' .
+                    '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' .
+                    '    <span aria-hidden="true">&times;</span>' .
+                    '  </button> Username หรือ Password ไม่ถูกต้อง ' .
+                    '</div>';
+            }
+            ?>
+        </div>
     </div>
-</div>
 </body>
 </html>
 <style>
     .login {
-        margin-top: 30% !important;
-        max-width: 490px;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        max-width: 520px;
+        padding: 15px 15px 0px 15px;
+        margin-top: 30%;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
 <script>
-    $('.message .close')
-        .on('click', function () {
-            $(this)
-                .closest('.message').hide();
-        });
+    $(document).ready(function () {
+        $(".alert").alert();
+    });
 </script>
