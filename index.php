@@ -34,39 +34,53 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <title>Market</title>
 </head>
 <body>
-    <div class="container">
-        <div class="panel login card">
-            <form  method="POST">
-                <div class="form-group">
-                    <label for="username">ชื่อผู้ใช้งาน</label>
-                    <input type="text" name="username" placeholder="ชื่อผู้ใช้งาน" class="form-control" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="Password">รหัสผ่าน</label>
-                    <input type="password" name="password" placeholder="รหัสผ่าน" class="form-control">
-                </div>
-                <div class="text-right">
-                    <button class="btn btn-dark" type="submit">ตกลง</button>
-                </div>
-            </form>
-            <?php
-            if ($show_err_msg == true) {
-                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' .
-                    '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' .
-                    '    <span aria-hidden="true">&times;</span>' .
-                    '  </button> Username หรือ Password ไม่ถูกต้อง ' .
-                    '</div>';
-            }
-            ?>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Markets</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
     </div>
+</nav>
+<div class="container">
+    <div class="panel login card">
+        <form method="POST">
+            <div class="form-group">
+                <label for="username">ชื่อผู้ใช้งาน</label>
+                <input type="text" name="username" placeholder="ชื่อผู้ใช้งาน" class="form-control" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="Password">รหัสผ่าน</label>
+                <input type="password" name="password" placeholder="รหัสผ่าน" class="form-control">
+            </div>
+            <div class="text-right">
+                <button class="btn btn-dark" type="submit">ตกลง</button>
+            </div>
+        </form>
+        <?php
+        if ($show_err_msg == true) {
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' .
+                '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' .
+                '    <span aria-hidden="true">&times;</span>' .
+                '  </button> Username หรือ Password ไม่ถูกต้อง ' .
+                '</div>';
+        }
+        ?>
+    </div>
+</div>
 </body>
 </html>
 <style>
     .login {
         max-width: 520px;
         padding: 15px 15px 0px 15px;
-        margin-top: 25%;
+        margin-top: 20%;
         margin-left: auto;
         margin-right: auto;
     }
