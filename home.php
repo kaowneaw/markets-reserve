@@ -25,9 +25,19 @@ session_start();
             </li>
         </ul>
     </div>
+    <div class="form-inline my-2 my-lg-0">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="register.php">Register <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="container-fluid pd-top">
-    <h3 class="card-title">Hello</h3>
+    <h3 class="card-title">Map Markets</h3>
     <div class="map-area-wrapper">
         <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image"/>
     </div>
@@ -37,9 +47,6 @@ session_start();
 </body>
 </html>
 <style>
-    .pd-top {
-        padding-top:25px;
-    }
     .map-area-wrapper {
         width:1260px;
         height: 620px;

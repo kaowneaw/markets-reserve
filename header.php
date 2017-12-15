@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="./css/normalize.css" type="text/css">
+<link rel="stylesheet" href="./css/style.css" type="text/css">
 <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon"/>
 
 <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
