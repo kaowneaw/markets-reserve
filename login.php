@@ -17,7 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         while ($obj = mysqli_fetch_object($result)) {
             $_SESSION['user'] = $obj;
         }
-        header('Location: home.php'); // redirect to home page
+        header('Location: add_market.php'); // redirect to home page
         exit(0);
     } else {
         $show_err_msg = true; //ไว้ check show alert message
@@ -43,7 +43,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="add_market.php">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">

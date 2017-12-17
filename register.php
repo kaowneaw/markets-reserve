@@ -10,7 +10,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $type = $_POST['type'];
-    $sql = "INSERT INTO users (first_name, last_name, tel, username, password, type) VALUES ('$name', '$lastname', '$tel', '$username', '$password', '$type');";
+    $sql = "INSERT INTO users (first_name, last_name, tel, username, password, type, role) VALUES ('$name', '$lastname', '$tel', '$username', '$password', '$type', 'USER');";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
@@ -38,7 +38,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="add_market.php">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
