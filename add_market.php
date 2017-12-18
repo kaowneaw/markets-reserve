@@ -38,8 +38,7 @@ session_start();
 </nav>
 <div class="container-fluid pd-top">
     <h3 class="card-title">Map Markets</h3>
-    <div class="map-area-wrapper" id="wrapper">
-        <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image"/>
+    <div class="map-area-wrapper" id="wrapper-map">
     </div>
     <div class="row">
         <div class="col-xs-12 form-group"></div>
@@ -52,6 +51,7 @@ session_start();
             <input type='file' id="inputFile"/>
         </div>
     </div>
+    <div class="row"><button type="button" id="add-marker">ADD</button></div>
 </div>
 </body>
 </html>
@@ -61,6 +61,7 @@ session_start();
         height: 620px;
         margin: 0 auto;
         overflow: auto;
+        border: solid black 1px;
         background-color: black;
     }
 
@@ -71,7 +72,7 @@ session_start();
             readURL(this);
         });
         $("#add").click(function () {
-            $("#wrapper").append('  <div id="drag-3" class="draggable">' +
+            $("#wrapper-map").append('  <div id="drag-3" class="draggable">' +
                 '            <p> with each pointer </p>' +
                 '        </div>');
         });
@@ -80,7 +81,6 @@ session_start();
     function readURL(input) {
         //display img from file
         if (input.files && input.files[0]) {
-            console.log(input.files[0].name.split('.').pop());
             if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG') {
                 $("#alert").show();
                 return false;
@@ -90,10 +90,45 @@ session_start();
 
             reader.onload = function (e) {
                 $('#image_upload_preview').attr('src', e.target.result);
+                initPlanit(e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    function initPlanit(imgURI) {
+        p = planit.new({
+            container: 'wrapper-map',
+            image: {
+                url: imgURI,
+                zoom: true
+            },
+            markerDragEnd: function(event, marker) {
+                // console.log(marker.position());
+                // console.log(marker.coords());
+            },
+            markerClick: function(event, marker) {
+//                p.centerOn(marker.position());
+                setTimeout(marker.showInfobox, 100);
+            },
+            canvasClick: function(event, coords) {
+//                p.zoomTo(0);
+            }
+        });
+
+    }
+
+
+    $('#add-marker').click(function(e){
+        e.preventDefault();
+        randomX = Math.random() * 100;
+        randomY = Math.random() * 100;
+        p.addMarker({
+            coords: [randomX, randomY],
+            color: '#12abe3',
+            draggable: true
+        })
+    });
 
 </script>
