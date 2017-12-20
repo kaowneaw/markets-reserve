@@ -1,8 +1,8 @@
 <?php
 ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
 
-require('header.php');
-require('db_connect.php');
+require('./common/header.php');
+require('./common/db_connect.php');
 session_start(); // Starting Session
 $show_err_msg = false;
 

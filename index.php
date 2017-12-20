@@ -1,5 +1,5 @@
 <?php
-require('header.php');
+require('./common/header.php');
 ?>
 <!DOCTYPE html>
 <html>
