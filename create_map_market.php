@@ -96,7 +96,7 @@ session_start();
 
             reader.onload = function (e) {
                 $('#image_upload_preview').attr('src', e.target.result);
-                p.resetImage();
+
                 initPlanit(e.target.result);
             }
 
