@@ -116,3 +116,4 @@ fabric.properties
 .idea/
 img/
 package-lock.json
+/uploads/*
