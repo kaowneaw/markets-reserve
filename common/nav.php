@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="../create_map_market.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="create_market.php">CreateMarket <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../login.php">Login <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="../register.php">Register <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="register.php">Register <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
