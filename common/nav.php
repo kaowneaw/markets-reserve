@@ -1,14 +1,3 @@
-<?php
-require('header.php');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Market</title>
-</head>
-<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Markets</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -18,30 +7,18 @@ require('header.php');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="create_map_market.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../create_map_market.php">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../login.php">Login <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="register.php">Register <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../register.php">Register <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container">
-    INDEX.PHP
-</div>
-</body>
-</html>
-<style>
-</style>
-<script>
-    $(document).ready(function () {
-        $(".alert").alert();
-    });
-</script>

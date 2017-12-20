@@ -1,8 +1,8 @@
 <?php
 ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
 
-require('header.php');
-require('db_connect.php');
+require('./common/header.php');
+require('./common/db_connect.php');
 if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['type'])) {
     $name = $_POST['name'];
     $lastname = $_POST['lastname'];
@@ -38,7 +38,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="create_market.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="create_map_market.php">Home <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">

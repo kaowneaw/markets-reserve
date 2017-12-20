@@ -1,8 +1,46 @@
 <?php
-require('header.php');
-require('db_connect.php');
+ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
+
+require('./common/header.php');
+require('./common/db_connect.php');
 // Start the session
 session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgUpload"])) {
+        $extension = pathinfo($_FILES["fileImgUpload"]["name"], PATHINFO_EXTENSION);
+        if (strtolower($extension) != "jpg") {
+            echo "<script type='text/javascript'>window.alert('Sorry, only JPG are allowed.');window.location.href='create_market.php';</script>";
+            return false;
+        }
+
+        $newFilename = round(microtime(true)) . '.' . $extension;
+        $target_file = "uploads/" . $newFilename;
+
+        if (move_uploaded_file($_FILES["fileImgUpload"]["tmp_name"], $target_file)) {
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $sql = "INSERT INTO markets (name, userId, description) VALUES ('$name', '1', '$description');";
+            if ($conn->query($sql) === TRUE) {
+                $last_id = $conn->insert_id; // get last market id insert
+
+                $sql = "INSERT INTO markets_img (img_url, market_id) VALUES ('$target_file', '$last_id');"; // add img markets
+                if ($conn->query($sql) === TRUE) {
+                    header('Location: create_map_market.php?marketId=' . $last_id);
+                    exit(0);
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,69 +50,52 @@ session_start();
     <title>Market</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Markets</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="create_market.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-    </div>
-    <div class="form-inline my-2 my-lg-0">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="login.php">Login <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="register.php">Register <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="container-fluid pd-top">
-    <h3 class="card-title">Map Markets</h3>
-    <div class="map-area-wrapper" id="wrapper-map">
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group"></div>
-    </div>
-    <div class="row">
-        <div class="offset-md-2 col-md-8">
-            <div class="alert alert-warning" role="alert" id="alert" style="display: none">
-                <strong>ไฟล์ไม่สนับสนุน</strong> กรุณาเลือกไฟล์นามสกุล .jpg
+<?php require('./common/nav.php'); ?>
+<div class="container">
+    <h3 class="card-title">สร้างตลาด</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <div id="container" class="panel card">
+            <div class="card-body">
+                <label>รูปภาพตลาด</label>
+                <div class="img-area-wrapper text-center"><img id="image_upload_preview" alt="IMG PREVIEW"></div>
+                <div class="form-group">
+                    <input type='file' id="inputFile" class="form-group" name="fileImgUpload"/>
+                    <div class="alert alert-warning" role="alert" id="alert" style="display: none">
+                        <strong>ไฟล์ไม่สนับสนุน</strong> กรุณาเลือกไฟล์นามสกุล .jpg
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>ชื่อตลาด</label>
+                    <input type="text" class="form-control" placeholder="ชื่อตลาด" name="name" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>คำอธิบาย</label>
+                    <textarea type="text" class="form-control" placeholder="คำอธิบาย" name="description"></textarea>
+                </div>
+                <div class="text-right"><button class="btn btn-primary" type="submit">บันทึก</button></div>
             </div>
-            <input type='file' id="inputFile"/>
         </div>
-    </div>
-    <div class="row"><button type="button" id="add-marker">ADD</button></div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
 <style>
-    .map-area-wrapper {
-        width: 1260px;
-        height: 620px;
-        margin: 0 auto;
-        overflow: auto;
-        border: solid black 1px;
-        background-color: black;
+    .img-area-wrapper {
+        margin-bottom: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 420px;
     }
-
+    .img-area-wrapper img {
+        max-width: 420px;
+    }
 </style>
 <script>
+
     $(document).ready(function () {
         $("#inputFile").change(function () {
             readURL(this);
-        });
-        $("#add").click(function () {
-            $("#wrapper-map").append('  <div id="drag-3" class="draggable">' +
-                '            <p> with each pointer </p>' +
-                '        </div>');
         });
     });
 
@@ -83,6 +104,7 @@ session_start();
         if (input.files && input.files[0]) {
             if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG') {
                 $("#alert").show();
+                typeFile = false;
                 return false;
             }
             $("#alert").hide();
@@ -90,46 +112,10 @@ session_start();
 
             reader.onload = function (e) {
                 $('#image_upload_preview').attr('src', e.target.result);
-                p.resetImage();
-                initPlanit(e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-    function initPlanit(imgURI) {
-        p = planit.new({
-            container: 'wrapper-map',
-            image: {
-                url: imgURI,
-                zoom: true
-            },
-            markerDragEnd: function(event, marker) {
-                // console.log(marker.position());
-                // console.log(marker.coords());
-            },
-            markerClick: function(event, marker) {
-//                p.centerOn(marker.position());
-                setTimeout(marker.showInfobox, 100);
-            },
-            canvasClick: function(event, coords) {
-//                p.zoomTo(0);
-            }
-        });
-
-    }
-
-
-    $('#add-marker').click(function(e){
-        e.preventDefault();
-        randomX = Math.random() * 100;
-        randomY = Math.random() * 100;
-        p.addMarker({
-            coords: [randomX, randomY],
-            color: '#12abe3',
-            draggable: true
-        })
-    });
 
 </script>
