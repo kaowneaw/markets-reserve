@@ -11,7 +11,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
     // upload img cover
     $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
     if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('Sorry, only JPG and JPEG are allowed.');window.location.href='create_market.php';</script>";
+        echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
         return false;
     }
     $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
@@ -21,12 +21,13 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 
     } else {
         echo "Sorry, there was an error uploading your file.";
+        return false;
     }
 
     // upload img map
     $extensionImgMap = pathinfo($_FILES["fileImgMap"]["name"], PATHINFO_EXTENSION);
     if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('Sorry, only JPG and JPEG are allowed.');window.location.href='create_market.php';</script>";
+        echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
         return false;
     }
 
@@ -37,6 +38,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 
     } else {
         echo "Sorry, there was an error uploading your file.";
+        return false;
     }
 
     $name = $_POST['name'];
