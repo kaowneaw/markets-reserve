@@ -9,7 +9,7 @@ if (!isset($_GET['marketId'])) {
     header('Location: create_market.php');
 } else {
     $marketId = $_GET['marketId'];
-    $sql = "SELECT * FROM markets WHERE id = '$marketId' limit 1";
+    $sql = "SELECT * FROM markets WHERE markets_id = '$marketId' limit 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row

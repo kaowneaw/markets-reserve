@@ -43,7 +43,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $sql = "INSERT INTO markets (name, userId, map_img, description) VALUES ('$name', '1', '$targetFileMap', '$description');";
+    $sql = "INSERT INTO markets (name, userId, map_img, description, create_date) VALUES ('$name', '1', '$targetFileMap', '$description', now());";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
 
