@@ -1,6 +1,21 @@
 <?php
+ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
+
 require('./common/header.php');
 require('./common/db_connect.php');
+
+if(isset($_POST['marketId'])) {
+    // remove my market
+    $marketId = $_POST['marketId'];
+    $sql = "DELETE FROM markets WHERE markets_id = '$marketId'";
+    if ($conn->query($sql) === TRUE) {
+        header('Location: my_market.php');
+        exit;
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
 $userId = '1';
 $sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id WHERE userId = '$userId'";
 $result = $conn->query($sql);
@@ -15,24 +30,32 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3>รายชื่อตลาด</h3>
+    <div class="header-title"><h3 class="pull-left">รายชื่อตลาด</h3> <button class="btn btn-success pull-right" onclick="addmarket()">เพิ่มตลาด</button></div>
+
     <?php
     if ($result->num_rows > 0) {
         // output data of each row
         echo '<div class="row form-group">';
         while ($row = $result->fetch_assoc()) {
             echo '<div class="col-md-6">';
-            echo '    <a href="create_map_market.php?marketId='.$row["markets_id"].'">';
             echo '    <div class="card">';
             echo '        <div class="card-container">';
-            echo '        <div><small>ชื่อตลาด</small><small class="pull-right">'.$row["create_date"].'</small></div>';
-            echo '        <h5>' . $row["name"] . '</h5>';
-            echo '        <div class="container-img"><img src="' . $row["img_url"] . '" class="market-img" /></div>';
-            echo '        <small>รายละเอียด</small>';
-            echo '        <p>'.$row["description"].'</p>';
-            echo '        </div>';
+            echo '        <a href="create_map_market.php?marketId='.$row["markets_id"].'">';
+            echo '            <div class="form-group"><small>ชื่อตลาด</small><small class="pull-right">'.$row["create_date"].'</small></div>';
+            echo '            <h5>' . $row["name"] . '</h5>';
+            echo '            <div class="container-img"><img src="' . $row["img_url"] . '" class="market-img" /></div>';
+            echo '            <small class="form-group">รายละเอียด</small>';
+            echo '            <p>'.$row["description"].'</p>';
+            echo '        </a>';
+            echo '        <div>';
+            echo '               <button class="btn btn-primary pull-right">แก้ไข</button>';
+            echo '               <form method="post" class="pull-right" style="margin-right: 5px;" onsubmit="return confirmRemove(this);">';
+            echo '                  <input value="'.$row["markets_id"].'" name="marketId" class="hide">';
+            echo '                  <button class="btn btn-danger" type="submit">ลบ</button>';
+            echo '               </form>';
+            echo '         </div>';
+            echo '       </div>';
             echo '    </div>';
-            echo '    </a>';
             echo '</div>';
         }
         echo '</div>';
@@ -45,6 +68,9 @@ $result = $conn->query($sql);
 </body>
 </html>
 <style>
+    .header-title{
+        overflow: hidden;
+    }
     .card-container {
         padding: 15px;
     }
@@ -72,9 +98,18 @@ $result = $conn->query($sql);
     .container-img img {
         width: 100%;
     }
+    .hide {
+        display: none;
+    }
 </style>
 <script>
-    $(document).ready(function () {
-        $(".alert").alert();
-    });
+
+    function confirmRemove() {
+
+        return confirm('ต้องการลบตลาดนี้ออกใช่ไหม ?');
+    }
+
+    function addmarket() {
+        window.location.href = "create_market.php";
+    }
 </script>
