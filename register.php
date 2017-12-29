@@ -31,7 +31,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <div class="offset-md-2 col-md-8">
+    <div class="col-md-offset-2 col-md-8">
         <h3>สมัครสมาชิก</h3>
         &nbsp;
         <form method="POST">
@@ -65,7 +65,7 @@ if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']
                     <option value="MARKET">เจ้าของตลาด</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary float-right">ยืนยัน</button>
+            <button type="submit" class="btn btn-primary pull-right">ยืนยัน</button>
         </form>
     </div>
 </div>

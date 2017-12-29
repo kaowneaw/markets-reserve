@@ -70,7 +70,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title">สร้างตลาด</h3>
+    <h3 class="card-title">แก้ไขตลาด</h3>
     <form method="POST" enctype="multipart/form-data" id="myform" action="create_market.php">
         <div id="container" class="panel card">
             <div class="card-body">

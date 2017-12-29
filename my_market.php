@@ -30,35 +30,42 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <div class="header-title"><h3 class="pull-left">รายชื่อตลาด</h3> <button class="btn btn-success pull-right" onclick="addmarket()">เพิ่มตลาด</button></div>
+    <div class="header-title"><h3 class="pull-left">รายชื่อตลาด</h3> <button class="btn btn-success pull-right" onclick="add()">เพิ่มตลาด</button></div>
 
     <?php
     if ($result->num_rows > 0) {
         // output data of each row
-        echo '<div class="row form-group">';
+        echo '<table class="table">';
+        echo ' <thead class="thead-inverse">';
+        echo '  <tr>';
+        echo '    <th>#</th>';
+        echo '    <th>รูปภาพ</th>';
+        echo '    <th>ชื่อตลาด</th>';
+        echo '    <th>รายละเอียด</th>';
+        echo '    <th>เครื่องมือ</th>';
+        echo '  </tr>';
+        echo '</thead>';
+        echo '<tbody>';
+        $count = 0;
         while ($row = $result->fetch_assoc()) {
-            echo '<div class="col-md-6">';
-            echo '    <div class="card">';
-            echo '        <div class="card-container">';
-            echo '        <a href="create_map_market.php?marketId='.$row["markets_id"].'">';
-            echo '            <div class="form-group"><small>ชื่อตลาด</small><small class="pull-right">'.$row["create_date"].'</small></div>';
-            echo '            <h5>' . $row["name"] . '</h5>';
-            echo '            <div class="container-img"><img src="' . $row["img_url"] . '" class="market-img" /></div>';
-            echo '            <small class="form-group">รายละเอียด</small>';
-            echo '            <p>'.$row["description"].'</p>';
-            echo '        </a>';
-            echo '        <div>';
-            echo '               <button class="btn btn-primary pull-right">แก้ไข</button>';
-            echo '               <form method="post" class="pull-right" style="margin-right: 5px;" onsubmit="return confirmRemove(this);">';
-            echo '                  <input value="'.$row["markets_id"].'" name="marketId" class="hide">';
-            echo '                  <button class="btn btn-danger" type="submit">ลบ</button>';
-            echo '               </form>';
-            echo '         </div>';
-            echo '       </div>';
-            echo '    </div>';
-            echo '</div>';
+            $count++;
+            echo '  <tr>';
+            echo '    <td>'.$count.'</td>';
+            echo '    <td><img src="' . $row["img_url"] . '" class="img-preview"/></td>';
+            echo '    <td>' . $row["name"] . '</td>';
+            echo '    <td>'.$row["description"].'</td>';
+            echo '    <td>';
+            echo '      <button class="btn btn-primary pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">ดู</button>';
+            echo '      <button class="btn btn-warning pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">แก้ไข</button>';
+            echo '      <form method="post" onsubmit="return confirmRemove(this);">';
+            echo '       <input value="'.$row["markets_id"].'" name="marketId" class="hide">';
+            echo '       <button class="btn btn-danger pull-left" type="submit">ลบ</button>';
+            echo '      </form>';
+            echo '    </td>';
+            echo '  </tr>';
         }
-        echo '</div>';
+        echo '</tbody>';
+        echo '</table>';
     } else {
         echo "0 results";
     }
@@ -89,15 +96,10 @@ $result = $conn->query($sql);
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
-    .container-img {
-        width: 220px;
-        height: 220px;
-        margin: 0 auto;
+    .img-preview {
+        max-width: 150px;
     }
 
-    .container-img img {
-        width: 100%;
-    }
     .hide {
         display: none;
     }
@@ -105,11 +107,18 @@ $result = $conn->query($sql);
 <script>
 
     function confirmRemove() {
-
         return confirm('ต้องการลบตลาดนี้ออกใช่ไหม ?');
     }
 
-    function addmarket() {
+    function add() {
         window.location.href = "create_market.php";
+    }
+
+    function edit(id) {
+        window.location.href = "edit_market.php?marketId=" + id;
+    }
+
+    function view(id) {
+        window.location.href = "create_map_market.php?marketId=" + id;
     }
 </script>
