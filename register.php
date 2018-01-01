@@ -6,11 +6,12 @@ require('./common/db_connect.php');
 if (isset($_POST['name']) && isset($_POST['lastname']) && isset($_POST['idcard']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['type'])) {
     $name = $_POST['name'];
     $lastname = $_POST['lastname'];
-    $tel = $_POST['idcard'];
+    $idcard = $_POST['idcard'];
+    $tel = $_POST['tel'];
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     $type = $_POST['type'];
-    $sql = "INSERT INTO users (first_name, last_name, tel, username, password, type, role) VALUES ('$name', '$lastname', '$tel', '$username', '$password', '$type', 'USER');";
+    $sql = "INSERT INTO users (first_name, last_name, tel, id_card, username, password, type, role) VALUES ('$name', '$lastname', '$tel', '$idcard', '$username', '$password', '$type', 'USER');";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";

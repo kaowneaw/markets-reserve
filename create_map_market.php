@@ -4,7 +4,13 @@ ob_start(); // ใช้เมื่อเราต้องเปลี่ย�
 require('./common/header.php');
 require('./common/db_connect.php');
 // Start the session
-session_start();
+session_start(); // Starting Session
+
+if (!$_SESSION["user"]){  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
+
 if (!isset($_GET['marketId'])) {
     header('Location: create_market.php');
 } else {

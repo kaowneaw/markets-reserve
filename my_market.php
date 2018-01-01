@@ -3,6 +3,12 @@ ob_start(); // ใช้เมื่อเราต้องเปลี่ย�
 
 require('./common/header.php');
 require('./common/db_connect.php');
+session_start(); // Starting Session
+
+if (!$_SESSION["user"]){  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
 
 if(isset($_POST['marketId'])) {
     // remove my market
@@ -15,8 +21,7 @@ if(isset($_POST['marketId'])) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
-$userId = '1';
+$userId = $_SESSION["user"]->users_id;
 $sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id WHERE userId = '$userId'";
 $result = $conn->query($sql);
 ?>
@@ -30,7 +35,7 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <div class="header-title"><h3 class="pull-left">รายชื่อตลาด</h3> <button class="btn btn-success pull-right" onclick="add()">เพิ่มตลาด</button></div>
+    <div class="row"><h3 class="pull-left">รายชื่อตลาด</h3> <h3 class="pull-right"><button class="btn btn-success " onclick="add()">สร้างตลาด</button></h3></div>
 
     <?php
     if ($result->num_rows > 0) {
@@ -67,7 +72,7 @@ $result = $conn->query($sql);
         echo '</tbody>';
         echo '</table>';
     } else {
-        echo "0 results";
+        echo '<h4 class="text-center"> 0 results</h4>';
     }
     ?>
 

@@ -4,7 +4,12 @@ ob_start(); // ใช้เมื่อเราต้องเปลี่ย�
 require('./common/header.php');
 require('./common/db_connect.php');
 // Start the session
-session_start();
+session_start(); // Starting Session
+
+if (!$_SESSION["user"]){  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
 
 if (!isset($_GET['marketId'])) {
     header('Location: my_market.php');
@@ -66,9 +71,9 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     if ($targetFileMap == null) {
-        $sql = "UPDATE markets SET name = '$name', userId = '1', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
     } else {
-        $sql = "UPDATE markets SET name = '$name', userId = '1', map_img = '$targetFileMap', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', map_img = '$targetFileMap', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
     }
 
     if ($conn->query($sql) === TRUE) {

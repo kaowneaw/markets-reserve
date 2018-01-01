@@ -16,7 +16,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="my_market.php">ตลาดของฉัน</a></li>
                         <li><a href="create_market.php">สร้างตลาด</a></li>
-                        <li><a href="edit_market.php">แก้ไขตลาด</a></li>
                     </ul>
                 </li>
             </ul>

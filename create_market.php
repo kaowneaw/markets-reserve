@@ -4,7 +4,12 @@ ob_start(); // ใช้เมื่อเราต้องเปลี่ย�
 require('./common/header.php');
 require('./common/db_connect.php');
 // Start the session
-session_start();
+session_start(); // Starting Session
+
+if (!$_SESSION["user"]){  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
 
 
 if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgCover"]) && isset($_FILES["fileImgMap"])) {
@@ -53,7 +58,8 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $sql = "INSERT INTO markets (name, userId, map_img, description, create_date) VALUES ('$name', '1', '$targetFileMap', '$description', now());";
+    $userId = $_SESSION["user"]->users_id;
+    $sql = "INSERT INTO markets (name, userId, map_img, description, create_date) VALUES ('$name', '$userId', '$targetFileMap', '$description', now());";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
 
