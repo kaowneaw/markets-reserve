@@ -6,53 +6,85 @@ require('./common/db_connect.php');
 // Start the session
 session_start();
 
-
-if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgCover"]) && isset($_FILES["fileImgMap"]) && !empty($_FILES["fileImgCover"])&& !empty($_FILES["fileImgMap"])) {
-    // upload img cover
-    $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
-    if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
-        return false;
-    }
-    $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
-    $targetFileCover = "uploads/" . $newFilenameCover;
-
-    if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) {
-
+if (!isset($_GET['marketId'])) {
+    header('Location: my_market.php');
+} else {
+    $marketId = $_GET['marketId'];
+    $sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id WHERE markets_id = '$marketId' limit 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        $myMarket = "";
+        while ($row = $result->fetch_assoc()) {
+            $myMarket = $row; // map
+        }
     } else {
-        echo "Sorry, there was an error uploading your file.";
-        return false;
+        echo "0 results";
     }
+}
 
-    // upload img map
-    $extensionImgMap = pathinfo($_FILES["fileImgMap"]["name"], PATHINFO_EXTENSION);
-    if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
-        return false;
+if (isset($_POST['name']) && isset($_POST['description'])) {
+
+    $targetFileCover = null;
+    if (isset($_FILES["fileImgCover"]) && $_FILES["fileImgCover"]['error'] == 0) {
+        // upload img cover
+        $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
+        if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
+            echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');location.reload();</script>";
+            return false;
+        }
+        $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
+        $targetFileCover = "uploads/" . $newFilenameCover;
+
+        if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) {
+
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
     }
+    $targetFileMap = null;
+    if (isset($_FILES["fileImgMap"]) && $_FILES["fileImgMap"]['error'] == 0) {
+        // upload img map
+        $extensionImgMap = pathinfo($_FILES["fileImgMap"]["name"], PATHINFO_EXTENSION);
+        if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg") {
+            echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');location.reload();</script>";
+            return false;
+        }
 
-    $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap;
-    $targetFileMap = "uploads/" . $newFilenameMap;
+        $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap;
+        $targetFileMap = "uploads/" . $newFilenameMap;
 
-    if (move_uploaded_file($_FILES["fileImgMap"]["tmp_name"], $targetFileMap)) {
+        if (move_uploaded_file($_FILES["fileImgMap"]["tmp_name"], $targetFileMap)) {
 
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-        return false;
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
     }
 
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $sql = "INSERT INTO markets (name, userId, map_img, description, create_date) VALUES ('$name', '1', '$targetFileMap', '$description', now());";
+    if ($targetFileMap == null) {
+        $sql = "UPDATE markets SET name = '$name', userId = '1', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+    } else {
+        $sql = "UPDATE markets SET name = '$name', userId = '1', map_img = '$targetFileMap', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+    }
+
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
 
-        $sql = "INSERT INTO markets_img (img_url, market_id) VALUES ('$targetFileCover', '$last_id');"; // add img markets
-        if ($conn->query($sql) === TRUE) {
-            header('Location: create_map_market.php?marketId=' . $last_id);
+        if ($targetFileCover == null) {
+            header('Location: my_market.php');
             exit;
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "UPDATE markets_img SET img_url = '$targetFileCover' WHERE markets_img_id = " . $myMarket['markets_img_id'];
+            if ($conn->query($sql) === TRUE) {
+                header('Location: my_market.php');
+                exit;
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -71,11 +103,12 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 <?php require('./common/nav.php'); ?>
 <div class="container">
     <h3 class="card-title">แก้ไขตลาด</h3>
-    <form method="POST" enctype="multipart/form-data" id="myform" action="create_market.php">
+    <form method="POST" enctype="multipart/form-data" id="myform">
         <div id="container" class="panel card">
             <div class="card-body">
                 <label><i class="fa fa-file-image-o" aria-hidden="true"></i> รูปหน้าปกตลาด</label>
-                <div class="img-area-wrapper text-center"><img id="image_preview_cover" alt="IMG PREVIEW"></div>
+                <div class="img-area-wrapper text-center"><img id="image_preview_cover" alt="IMG PREVIEW"
+                                                               src="<?php echo $myMarket['img_url']; ?>"></div>
                 <div class="form-group">
                     <input type='file' id="inputFileImgCover" class="form-group" name="fileImgCover"/>
                     <div class="alert alert-warning" role="alert" id="alert" style="display: none">
@@ -84,7 +117,8 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
                 </div>
                 <label><i class="fa fa-map" aria-hidden="true"></i> รูปแผนที่ตลาด</label>
                 <div class="form-group">
-                    <div class="img-area-wrapper text-center"><img id="image_preview_map" alt="IMG PREVIEW"></div>
+                    <div class="img-area-wrapper text-center"><img id="image_preview_map" alt="IMG PREVIEW"
+                                                                   src="<?php echo $myMarket['map_img']; ?>"></div>
                     <div class="form-group">
                         <input type='file' id="inputFileImgMap" class="form-group" name="fileImgMap"/>
                         <div class="alert alert-warning" role="alert" id="alert2" style="display: none">
@@ -95,11 +129,12 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
                 <div class="form-group">
                     <label>ชื่อตลาด</label>
                     <input type="text" class="form-control" placeholder="ชื่อตลาด" name="name" required
-                           autocomplete="off">
+                           autocomplete="off" value="<?php echo $myMarket['name']; ?>">
                 </div>
                 <div class="form-group">
                     <label>คำอธิบาย</label>
-                    <textarea type="text" class="form-control" placeholder="คำอธิบาย" name="description"></textarea>
+                    <textarea type="text" class="form-control" placeholder="คำอธิบาย"
+                              name="description"><?php echo $myMarket['description']; ?></textarea>
                 </div>
                 <div class="text-right">
                     <button class="btn btn-primary" type="submit">บันทึก</button>

@@ -7,37 +7,47 @@ require('./common/db_connect.php');
 session_start();
 
 
-if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgCover"]) && isset($_FILES["fileImgMap"]) && !empty($_FILES["fileImgCover"])&& !empty($_FILES["fileImgMap"])) {
+if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgCover"]) && isset($_FILES["fileImgMap"])) {
     // upload img cover
-    $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
-    if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
-        return false;
-    }
-    $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
-    $targetFileCover = "uploads/" . $newFilenameCover;
+    if (isset($_FILES["fileImgCover"]) && $_FILES["fileImgCover"]['error'] == 0) {
+        $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
+        if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
+            echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
+            return false;
+        }
+        $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
+        $targetFileCover = "uploads/" . $newFilenameCover;
 
-    if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) {
+        if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) {
 
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "<script type='text/javascript'>window.alert('กรุณาเลือกรูปหน้าปกตลาด');window.location.href='create_market.php';</script>";
         return false;
     }
 
     // upload img map
-    $extensionImgMap = pathinfo($_FILES["fileImgMap"]["name"], PATHINFO_EXTENSION);
-    if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg") {
-        echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
-        return false;
-    }
+    if (isset($_FILES["fileImgMap"]) && $_FILES["fileImgMap"]['error'] == 0) {
+        $extensionImgMap = pathinfo($_FILES["fileImgMap"]["name"], PATHINFO_EXTENSION);
+        if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg") {
+            echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
+            return false;
+        }
 
-    $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap;
-    $targetFileMap = "uploads/" . $newFilenameMap;
+        $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap;
+        $targetFileMap = "uploads/" . $newFilenameMap;
 
-    if (move_uploaded_file($_FILES["fileImgMap"]["tmp_name"], $targetFileMap)) {
+        if (move_uploaded_file($_FILES["fileImgMap"]["tmp_name"], $targetFileMap)) {
 
-    } else {
-        echo "Sorry, there was an error uploading your file.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+            return false;
+        }
+    }else {
+        echo "<script type='text/javascript'>window.alert('กรุณาเลือกรูปแผนที่ตลาด');window.location.href='create_market.php';</script>";
         return false;
     }
 
@@ -71,7 +81,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 <?php require('./common/nav.php'); ?>
 <div class="container">
     <h3 class="card-title">สร้างตลาด</h3>
-    <form method="POST" enctype="multipart/form-data" id="myform" action="create_market.php">
+    <form method="POST" enctype="multipart/form-data" id="myform">
         <div id="container" class="panel card">
             <div class="card-body">
                 <label><i class="fa fa-file-image-o" aria-hidden="true"></i> รูปหน้าปกตลาด</label>

@@ -35,14 +35,14 @@ $result = $conn->query($sql);
     <?php
     if ($result->num_rows > 0) {
         // output data of each row
-        echo '<table class="table">';
-        echo ' <thead class="thead-inverse">';
+        echo '<table class="table table-bordered">';
+        echo ' <thead>';
         echo '  <tr>';
-        echo '    <th>#</th>';
-        echo '    <th>รูปภาพ</th>';
-        echo '    <th>ชื่อตลาด</th>';
-        echo '    <th>รายละเอียด</th>';
-        echo '    <th>เครื่องมือ</th>';
+        echo '    <th class="text-center col-md-1">#</th>';
+        echo '    <th class="col-md-2">รูปภาพ</th>';
+        echo '    <th class="col-md-3">ชื่อตลาด</th>';
+        echo '    <th class="col-md-3">รายละเอียด</th>';
+        echo '    <th class="col-md-2">เครื่องมือ</th>';
         echo '  </tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -50,13 +50,13 @@ $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             $count++;
             echo '  <tr>';
-            echo '    <td>'.$count.'</td>';
-            echo '    <td><img src="' . $row["img_url"] . '" class="img-preview"/></td>';
+            echo '    <td class="text-center">'.$count.'</td>';
+            echo '    <td class="text-center"><img src="' . $row["img_url"] . '" class="img-preview"/></td>';
             echo '    <td>' . $row["name"] . '</td>';
             echo '    <td>'.$row["description"].'</td>';
             echo '    <td>';
-            echo '      <button class="btn btn-primary pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">ดู</button>';
-            echo '      <button class="btn btn-warning pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">แก้ไข</button>';
+            echo '      <button class="btn btn-primary pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">แผนที่</button>';
+            echo '      <button class="btn btn-warning pull-left" onclick="edit(' . $row["markets_id"] . ')" style="margin-right: 5px;">แก้ไข</button>';
             echo '      <form method="post" onsubmit="return confirmRemove(this);">';
             echo '       <input value="'.$row["markets_id"].'" name="marketId" class="hide">';
             echo '       <button class="btn btn-danger pull-left" type="submit">ลบ</button>';
@@ -75,31 +75,9 @@ $result = $conn->query($sql);
 </body>
 </html>
 <style>
-    .header-title{
-        overflow: hidden;
-    }
-    .card-container {
-        padding: 15px;
-    }
-    a {
-        color: black !important;
-    }
-    a:hover {
-        color: black !important;
-        text-decoration: none !important;
-    }
-    .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-        margin: 10px;
-    }
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
     .img-preview {
         max-width: 150px;
     }
-
     .hide {
         display: none;
     }
