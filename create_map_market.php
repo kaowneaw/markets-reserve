@@ -76,8 +76,8 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container-fluid">
-    <h3 class="card-title">กำหนดตำแหน่งร้านค้า
-        <small>(*คลิกบนแผนที่เพื่อเพิ่มตำแหน่งร้าน)</small>
+    <h3 class="card-title text-white">กำหนดตำแหน่งร้านค้า
+        <small class="text-white">(*คลิกบนแผนที่เพื่อเพิ่มตำแหน่งร้าน)</small>
     </h3>
     <div class="map-area-wrapper" id="wrapper-map">
         <img id="image_upload_preview"/>

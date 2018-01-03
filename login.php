@@ -17,7 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         while ($obj = mysqli_fetch_object($result)) {
             $_SESSION['user'] = $obj;
         }
-        header('Location: create_map_market.php'); // redirect to home page
+        header('Location: my_market.php'); // redirect to home page
         exit(0);
     } else {
         $show_err_msg = true; //ไว้ check show alert message
@@ -36,8 +36,11 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <div class="panel login card">
+    <div class="login card">
         <form method="POST">
+            <div class="form-group text-center">
+                <img src="./img/online-store.png" width="100px"/>
+            </div>
             <div class="form-group">
                 <label for="username">ชื่อผู้ใช้งาน</label>
                 <input type="text" name="username" placeholder="ชื่อผู้ใช้งาน" class="form-control" autocomplete="off">
@@ -47,16 +50,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 <input type="password" name="password" placeholder="รหัสผ่าน" class="form-control">
             </div>
             <div class="text-right">
-                <button class="btn btn-dark" type="submit">ตกลง</button>
+                <button class="btn btn-primary" type="submit">ตกลง</button>
             </div>
         </form>
         <?php
         if ($show_err_msg == true) {
-            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' .
-                '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' .
-                '    <span aria-hidden="true">&times;</span>' .
-                '  </button> Username หรือ Password ไม่ถูกต้อง ' .
-                '</div>';
+            echo '<div class="alert alert-warning" role="alert">Username หรือ Password ไม่ถูกต้อง</div>';
         }
         ?>
     </div>
@@ -66,11 +65,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 <style>
     .login {
         max-width: 520px;
-        padding: 15px 15px 0px 15px;
-        margin-top: 20%;
+        padding: 35px 35px 15px 35px;
+        margin-top: 10%;
         margin-left: auto;
         margin-right: auto;
+        background-color: white;
+        border-radius: 4px;
     }
+    .card {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
 </style>
 <script>
     $(document).ready(function () {

@@ -1,5 +1,10 @@
 <?php
 require('./common/header.php');
+require('./common/db_connect.php');
+session_start(); // Starting Session
+
+$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,11 +16,47 @@ require('./common/header.php');
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    INDEX.PHP
+    <div class="row">
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="col-md-4 form-group">';
+                echo '    <div class="card">';
+                echo '      <img src="' . $row['img_url'] . '">';
+                echo '    <div class="card-container">';
+                echo '     <h4>' . $row["name"] . '</h4>';
+                echo '    </div>';
+                echo '    </div>';
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
 </div>
 </body>
 </html>
 <style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        background-color: white;
+        border-radius: 4px;
+    }
+
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .card:hover {
+        box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .card-container {
+        padding: 16px 8px;
+    }
+
 </style>
 <script>
     $(document).ready(function () {

@@ -6,3 +6,15 @@
     width: 25px !important;
     height: 25px !important;
 }
+
+body {
+    background-color: #513252;
+}
+
+table {
+    background-color: #efefef;
+}
+
+.text-white {
+    color: white;
+}

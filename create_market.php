@@ -86,7 +86,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title">สร้างตลาด</h3>
+    <h3 class="card-title text-white">สร้างตลาด</h3>
     <form method="POST" enctype="multipart/form-data" id="myform">
         <div id="container" class="panel card">
             <div class="card-body">
@@ -133,9 +133,11 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
         margin-right: auto;
         max-width: 420px;
     }
-
     .img-area-wrapper img {
         max-width: 420px;
+    }
+    .card-body {
+        padding: 25px;
     }
 </style>
 <script>

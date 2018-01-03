@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
 <link rel="stylesheet" href="./css/normalize.css" type="text/css">
-<link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon"/>
+<link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon"/>
 <link rel="stylesheet" href="./libs/planit/css/planit.min.css"/>
 <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css"/>
 <link rel="stylesheet" href="./css/style.css"/>

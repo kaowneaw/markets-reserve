@@ -5,12 +5,12 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 
-if (!$_SESSION["user"]){  //check session
+if (!$_SESSION["user"]) {  //check session
     header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
     exit;
 }
 
-if(isset($_POST['marketId'])) {
+if (isset($_POST['marketId'])) {
     // remove my market
     $marketId = $_POST['marketId'];
     $sql = "DELETE FROM markets WHERE markets_id = '$marketId'";
@@ -35,7 +35,14 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <div class="row"><h3 class="pull-left">รายชื่อตลาด</h3> <h3 class="pull-right"><button class="btn btn-success " onclick="add()">สร้างตลาด</button></h3></div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="pull-left text-white">รายชื่อตลาด</h3>
+            <h3 class="pull-right">
+                <button class="btn btn-success " onclick="add()">สร้างตลาด</button>
+            </h3>
+        </div>
+    </div>
 
     <?php
     if ($result->num_rows > 0) {
@@ -55,15 +62,15 @@ $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             $count++;
             echo '  <tr>';
-            echo '    <td class="text-center">'.$count.'</td>';
-            echo '    <td class="text-center"><img src="' . $row["img_url"] . '" class="img-preview"/></td>';
+            echo '    <td class="text-center">' . $count . '</td>';
+            echo '    <td class="text-center"><img src="' . $row["img_url"] . '" class="img-table"/></td>';
             echo '    <td>' . $row["name"] . '</td>';
-            echo '    <td>'.$row["description"].'</td>';
+            echo '    <td>' . $row["description"] . '</td>';
             echo '    <td>';
             echo '      <button class="btn btn-primary pull-left" onclick="view(' . $row["markets_id"] . ')" style="margin-right: 5px;">แผนที่</button>';
             echo '      <button class="btn btn-warning pull-left" onclick="edit(' . $row["markets_id"] . ')" style="margin-right: 5px;">แก้ไข</button>';
             echo '      <form method="post" onsubmit="return confirmRemove(this);">';
-            echo '       <input value="'.$row["markets_id"].'" name="marketId" class="hide">';
+            echo '       <input value="' . $row["markets_id"] . '" name="marketId" class="hide">';
             echo '       <button class="btn btn-danger pull-left" type="submit">ลบ</button>';
             echo '      </form>';
             echo '    </td>';
@@ -72,7 +79,7 @@ $result = $conn->query($sql);
         echo '</tbody>';
         echo '</table>';
     } else {
-        echo '<h4 class="text-center"> 0 results</h4>';
+        echo '<h4 class="text-center text-white"> 0 results</h4>';
     }
     ?>
 
@@ -80,9 +87,12 @@ $result = $conn->query($sql);
 </body>
 </html>
 <style>
-    .img-preview {
-        max-width: 150px;
+    .img-table {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
     }
+
     .hide {
         display: none;
     }
