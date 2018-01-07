@@ -3,6 +3,7 @@
 <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon"/>
 <link rel="stylesheet" href="./libs/planit/css/planit.min.css"/>
 <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.css"/>
+<link rel="stylesheet" href="./libs/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
 <link rel="stylesheet" href="./css/style.css"/>
 
 <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -11,3 +12,5 @@
 <script type="text/javascript" src="./libs/planit/js/draggabilly.js"></script>
 <script type="text/javascript" src="./libs/planit/js/modernizr-2.8.3.min.js"></script>
 <script type="text/javascript" src="./libs/planit/js/planit.min.js"></script>
+<script type="text/javascript" src="./libs/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./libs/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>

@@ -40,8 +40,9 @@ if (!isset($_GET['marketId'])) {
 }
 
 // insert marker store
-if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) && isset($_POST['pointY']) && isset($_POST['storeId'])) {
+if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) && isset($_POST['pointY']) && isset($_POST['store_name'])) {
 
+    $store_name = $_POST['store_name'];
     $action = $_POST['action'];
     $price = $_POST['price'];
     $type = $_POST['type'];
@@ -49,13 +50,15 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     $pointX = $_POST['pointX'];
     $pointY = $_POST['pointY'];
     $id = $_POST['storeId'];
+    $water_price = $_POST['water_price'];
+    $eletric_price = $_POST['eletric_price'];
 
-    if($action === "Update") {
-        $sql = "UPDATE market_store SET type_id = '$type', price = '$price', description = '$desc' WHERE store_market_id = '$id';";
-    }else if($action === "Delete") {
+    if($action === "แก้ไข") {
+        $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price' WHERE store_market_id = '$id';";
+    }else if($action === "ลบ") {
         $sql = "DELETE FROM market_store WHERE store_market_id = '$id'";
-    }else if($action === "Save") {
-        $sql = "INSERT INTO market_store (type_id, pointX, pointY, status, price, description, markets_id) VALUES ('$type', '$pointX', '$pointY', 'AVAILABLE', '$price', '$desc', '$marketId')";
+    }else if($action === "บันทึก") {
+        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, status, price, description, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', 'AVAILABLE', '$price', '$desc', '$marketId', '$water_price', '$eletric_price')";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -97,6 +100,16 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
+                                <label for="price">ชื่อ</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="store_name" class="form-control" placeholder="ชื่อ" name="store_name" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                                 <label for="price">ค่าเช่า</label>
                             </div>
                             <div class="col-md-8">
@@ -128,6 +141,26 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
+                                <label for="price">ค่าน้ำ/หน่วย</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" id="water_price" class="form-control" placeholder="ค่าน้ำ" name="water_price" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ค่าไฟ/หน่วย</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" id="eletric_price" class="form-control" placeholder="ค่าไฟ" name="eletric_price" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
                                 <label for="price">รายละเอียด</label>
                             </div>
                             <div class="col-md-8">
@@ -142,9 +175,9 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                         <input type="text" name="pointY" id="pointY" required>
                     </div>
                     <div class="text-right">
-                        <input id="update" class="btn btn-warning" type="submit" name="action" value="Update" />
-                        <input id="del" class="btn btn-danger" type="submit" name="action" value="Delete" />
-                        <input id="save" class="btn btn-primary" type="submit" name="action" value="Save" />
+                        <input id="update" class="btn btn-warning" type="submit" name="action" value="แก้ไข"/>
+                        <input id="del" class="btn btn-danger" type="submit" name="action" value="ลบ" />
+                        <input id="save" class="btn btn-primary" type="submit" name="action" value="บันทึก" />
                     </div>
                 </form>
             </div>
@@ -203,7 +236,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     setValuePopup(null);
                 } else {
                     $('#save').hide();
-                    $('#del').show();
+                    $('#del,#update').show();
                     setValuePopup(marker.id());
                 }
                 p.centerOn(marker.position());
@@ -235,18 +268,24 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     function setValuePopup (index) {
         if(index == null) {
             // marker new add
+            $("#store_name").val('');
             $("#price").val('');
             $("#type").val(1);
             $("#desc").val('');
             $('#storeId').val(-1);
+            $("#water_price").val('');
+            $("#eletric_price").val('');
         } else {
             var store = stores[index-1];
+            $("#store_name").val(store.store_name);
             $("#price").val(store.price);
             $("#type").val(store.type_id);
             $("#desc").val(store.description);
             $('#storeId').val(store.store_market_id);
             $("#pointX").val(store.pointX);
             $("#pointY").val(store.pointY);
+            $("#water_price").val(store.water_price_per_unit);
+            $("#eletric_price").val(store.eletric_price_per_unit);
         }
     }
 

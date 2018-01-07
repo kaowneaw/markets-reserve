@@ -1,0 +1,370 @@
+<?php
+require('./common/header.php');
+require('./common/db_connect.php');
+// Start the session
+session_start(); // Starting Session
+
+if (!$_SESSION["user"]) {  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
+
+if (!isset($_GET['marketId'])) {
+    header('Location: index.php');
+} else {
+    $marketId = $_GET['marketId'];
+
+    if (isset($_GET['startDate']) && isset($_GET['endDate'])) {
+        $date = str_replace('/', '-', $_GET['startDate']);
+        $start_date = date('Y-m-d', strtotime($date));
+        $date = str_replace('/', '-', $_GET['endDate']);
+        $end_date = date('Y-m-d', strtotime($date));
+    } else {
+        $start_date = date('Y-m-d'); // date now default
+        $end_date = date('Y-m-d');  // date now default
+    }
+
+    $sql = "SELECT * FROM markets WHERE markets_id = '$marketId' limit 1";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $img = $row['map_img']; // map
+        }
+    } else {
+        echo "0 results";
+    }
+
+    // get store
+    $sql = "SELECT *,CASE WHEN store_booking_detail_id IS NULL THEN 'true'ELSE 'false' END as available  FROM market_store ms  
+    LEFT JOIN (SELECT store_booking_detail_id,store_id,start_date,end_date FROM store_booking_detail WHERE start_date >= '$start_date' AND end_date <= '$end_date') as store_detail
+    ON ms.store_market_id = store_detail.store_id WHERE ms.markets_id = '$marketId' GROUP BY store_market_id";
+    $result = $conn->query($sql);
+    $stores = array();
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            array_push($stores, $row);
+        }
+    }
+    $stores = json_encode($stores);
+    print_r($stores);
+}
+
+// reserve
+if (isset($_POST['storeId'])) {
+    $userId = $_SESSION["user"]->users_id;
+    $store_id = $_POST['storeId'];
+    $price = $_POST['price'];
+    $water_price_per_unit = $_POST['water_price_per_unit'];
+    $eletric_price_per_unit = $_POST['eletric_price_per_unit'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+
+    $sql = "INSERT INTO store_booking (user_id, create_date, status) VALUES ('$userId', now(), 'WAIT')";
+    if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id; // get last market id insert
+        $sql = "INSERT INTO store_booking_detail (booking_id, store_id, price, water_price_per_unit, eletric_price_per_unit,start_date,end_date) VALUES ('$last_id', '$store_id', '$price', '$water_price_per_unit', '$eletric_price_per_unit', '$start_date', '$end_date')";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Market</title>
+</head>
+<body>
+<?php require('./common/nav.php'); ?>
+<div class="container-fluid">
+    <div class="col-xs-12 form-group">
+        <h3 class="text-white form-group">ระบุช่วงเวลาที่ต้องการจอง</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-4 control-label text-white">วันที่เริ่มต้น</label>
+                <div class="input-group date form_date_start col-md-8" data-date="" data-date-format="dd/mm/yyyy"
+                     data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input id="date_start" class="form-control" size="16" type="text" name="start_date" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/><br/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-4 control-label text-white">วันที่สิ้นสุด</label>
+                <div class="input-group date form_date_end col-md-8" data-date="" data-date-format="dd/mm/yyyy"
+                     data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input id="date_end" class="form-control" size="16" type="text" name="end_date" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/><br/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button id="searchDate" class="btn btn-default">ค้นหา</button>
+        </div>
+    </div>
+    <div class="map-area-wrapper" id="wrapper-map">
+        <img id="image_upload_preview"/>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">ข้อมูลร้านค้า</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ชื่อ</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="store_name"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ค่าเช่า</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="price"></label>
+                                <input id="price_input" type="hidden" name="price"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ประเภท</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="form-control" name="type" required id="type" disabled>
+                                    <?php
+                                    $sql = "SELECT * FROM markets_type";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo ' <option value="' . $row["markets_type_id"] . '">' . $row["market_type_name"] . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ค่าน้ำ/หน่วย</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="water_price"></label>
+                                <input id="water_price_input" type="hidden" name="water_price_per_unit"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ค่าไฟ/หน่วย</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="eletric_price"></label>
+                                <input id="eletric_price_input" type="hidden" name="eletric_price_per_unit"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">รายละเอียด</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="desc"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hide">
+                        <!--not display-->
+                        <input type="hidden" name="date_start" id="date_start" required>
+                        <input type="hidden" name="date_end" id="date_end" required>
+                        <input type="hidden" name="storeId" id="storeId" required>
+                        <input type="hidden" name="pointX" id="pointX" required>
+                        <input type="hidden" name="pointY" id="pointY" required>
+                    </div>
+                    <div class="text-right">
+                        <input id="reserve" class="btn btn-primary" type="submit" name="action" value="จอง"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<style>
+    .map-area-wrapper {
+        margin: 25px auto;
+        overflow: auto;
+        border: solid black 1px;
+        background-color: black;
+        min-width: 1320px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        initPlanit();
+        $('.form_date_start').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            startDate: new Date()
+        });
+        $('.form_date_end').datetimepicker({
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            startDate: new Date()
+        });
+
+        $('.form_date_start, .form_date_end')
+            .datetimepicker()
+            .on('changeDate', function (ev) {
+                var arrDate = $("#date_start").val().split("/");
+                var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
+
+                var arrDate2 = $("#date_end").val().split("/");
+                var dateEnd = new Date(arrDate2[2], arrDate2[1] - 1, arrDate2[0]);
+
+                if (dateStart >= dateEnd) {
+                    $('#date_end').val(formatDate(dateStart));
+                }
+            });
+
+        var startDate = new Date("<?php echo $start_date; ?>");
+        var endDate = new Date("<?php echo $end_date; ?>");
+
+        $('#date_start').val(formatDate(startDate));
+        $('#date_end').val(formatDate(endDate));
+
+        $('#searchDate').click(function () {
+            var marketId = "<?php echo $marketId; ?>";
+            var startDate =  $('#date_start').val();
+            var endDate =  $('#date_end').val();
+            window.location = "reserve_market.php?marketId=" + marketId+"&startDate="+startDate+"&endDate="+endDate;
+        });
+    });
+
+    function formatDate(date) {
+        var today;
+        if (date) {
+            today = date;
+        } else {
+            today = new Date();
+        }
+
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        return dd + '/' + mm + '/' + yyyy;
+    }
+
+    var stores = [];
+
+    function initPlanit() {
+        stores = JSON.parse('<?php echo $stores; ?>');
+        for (var i = 0; i < stores.length; i++) {
+            var coordsArr = [];
+            coordsArr.push(stores[i].pointX);
+            coordsArr.push(stores[i].pointY);
+            stores[i].coords = coordsArr;
+            stores[i].size = 20;
+            stores[i].id = i + 1; // cannot set zero
+
+            if (stores[i].available == 'true') {
+                stores[i].color = '#33cc33';
+            } else {
+                stores[i].color = '#ff3300';
+            }
+        }
+
+        p = planit.new({
+            container: 'wrapper-map',
+            image: {
+                url: "<?php echo $img; ?>",
+                zoom: true
+            },
+            markers: stores,
+            markerDragEnd: function (event, marker) {
+                var position = marker.position();
+                setPositionValue(position);
+            },
+            markerClick: function (event, marker) {
+                p.centerOn(marker.position());
+                setValuePopup(marker.id());
+                $('#myModal').modal('show');
+            }
+        });
+    }
+
+    function setValuePopup(index) {
+        if (index == null) {
+            // marker new add
+            $("#store_name").val('');
+            $("#price").val('');
+            $("#type").val(1);
+            $("#desc").val('');
+            $('#storeId').val(-1);
+        } else {
+            var store = stores[index - 1];
+            $("#store_name").html(checkEmptyText(store.store_name));
+            $("#price").html(checkEmptyText(store.price) + ' บาท');
+            $("#type").val(store.type_id);
+            $("#desc").html(checkEmptyText(store.description));
+            $('#storeId').val(store.store_market_id);
+            $("#pointX").val(store.pointX);
+            $("#pointY").val(store.pointY);
+            $("#water_price").html(checkEmptyText(store.water_price_per_unit) + ' บาท');
+            $("#eletric_price").html(checkEmptyText(store.eletric_price_per_unit) + ' บาท');
+        }
+    }
+
+    function checkEmptyText(txt) {
+        if (txt === '') {
+            return '-';
+        }
+        return txt;
+    }
+</script>

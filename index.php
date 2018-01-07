@@ -21,12 +21,15 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4 form-group">';
+                echo '<a href="reserve_market.php?marketId='.$row['markets_id'].'">';
                 echo '    <div class="card">';
                 echo '      <img src="' . $row['img_url'] . '">';
                 echo '    <div class="card-container">';
-                echo '     <h4>' . $row["name"] . '</h4>';
+                echo '        <small>ชื่อตลาด</small>';
+                echo '        <h4>' . $row["name"] . '</h4>';
                 echo '    </div>';
                 echo '    </div>';
+                echo '</a>';
                 echo '</div>';
             }
         }
@@ -55,6 +58,14 @@ $result = $conn->query($sql);
 
     .card-container {
         padding: 16px 8px;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a{
+        color:black;
     }
 
 </style>
