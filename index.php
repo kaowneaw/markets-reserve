@@ -21,7 +21,7 @@ $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-4 form-group">';
-                echo '<a href="reserve_market.php?marketId='.$row['markets_id'].'">';
+                echo '<a href="reserve_market.php?marketId='.$row['markets_id'].'&startDate='.date("d/m/Y").'&endDate='.date("d/m/Y").'">';
                 echo '    <div class="card">';
                 echo '      <img src="' . $row['img_url'] . '">';
                 echo '    <div class="card-container">';

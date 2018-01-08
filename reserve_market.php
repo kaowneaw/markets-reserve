@@ -1,4 +1,6 @@
 <?php
+ob_start(); // ใช้เมื่อเราต้องเปลี่ยน header redirect ให้กับ php
+
 require('./common/header.php');
 require('./common/db_connect.php');
 // Start the session
