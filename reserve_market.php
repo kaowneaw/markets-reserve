@@ -50,23 +50,26 @@ if (!isset($_GET['marketId'])) {
         }
     }
     $stores = json_encode($stores);
-    print_r($stores);
 }
 
-// reserve
+// save reserve
 if (isset($_POST['storeId'])) {
     $userId = $_SESSION["user"]->users_id;
     $store_id = $_POST['storeId'];
     $price = $_POST['price'];
     $water_price_per_unit = $_POST['water_price_per_unit'];
     $eletric_price_per_unit = $_POST['eletric_price_per_unit'];
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
 
     $sql = "INSERT INTO store_booking (user_id, create_date, status) VALUES ('$userId', now(), 'WAIT')";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
         $sql = "INSERT INTO store_booking_detail (booking_id, store_id, price, water_price_per_unit, eletric_price_per_unit,start_date,end_date) VALUES ('$last_id', '$store_id', '$price', '$water_price_per_unit', '$eletric_price_per_unit', '$start_date', '$end_date')";
+        if ($conn->query($sql) === TRUE) {
+            header('Location: index.php');
+            exit(0);
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

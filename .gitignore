@@ -114,6 +114,5 @@ fabric.properties
 ._header.php
 ._index.php
 .idea/
-img/
 package-lock.json
 /uploads/*
