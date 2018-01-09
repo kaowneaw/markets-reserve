@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-01-07 21:22:52
+Date: 2018-01-09 22:25:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `markets` (
   `description` text NOT NULL,
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`markets_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of markets
@@ -37,6 +37,7 @@ INSERT INTO `markets` VALUES ('31', 'เจเจ', 'uploads/1514815798map.jpg',
 INSERT INTO `markets` VALUES ('32', 'Jatujak Park Market', 'uploads/1514815851map.jpg', '2', 'เปิดทุกวันหยุดนะคะ', '2018-01-03 22:20:20');
 INSERT INTO `markets` VALUES ('34', 'เจเจกรีน', 'uploads/1514816004map.jpg', '2', 'หฟกหก', '2018-01-02 09:08:37');
 INSERT INTO `markets` VALUES ('35', 'T', 'uploads/1514862187map.jpg', '2', '', '2018-01-02 10:03:06');
+INSERT INTO `markets` VALUES ('36', 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', '2', 'มาคร้า', '2018-01-09 22:16:54');
 
 -- ----------------------------
 -- Table structure for markets_img
@@ -47,7 +48,7 @@ CREATE TABLE `markets_img` (
   `img_url` text NOT NULL,
   `market_id` int(11) NOT NULL,
   PRIMARY KEY (`markets_img_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of markets_img
@@ -73,6 +74,7 @@ INSERT INTO `markets_img` VALUES ('21', 'uploads/1514861744.jpg', '32');
 INSERT INTO `markets_img` VALUES ('22', 'uploads/1514815987.jpg', '33');
 INSERT INTO `markets_img` VALUES ('23', 'uploads/1514816004.jpg', '34');
 INSERT INTO `markets_img` VALUES ('24', 'uploads/1514862187.jpg', '35');
+INSERT INTO `markets_img` VALUES ('25', 'uploads/1515511015.jpg', '36');
 
 -- ----------------------------
 -- Table structure for markets_type
@@ -108,7 +110,7 @@ CREATE TABLE `market_store` (
   `water_price_per_unit` float NOT NULL,
   `eletric_price_per_unit` float NOT NULL,
   PRIMARY KEY (`store_market_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of market_store
@@ -122,6 +124,8 @@ INSERT INTO `market_store` VALUES ('36', 'ซอย 8898988', '1', '32', '47.610
 INSERT INTO `market_store` VALUES ('37', 'ซอย 8', '2', '32', '47.823406676783', '50.76072828948087', 'AVAILABLE', '1500', '', '20', '7');
 INSERT INTO `market_store` VALUES ('38', 'ซอย8', '1', '32', '47.989377845220034', '50.73342289502713', 'AVAILABLE', '120', '', '0', '0');
 INSERT INTO `market_store` VALUES ('41', 'ซอย 9', '1', '32', '51.17602427921093', '47.83941683969317', 'AVAILABLE', '150', '', '20', '7');
+INSERT INTO `market_store` VALUES ('42', 'o', '1', '32', '48.193285280728375', '50.77438098670773', 'AVAILABLE', '150', '', '10', '7');
+INSERT INTO `market_store` VALUES ('43', 'kbank', '1', '36', '47.23065250379362', '45.3273013435449', 'AVAILABLE', '150', '-', '10', '7');
 
 -- ----------------------------
 -- Table structure for store_booking
@@ -133,33 +137,41 @@ CREATE TABLE `store_booking` (
   `create_date` datetime NOT NULL,
   `status` varchar(20) NOT NULL,
   PRIMARY KEY (`store_booking_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of store_booking
 -- ----------------------------
-INSERT INTO `store_booking` VALUES ('1', '1', '2018-01-07 00:00:00', 'WAIT');
+INSERT INTO `store_booking` VALUES ('8', '2', '2018-01-09 20:14:38', 'WAIT');
+INSERT INTO `store_booking` VALUES ('9', '2', '2018-01-09 21:13:11', 'WAIT');
+INSERT INTO `store_booking` VALUES ('10', '2', '2018-01-09 21:16:21', 'WAIT');
+INSERT INTO `store_booking` VALUES ('11', '2', '2018-01-09 21:28:28', 'WAIT');
+INSERT INTO `store_booking` VALUES ('12', '2', '2018-01-09 22:18:54', 'WAIT');
 
 -- ----------------------------
 -- Table structure for store_booking_detail
 -- ----------------------------
 DROP TABLE IF EXISTS `store_booking_detail`;
 CREATE TABLE `store_booking_detail` (
-  `store_booking_detail_id` int(11) NOT NULL,
+  `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT,
   `booking_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `price` float NOT NULL,
   `water_price_per_unit` float NOT NULL,
   `eletric_price_per_unit` float NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `end_date` date NOT NULL,
+  PRIMARY KEY (`store_booking_detail_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of store_booking_detail
 -- ----------------------------
-INSERT INTO `store_booking_detail` VALUES ('1', '1', '27', '150', '10', '10', '2018-01-07', '2018-01-07');
-INSERT INTO `store_booking_detail` VALUES ('2', '1', '27', '150', '10', '10', '2018-01-10', '2018-01-12');
+INSERT INTO `store_booking_detail` VALUES ('3', '8', '31', '0', '0', '0', '2018-01-09', '2018-01-12');
+INSERT INTO `store_booking_detail` VALUES ('4', '9', '31', '0', '0', '0', '2018-01-09', '2018-01-09');
+INSERT INTO `store_booking_detail` VALUES ('5', '10', '27', '0', '0', '0', '2018-01-09', '2018-01-09');
+INSERT INTO `store_booking_detail` VALUES ('6', '11', '33', '0', '0', '0', '2018-01-09', '2018-01-09');
+INSERT INTO `store_booking_detail` VALUES ('7', '12', '43', '0', '0', '0', '2018-01-09', '2018-01-19');
 
 -- ----------------------------
 -- Table structure for users
