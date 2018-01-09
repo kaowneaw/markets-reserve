@@ -65,7 +65,7 @@ if (isset($_POST['storeId'])) {
         $last_id = $conn->insert_id; // get last market id insert
         $sql = "INSERT INTO store_booking_detail (booking_id, store_id, price, water_price_per_unit, eletric_price_per_unit,start_date,end_date) VALUES ('$last_id', '$store_id', '$price', '$water_price_per_unit', '$eletric_price_per_unit', '$start_date', '$end_date')";
         if ($conn->query($sql) === TRUE) {
-            header('Location: index.php');
+            header('Location: reserve_detail.php?reserveId='.$last_id);
             exit(0);
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -114,7 +114,7 @@ if (isset($_POST['storeId'])) {
             </div>
         </div>
         <div class="col-md-4">
-            <button id="searchDate" class="btn btn-default">ค้นหา</button>
+            <button id="searchDate" class="btn btn-default">ตกลง</button>
         </div>
     </div>
     <div class="map-area-wrapper" id="wrapper-map">
@@ -340,6 +340,9 @@ if (isset($_POST['storeId'])) {
                 p.centerOn(marker.position());
                 setValuePopup(marker.id());
                 $('#myModal').modal('show');
+            },
+            canvasClick: function(event, coords) {
+                // p.zoomable.zoomIn();
             }
         });
     }

@@ -18,6 +18,9 @@
                         <li><a href="create_market.php">สร้างตลาด</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="my_reserve.php">รายการจองของฉัน</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php

@@ -3,7 +3,7 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 
-$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id";
+$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id ORDER BY markets_id DESC ";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
