@@ -134,20 +134,20 @@ if (isset($_POST['storeId'])) {
                 <form method="POST" id="form">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ชื่อ</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="store_name"></label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ค่าเช่า</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="price"></label>
                                 <input id="price_input" type="hidden" name="price"/>
                             </div>
@@ -155,10 +155,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ประเภท</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <select class="form-control" name="type" required id="type" disabled>
                                     <?php
                                     $sql = "SELECT * FROM markets_type";
@@ -176,10 +176,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ค่าน้ำ/หน่วย</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="water_price"></label>
                                 <input id="water_price_input" type="hidden" name="water_price_per_unit"/>
                             </div>
@@ -187,10 +187,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ค่าไฟ/หน่วย</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="eletric_price"></label>
                                 <input id="eletric_price_input" type="hidden" name="eletric_price_per_unit"/>
                             </div>
@@ -198,10 +198,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">รายละเอียด</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="desc"></label>
                             </div>
                         </div>
@@ -260,6 +260,7 @@ if (isset($_POST['storeId'])) {
         $('.form_date_start, .form_date_end')
             .datetimepicker()
             .on('changeDate', function (ev) {
+                // change format date
                 var arrDate = $("#date_start").val().split("/");
                 var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
 
@@ -281,7 +282,47 @@ if (isset($_POST['storeId'])) {
             var marketId = "<?php echo $marketId; ?>";
             var startDate =  $('#date_start').val();
             var endDate =  $('#date_end').val();
-            window.location = "reserve_market.php?marketId=" + marketId+"&startDate="+startDate+"&endDate="+endDate;
+            window.location = "reserve_market.php?marketId=" + marketId+"&startDate="+startDate+"&endDate="+endDate; //change page
+        });
+
+        $('form').submit(function () {
+            // check before submit
+            var typeId = $("#type").val();
+
+            // change format date
+            var arrDate = $("#date_start").val().split("/");
+            var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
+
+            var arrDate2 = $("#date_end").val().split("/");
+            var dateEnd = new Date(arrDate2[2], arrDate2[1] - 1, arrDate2[0]);
+
+            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+            var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime())/(oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
+            console.log(days);
+            function diff_months(dt2, dt1)
+            {
+
+                var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+                diff /= (60 * 60 * 24 * 7 * 4);
+                return Math.abs(Math.round(diff));
+
+            }
+
+            dt1 = new Date(2014,10,2);
+            dt2 = new Date(2014,11,11);
+            console.log(diff_months(dt1, dt2));
+
+            dt1 = new Date("June 13, 2014 08:11:00");
+            dt2 = new Date("October 19, 2014 11:13:00");
+            console.log(diff_months(dt1, dt2));
+
+            if(typeId == 1){
+                // รายวัน
+                console.log(startDate);
+                console.log(endDate);
+            }
+            alert('Text-field is empty.');
+            return false;
         });
     });
 
@@ -357,6 +398,11 @@ if (isset($_POST['storeId'])) {
             $('#storeId').val(-1);
         } else {
             var store = stores[index - 1];
+            if(store.available == "true") {
+              $("#reserve").show();
+            } else {
+              $("#reserve").hide();
+            }
             $("#store_name").html(checkEmptyText(store.store_name));
             $("#price").html(checkEmptyText(store.price) + ' บาท');
             $("#type").val(store.type_id);
