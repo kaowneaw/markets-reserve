@@ -96,6 +96,10 @@ $result = $conn->query($sql);
     .hide {
         display: none;
     }
+    td .btn {
+        width: 60px;
+        margin-bottom: 5px;
+    }
 </style>
 <script>
 
