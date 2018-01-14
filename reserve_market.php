@@ -31,6 +31,7 @@ if (!isset($_GET['marketId'])) {
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
+            $market_name = $row['name'];
             $img = $row['map_img']; // map
         }
     } else {
@@ -88,7 +89,8 @@ if (isset($_POST['storeId'])) {
 <?php require('./common/nav.php'); ?>
 <div class="container-fluid">
     <div class="col-xs-12 form-group">
-        <h3 class="text-white form-group">ระบุช่วงเวลาที่ต้องการจอง</h3>
+        <h3 class="text-white">ตลาด <?php echo $market_name ?></h3>
+        <h4 class="text-white">ระบุช่วงเวลาที่ต้องการจอง</h4>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -231,6 +233,10 @@ if (isset($_POST['storeId'])) {
         border: solid black 1px;
         background-color: black;
         min-width: 1320px;
+    }
+    .btn {
+        padding-left: 25px;
+        padding-right: 25px;
     }
 </style>
 <script>

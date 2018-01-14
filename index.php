@@ -3,7 +3,7 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 
-$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id ORDER BY markets_id DESC ";
+$sql = "SELECT * FROM markets INNER JOIN users ON markets.userId = users.users_id LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id ORDER BY markets_id DESC ";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -27,6 +27,7 @@ $result = $conn->query($sql);
                 echo '    <div class="card-container">';
                 echo '        <small>ชื่อตลาด</small>';
                 echo '        <h4>' . $row["name"] . '</h4>';
+                echo '        <div class="text-right"><small>เจ้าของตลาด '.$row["first_name"].' '.$row["last_name"].'</small></div>';
                 echo '    </div>';
                 echo '    </div>';
                 echo '</a>';
