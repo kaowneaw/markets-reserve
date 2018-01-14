@@ -216,6 +216,8 @@ if (isset($_POST['storeId'])) {
                         <input type="hidden" name="pointX" id="pointX" required>
                         <input type="hidden" name="pointY" id="pointY" required>
                     </div>
+                    <div id="show-error">
+                    </div>
                     <div class="text-right">
                         <input id="reserve" class="btn btn-primary" type="submit" name="action" value="จอง"/>
                     </div>
@@ -297,39 +299,31 @@ if (isset($_POST['storeId'])) {
 
             // change format date
             var arrDate = $("#date_start").val().split("/");
-            var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]);
+            var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]); // change format date to default
 
             var arrDate2 = $("#date_end").val().split("/");
             var dateEnd = new Date(arrDate2[2], arrDate2[1] - 1, arrDate2[0]);
 
-            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-            var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime())/(oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
-            console.log(days);
-            function diff_months(dt2, dt1)
-            {
-
-                var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-                diff /= (60 * 60 * 24 * 7 * 4);
-                return Math.abs(Math.round(diff));
-
-            }
-
-            dt1 = new Date(2014,10,2);
-            dt2 = new Date(2014,11,11);
-            console.log(diff_months(dt1, dt2));
-
-            dt1 = new Date("June 13, 2014 08:11:00");
-            dt2 = new Date("October 19, 2014 11:13:00");
-            console.log(diff_months(dt1, dt2));
-
             if(typeId == 1){
                 // รายวัน
-                console.log(startDate);
-                console.log(endDate);
+                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime())/(oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
+                console.log(days);
+            } else if(typeId == 2) {
+                // รายวัน
+                var month = diff_months(dateStart, dateEnd);
+                console.log('Month', month);
             }
             alert('Text-field is empty.');
             return false;
         });
+
+        function diff_months(dt2, dt1)
+        {
+            var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+            diff /= (60 * 60 * 24 * 7 * 4);
+            return Math.abs(Math.round(diff));
+        }
     });
 
     function formatDate(date) {
