@@ -79,7 +79,7 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">ค่าเช่า</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['price'] ?></label>
+                    <label class="control-label"><?php echo $reserve['price'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
@@ -87,7 +87,7 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">ค่าน้ำ/หน่วย</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['water_price_per_unit'] ?></label>
+                    <label class="control-label"><?php echo $reserve['water_price_per_unit'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
@@ -95,7 +95,7 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">ค่าไฟ/หน่วย</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['eletric_price_per_unit'] ?></label>
+                    <label class="control-label"><?php echo $reserve['eletric_price_per_unit'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
@@ -103,7 +103,15 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">สถานะ</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['status'] ?></label>
+                    <label class="control-label">
+                        <?php
+                        if($reserve["status"] === 'WAIT') {
+                            echo 'รอการชำระเงิน';
+                        } else {
+                            echo $reserve['status'];
+                        }
+                        ?>
+                    </label>
                 </div>
             </div>
             <div class="row form-group">

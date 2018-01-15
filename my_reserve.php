@@ -49,7 +49,11 @@ $result = $conn->query($sql);
             echo '    <td class="text-center">' . $count . '</td>';
             echo '    <td>' . $row["store_booking_id"] . '</td>';
             echo '    <td>' . $row["create_date"] . '</td>';
-            echo '    <td>' . $row["status"] . '</td>';
+            if($row["status"] === 'WAIT') {
+                echo '    <td>รอการชำระเงิน</td>';
+            } else {
+                echo '    <td>' . $row["status"] . '</td>';
+            }
             echo '    <td><button class="btn btn-primary pull-left" onclick="view(' . $row["store_booking_id"] . ')" style="padding: 5px 25px;">ดู</button></td>';
             echo '  </tr>';
         }

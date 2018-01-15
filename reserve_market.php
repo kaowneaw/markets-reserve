@@ -60,13 +60,14 @@ if (isset($_POST['storeId'])) {
     $price = $_POST['price'];
     $water_price_per_unit = $_POST['water_price_per_unit'];
     $eletric_price_per_unit = $_POST['eletric_price_per_unit'];
+    print_r($_POST);
 
     $sql = "INSERT INTO store_booking (user_id, create_date, status) VALUES ('$userId', now(), 'WAIT')";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
         $sql = "INSERT INTO store_booking_detail (booking_id, store_id, price, water_price_per_unit, eletric_price_per_unit,start_date,end_date) VALUES ('$last_id', '$store_id', '$price', '$water_price_per_unit', '$eletric_price_per_unit', '$start_date', '$end_date')";
         if ($conn->query($sql) === TRUE) {
-            header('Location: reserve_detail.php?reserveId='.$last_id);
+            header('Location: reserve_detail.php?reserveId=' . $last_id);
             exit(0);
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -210,16 +211,15 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="hide">
                         <!--not display-->
-                        <input type="hidden" name="date_start" id="date_start" required>
-                        <input type="hidden" name="date_end" id="date_end" required>
                         <input type="hidden" name="storeId" id="storeId" required>
                         <input type="hidden" name="pointX" id="pointX" required>
                         <input type="hidden" name="pointY" id="pointY" required>
                     </div>
-                    <div id="show-error">
-                    </div>
-                    <div class="text-right">
-                        <input id="reserve" class="btn btn-primary" type="submit" name="action" value="จอง"/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div id="show-error" class="pull-left text-danger text-center" style="margin-left: 35px;margin-top: 10px"></div>
+                            <input id="reserve" class="btn btn-primary pull-right" type="submit" name="action" value="จอง"/>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -236,6 +236,7 @@ if (isset($_POST['storeId'])) {
         background-color: black;
         min-width: 1320px;
     }
+
     .btn {
         padding-left: 25px;
         padding-right: 25px;
@@ -288,39 +289,40 @@ if (isset($_POST['storeId'])) {
 
         $('#searchDate').click(function () {
             var marketId = "<?php echo $marketId; ?>";
-            var startDate =  $('#date_start').val();
-            var endDate =  $('#date_end').val();
-            window.location = "reserve_market.php?marketId=" + marketId+"&startDate="+startDate+"&endDate="+endDate; //change page
+            var startDate = $('#date_start').val();
+            var endDate = $('#date_end').val();
+            window.location = "reserve_market.php?marketId=" + marketId + "&startDate=" + startDate + "&endDate=" + endDate; //change page
         });
 
         $('form').submit(function () {
             // check before submit
             var typeId = $("#type").val();
-
             // change format date
             var arrDate = $("#date_start").val().split("/");
             var dateStart = new Date(arrDate[2], arrDate[1] - 1, arrDate[0]); // change format date to default
 
             var arrDate2 = $("#date_end").val().split("/");
             var dateEnd = new Date(arrDate2[2], arrDate2[1] - 1, arrDate2[0]);
-
-            if(typeId == 1){
+            console.log(typeId);
+            if (typeId == 1) {
                 // รายวัน
-                var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
-                var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime())/(oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
-                console.log(days);
-            } else if(typeId == 2) {
+                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime()) / (oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
+
+            } else if (typeId == 2) {
                 // รายวัน
                 var month = diff_months(dateStart, dateEnd);
-                console.log('Month', month);
+                if(month === 0) {
+                    $("#show-error").html("กรุณาเลือกระยะเวลาให้ครบเดือน");
+                    return false;
+                }
             }
-            alert('Text-field is empty.');
-            return false;
+            // alert('Text-field is empty.');
+            return true;
         });
 
-        function diff_months(dt2, dt1)
-        {
-            var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+        function diff_months(dt2, dt1) {
+            var diff = (dt2.getTime() - dt1.getTime()) / 1000;
             diff /= (60 * 60 * 24 * 7 * 4);
             return Math.abs(Math.round(diff));
         }
@@ -382,7 +384,7 @@ if (isset($_POST['storeId'])) {
                 setValuePopup(marker.id());
                 $('#myModal').modal('show');
             },
-            canvasClick: function(event, coords) {
+            canvasClick: function (event, coords) {
                 // p.zoomable.zoomIn();
             }
         });
@@ -398,20 +400,23 @@ if (isset($_POST['storeId'])) {
             $('#storeId').val(-1);
         } else {
             var store = stores[index - 1];
-            if(store.available == "true") {
-              $("#reserve").show();
+            if (store.available == "true") {
+                $("#reserve").show();
             } else {
-              $("#reserve").hide();
+                $("#reserve").hide();
             }
             $("#store_name").html(checkEmptyText(store.store_name));
             $("#price").html(checkEmptyText(store.price) + ' บาท');
+            $("#price_input").val(store.price);
             $("#type").val(store.type_id);
             $("#desc").html(checkEmptyText(store.description));
             $('#storeId').val(store.store_market_id);
             $("#pointX").val(store.pointX);
             $("#pointY").val(store.pointY);
             $("#water_price").html(checkEmptyText(store.water_price_per_unit) + ' บาท');
+            $("#water_price_input").val(store.water_price_per_unit);
             $("#eletric_price").html(checkEmptyText(store.eletric_price_per_unit) + ' บาท');
+            $("#eletric_price_input").val(store.eletric_price_per_unit);
         }
     }
 
