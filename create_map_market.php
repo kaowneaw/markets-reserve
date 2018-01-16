@@ -52,13 +52,15 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     $id = $_POST['storeId'];
     $water_price = $_POST['water_price'];
     $eletric_price = $_POST['eletric_price'];
+    $height = $_POST['height'];
+    $width = $_POST['width'];
 
     if($action === "แก้ไข") {
-        $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price' WHERE store_market_id = '$id';";
+        $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price',width = '$width', height = '$height' WHERE store_market_id = '$id';";
     }else if($action === "ลบ") {
         $sql = "DELETE FROM market_store WHERE store_market_id = '$id'";
     }else if($action === "บันทึก") {
-        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, status, price, description, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', 'AVAILABLE', '$price', '$desc', '$marketId', '$water_price', '$eletric_price')";
+        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, width, height, price, description, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', '$width', '$height', '$price', '$desc', '$marketId', '$water_price', '$eletric_price')";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -110,7 +112,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">ค่าเช่า</label>
+                                <label for="price">ค่าเช่า (บาท)</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="number" id="price" class="form-control" placeholder="ค่าเช่า" name="price" required>
@@ -141,7 +143,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">ค่าน้ำ/หน่วย</label>
+                                <label for="price">ค่าน้ำ/หน่วย (บาท)</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="number" id="water_price" class="form-control" placeholder="ค่าน้ำ" name="water_price" required>
@@ -151,7 +153,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">ค่าไฟ/หน่วย</label>
+                                <label for="price">ค่าไฟ/หน่วย (บาท)</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="number" id="eletric_price" class="form-control" placeholder="ค่าไฟ" name="eletric_price" required>
@@ -161,10 +163,20 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">รายละเอียด</label>
+                                <label for="price">ความกว้าง (เซนติเมตร)</label>
                             </div>
                             <div class="col-md-8">
-                                <textarea id="desc" type="text" class="form-control" placeholder="รายละเอียด" name="description"></textarea>
+                                <input type="number" id="width" class="form-control" placeholder="ความกว้าง" name="width" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ความยาว (เซนติเมตร)</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" id="height" class="form-control" placeholder="ความยาว" name="height" required>
                             </div>
                         </div>
                     </div>
@@ -275,6 +287,8 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             $('#storeId').val(-1);
             $("#water_price").val('');
             $("#eletric_price").val('');
+            $("#width").val('');
+            $("#height").val('');
         } else {
             var store = stores[index-1];
             $("#store_name").val(store.store_name);
@@ -284,6 +298,8 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             $('#storeId').val(store.store_market_id);
             $("#pointX").val(store.pointX);
             $("#pointY").val(store.pointY);
+            $("#width").val(store.width);
+            $("#height").val(store.height);
             $("#water_price").val(store.water_price_per_unit);
             $("#eletric_price").val(store.eletric_price_per_unit);
         }

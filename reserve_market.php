@@ -60,7 +60,6 @@ if (isset($_POST['storeId'])) {
     $price = $_POST['price'];
     $water_price_per_unit = $_POST['water_price_per_unit'];
     $eletric_price_per_unit = $_POST['eletric_price_per_unit'];
-    print_r($_POST);
 
     $sql = "INSERT INTO store_booking (user_id, create_date, status) VALUES ('$userId', now(), 'WAIT')";
     if ($conn->query($sql) === TRUE) {
@@ -201,11 +200,23 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-xs-4">
-                                <label for="price">รายละเอียด</label>
+                            <div class="col-md-4">
+                                <label for="price">ความกว้าง</label>
                             </div>
-                            <div class="col-xs-8">
-                                <label id="desc"></label>
+                            <div class="col-md-8">
+                                <label id="width"></label>
+                                <input type="hidden" id="width_input" class="form-control" placeholder="ความกว้าง" name="width" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">ความยาว</label>
+                            </div>
+                            <div class="col-md-8">
+                                <label id="height"></label>
+                                <input type="hidden" id="height_input" class="form-control" placeholder="ความยาว" name="height" required>
                             </div>
                         </div>
                     </div>
@@ -303,7 +314,7 @@ if (isset($_POST['storeId'])) {
 
             var arrDate2 = $("#date_end").val().split("/");
             var dateEnd = new Date(arrDate2[2], arrDate2[1] - 1, arrDate2[0]);
-            console.log(typeId);
+
             if (typeId == 1) {
                 // รายวัน
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -312,13 +323,16 @@ if (isset($_POST['storeId'])) {
             } else if (typeId == 2) {
                 // รายวัน
                 var month = diff_months(dateStart, dateEnd);
+                var dateDestination = dateStart;
+                dateDestination.setMonth(dateDestination.getMonth() + 1);
+
                 if(month === 0) {
-                    $("#show-error").html("กรุณาเลือกระยะเวลาให้ครบเดือน");
+                    $("#show-error").html("ประเภทรายเดือน กรุณาเลือกวันสิ้นสุดที่ " + formatDate(dateDestination));
                     return false;
                 }
             }
-            // alert('Text-field is empty.');
-            return true;
+
+            return false;
         });
 
         function diff_months(dt2, dt1) {
@@ -396,10 +410,12 @@ if (isset($_POST['storeId'])) {
             $("#store_name").val('');
             $("#price").val('');
             $("#type").val(1);
-            $("#desc").val('');
+            $("#height").val('');
+            $("#width").val('');
             $('#storeId').val(-1);
         } else {
             var store = stores[index - 1];
+            $("#show-error").html('');
             if (store.available == "true") {
                 $("#reserve").show();
             } else {
@@ -413,6 +429,8 @@ if (isset($_POST['storeId'])) {
             $('#storeId').val(store.store_market_id);
             $("#pointX").val(store.pointX);
             $("#pointY").val(store.pointY);
+            $("#height").html(store.height + ' เซนติเมตร');
+            $("#width").html(store.width + ' เซนติเมตร');
             $("#water_price").html(checkEmptyText(store.water_price_per_unit) + ' บาท');
             $("#water_price_input").val(store.water_price_per_unit);
             $("#eletric_price").html(checkEmptyText(store.eletric_price_per_unit) + ' บาท');
