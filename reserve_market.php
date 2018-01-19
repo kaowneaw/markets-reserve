@@ -40,7 +40,7 @@ if (!isset($_GET['marketId'])) {
 
     // get store
     $sql = "SELECT *,CASE WHEN store_booking_detail_id IS NULL THEN 'true'ELSE 'false' END as available  FROM market_store ms  
-    LEFT JOIN (SELECT store_booking_detail_id,store_id,start_date,end_date FROM store_booking_detail WHERE start_date >= '$start_date' AND end_date <= '$end_date') as store_detail
+    LEFT JOIN (SELECT store_booking_detail_id,store_id,start_date,end_date FROM store_booking_detail WHERE start_date <= '$start_date' AND end_date >= '$end_date') as store_detail
     ON ms.store_market_id = store_detail.store_id WHERE ms.markets_id = '$marketId' GROUP BY store_market_id";
     $result = $conn->query($sql);
     $stores = array();
@@ -118,6 +118,10 @@ if (isset($_POST['storeId'])) {
         <div class="col-md-4">
             <button id="searchDate" class="btn btn-default">ตกลง</button>
         </div>
+    </div>
+    <div class="pull-left form-group">
+        <div class="marker-green pull-left"></div><div class="text-white pull-left">สถานะร้านสามารถจองได้</div>
+        <div class="marker-red pull-left"></div><div class="text-white pull-left">สถานะร้านไม่สามารถจองได้</div>
     </div>
     <div class="map-area-wrapper" id="wrapper-map">
         <img id="image_upload_preview"/>
@@ -246,11 +250,29 @@ if (isset($_POST['storeId'])) {
         border: solid black 1px;
         background-color: black;
         min-width: 1320px;
+        clear: both;
     }
 
     .btn {
         padding-left: 25px;
         padding-right: 25px;
+    }
+
+    .marker-green {
+        border-radius: 50%;
+        width: 20px;
+        height:20px;
+        background-color: rgb(51, 204, 51);
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .marker-red {
+        border-radius: 50%;
+        width: 20px;
+        height:20px;
+        background-color: rgb(255, 51, 0);
+        margin-left: 10px;
+        margin-right: 10px;
     }
 </style>
 <script>
@@ -332,7 +354,7 @@ if (isset($_POST['storeId'])) {
                 }
             }
 
-            return false;
+            return true;
         });
 
         function diff_months(dt2, dt1) {
