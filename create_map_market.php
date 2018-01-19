@@ -115,7 +115,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                                 <label for="price">ค่าเช่า (บาท)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" id="price" class="form-control" placeholder="ค่าเช่า" name="price" required>
+                                <input type="number" id="price" class="form-control" placeholder="ค่าเช่า" oninput="this.value = Math.abs(this.value)" name="price" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                                 <label for="price">ค่าน้ำ/หน่วย (บาท)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" id="water_price" class="form-control" placeholder="ค่าน้ำ" name="water_price" required>
+                                <input type="number" id="water_price" class="form-control" placeholder="ค่าน้ำ" oninput="this.value = Math.abs(this.value)" name="water_price" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -156,7 +156,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                                 <label for="price">ค่าไฟ/หน่วย (บาท)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" id="eletric_price" class="form-control" placeholder="ค่าไฟ" name="eletric_price" required>
+                                <input type="number" id="eletric_price" class="form-control" placeholder="ค่าไฟ" oninput="this.value = Math.abs(this.value)" name="eletric_price" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                                 <label for="price">ความกว้าง (เซนติเมตร)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" id="width" class="form-control" placeholder="ความกว้าง" name="width" required>
+                                <input type="number" id="width" class="form-control" placeholder="ความกว้าง"  oninput="this.value = Math.abs(this.value)" name="width" min="0" required>
                             </div>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                                 <label for="price">ความยาว (เซนติเมตร)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="number" id="height" class="form-control" placeholder="ความยาว" name="height" required>
+                                <input type="number" id="height" class="form-control" placeholder="ความยาว" oninput="this.value = Math.abs(this.value)" name="height" min="0" required>
                             </div>
                         </div>
                     </div>
