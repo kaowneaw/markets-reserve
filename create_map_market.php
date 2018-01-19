@@ -163,7 +163,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">ความกว้าง (เซนติเมตร)</label>
+                                <label for="price">ความกว้าง (เมตร)</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="number" id="width" class="form-control" placeholder="ความกว้าง" name="width" required>
@@ -173,7 +173,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="price">ความยาว (เซนติเมตร)</label>
+                                <label for="price">ความยาว (เมตร)</label>
                             </div>
                             <div class="col-md-8">
                                 <input type="number" id="height" class="form-control" placeholder="ความยาว" name="height" required>

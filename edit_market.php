@@ -70,10 +70,11 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
 
     $name = $_POST['name'];
     $description = $_POST['description'];
+    $location = $_POST['location'];
     if ($targetFileMap == null) {
-        $sql = "UPDATE markets SET name = '$name', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', description = '$description', location = '$location', create_date = now() WHERE markets_id = '$marketId';";
     } else {
-        $sql = "UPDATE markets SET name = '$name', map_img = '$targetFileMap', description = '$description', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', map_img = '$targetFileMap', description = '$description', location = '$location', create_date = now() WHERE markets_id = '$marketId';";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -137,9 +138,15 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
                            autocomplete="off" value="<?php echo $myMarket['name']; ?>">
                 </div>
                 <div class="form-group">
-                    <label>คำอธิบาย</label>
-                    <textarea type="text" class="form-control" placeholder="คำอธิบาย"
+                    <label>รายละเอียด</label>
+                    <textarea type="text" class="form-control" placeholder="รายละเอียด"
                               name="description"><?php echo $myMarket['description']; ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ที่อยู่</label>
+                    <textarea type="text" class="form-control" placeholder="ที่อยู่" name="location">
+                        <?php echo $myMarket['location']; ?>
+                    </textarea>
                 </div>
                 <div class="text-right">
                     <button class="btn btn-primary" type="submit">บันทึก</button>

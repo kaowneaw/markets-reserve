@@ -58,8 +58,9 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
 
     $name = $_POST['name'];
     $description = $_POST['description'];
+    $location = $_POST['location'];
     $userId = $_SESSION["user"]->users_id;
-    $sql = "INSERT INTO markets (name, userId, map_img, description, create_date) VALUES ('$name', '$userId', '$targetFileMap', '$description', now());";
+    $sql = "INSERT INTO markets (name, map_img, userId, description, location, create_date) VALUES ('$name', '$targetFileMap', '$userId', '$description','$location', now());";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
 
@@ -114,9 +115,16 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
                            autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label>คำอธิบาย</label>
+                    <label>ที่อยู่</label>
+                    <textarea type="text" class="form-control" placeholder="ที่อยู่" name="location"></textarea>
+                </div>
+
+               <div class="form-group">
+                    <label>รายละเอียด</label>
                     <textarea type="text" class="form-control" placeholder="คำอธิบาย" name="description"></textarea>
                 </div>
+                
+                
                 <div class="text-right">
                     <button class="btn btn-primary" type="submit">บันทึก</button>
                 </div>
