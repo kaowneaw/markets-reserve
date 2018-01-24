@@ -46,7 +46,8 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     $action = $_POST['action'];
     $price = $_POST['price'];
     $type = $_POST['type'];
-    $desc = $_POST['description'];
+    $desc = "-";
+    $zone = $_POST['zone'];
     $pointX = $_POST['pointX'];
     $pointY = $_POST['pointY'];
     $id = $_POST['storeId'];
@@ -56,11 +57,11 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     $width = $_POST['width'];
 
     if($action === "แก้ไข") {
-        $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price',width = '$width', height = '$height' WHERE store_market_id = '$id';";
+        $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', zone = '$zone', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price',width = '$width', height = '$height' WHERE store_market_id = '$id';";
     }else if($action === "ลบ") {
         $sql = "DELETE FROM market_store WHERE store_market_id = '$id'";
     }else if($action === "บันทึก") {
-        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, width, height, price, description, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', '$width', '$height', '$price', '$desc', '$marketId', '$water_price', '$eletric_price')";
+        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, width, height, price, description, zone, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', '$width', '$height', '$price', '$desc','$zone', '$marketId', '$water_price', '$eletric_price')";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -88,7 +89,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
         <img id="image_upload_preview"/>
     </div>
 </div>
-<!-- Modal -->
+<!-- Modal  popup-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -109,6 +110,18 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="price">โซน</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" id="zone" class="form-control" placeholder="โซน" name="zone" required>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
@@ -119,6 +132,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-4">
@@ -187,7 +201,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                         <input type="text" name="pointY" id="pointY" required>
                     </div>
                     <div class="text-right">
-                        <input id="update" class="btn btn-warning" type="submit" name="action" value="แก้ไข"/>
+                        <input id="update" class="btn btn-warning" type="submit" name="action" value="บันทึก"/>
                         <input id="del" class="btn btn-danger" type="submit" name="action" value="ลบ" />
                         <input id="save" class="btn btn-primary" type="submit" name="action" value="บันทึก" />
                     </div>
@@ -289,10 +303,12 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             $("#eletric_price").val('');
             $("#width").val('');
             $("#height").val('');
+            $("#zone").val('');
         } else {
             var store = stores[index-1];
             $("#store_name").val(store.store_name);
             $("#price").val(store.price);
+            $("#zone").val(store.zone);
             $("#type").val(store.type_id);
             $("#desc").val(store.description);
             $('#storeId').val(store.store_market_id);

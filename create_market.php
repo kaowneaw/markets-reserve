@@ -14,16 +14,16 @@ if (!$_SESSION["user"]){  //check session
 
 if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["fileImgCover"]) && isset($_FILES["fileImgMap"])) {
     // upload img cover
-    if (isset($_FILES["fileImgCover"]) && $_FILES["fileImgCover"]['error'] == 0) {
-        $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION);
+    if (isset($_FILES["fileImgCover"]) && $_FILES["fileImgCover"]['error'] == 0) { //มีไฟล์มั้ย
+        $extensionImgCover = pathinfo($_FILES["fileImgCover"]["name"], PATHINFO_EXTENSION); //เก็บนามสกุลไฟล์
         if (strtolower($extensionImgCover) != "jpg" && strtolower($extensionImgCover) != "jpeg") {
             echo "<script type='text/javascript'>window.alert('รูปหน้าปกตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG และ JPEG');window.location.href='create_market.php';</script>";
             return false;
         }
-        $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover;
+        $newFilenameCover = round(microtime(true)) . '.' . $extensionImgCover; //สร้างชื่อไฟล์รอ
         $targetFileCover = "uploads/" . $newFilenameCover;
 
-        if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) {
+        if (move_uploaded_file($_FILES["fileImgCover"]["tmp_name"], $targetFileCover)) { //เนื้อไฟล์
 
         } else {
             echo "Sorry, there was an error uploading your file.";
@@ -42,7 +42,7 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
             return false;
         }
 
-        $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap;
+        $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap; //สร้างชื่อไฟล์รอ หน่วยไมโคร
         $targetFileMap = "uploads/" . $newFilenameMap;
 
         if (move_uploaded_file($_FILES["fileImgMap"]["tmp_name"], $targetFileMap)) {

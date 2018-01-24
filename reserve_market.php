@@ -15,7 +15,7 @@ if (!isset($_GET['marketId'])) {
     header('Location: index.php');
 } else {
     $marketId = $_GET['marketId'];
-
+//แปลงจากรูปแบบ 22/01/2018 -> 2018-01-22
     if (isset($_GET['startDate']) && isset($_GET['endDate'])) {
         $date = str_replace('/', '-', $_GET['startDate']);
         $start_date = date('Y-m-d', strtotime($date));
@@ -26,7 +26,7 @@ if (!isset($_GET['marketId'])) {
         $end_date = date('Y-m-d');  // date now default
     }
 
-    $sql = "SELECT * FROM markets WHERE markets_id = '$marketId' limit 1";
+    $sql = "SELECT * FROM markets  WHERE markets_id = '$marketId' limit 1";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -50,10 +50,10 @@ if (!isset($_GET['marketId'])) {
             array_push($stores, $row);
         }
     }
-    $stores = json_encode($stores);
+    $stores = json_encode($stores); //เอาไปใช้ javasc
 }
 
-// save reserve
+// save reserve กดจองแล้ว
 if (isset($_POST['storeId'])) {
     $userId = $_SESSION["user"]->users_id;
     $store_id = $_POST['storeId'];
@@ -127,7 +127,7 @@ if (isset($_POST['storeId'])) {
         <img id="image_upload_preview"/>
     </div>
 </div>
-<!-- Modal -->
+<!-- Modal popup-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -166,7 +166,9 @@ if (isset($_POST['storeId'])) {
                             </div>
                             <div class="col-xs-8">
                                 <select class="form-control" name="type" required id="type" disabled>
+                             
                                     <?php
+                                    //ดรอปดาว
                                     $sql = "SELECT * FROM markets_type";
                                     $result = $conn->query($sql);
                                     if ($result->num_rows > 0) {
@@ -343,7 +345,7 @@ if (isset($_POST['storeId'])) {
                 var days = Math.round(Math.abs((dateStart.getTime() - dateEnd.getTime()) / (oneDay))); // days = 0 คือวันเริ่มต้นกับวันสิ้นสุดเป็นวันเดียวกัน
 
             } else if (typeId == 2) {
-                // รายวัน
+                // รายเดือน
                 var month = diff_months(dateStart, dateEnd);
                 var dateDestination = dateStart;
                 dateDestination.setMonth(dateDestination.getMonth() + 1);
@@ -403,7 +405,7 @@ if (isset($_POST['storeId'])) {
                 stores[i].color = '#ff3300';
             }
         }
-
+//คลุมทั้งแผนที่
         p = planit.new({
             container: 'wrapper-map',
             image: {
@@ -425,7 +427,7 @@ if (isset($_POST['storeId'])) {
             }
         });
     }
-
+//setค่าในpopup
     function setValuePopup(index) {
         if (index == null) {
             // marker new add
@@ -437,12 +439,20 @@ if (isset($_POST['storeId'])) {
             $('#storeId').val(-1);
         } else {
             var store = stores[index - 1];
+            var typeUser = "<?php echo $_SESSION["user"]->type; ?>";
             $("#show-error").html('');
-            if (store.available == "true") {
-                $("#reserve").show();
-            } else {
+
+            if(typeUser === 'MARKET') {
                 $("#reserve").hide();
+            } else {
+                if (store.available == "true") {
+                    $("#reserve").show();
+                } else {
+                    $("#reserve").hide();
+                }
             }
+
+            
             $("#store_name").html(checkEmptyText(store.store_name));
             $("#price").html(checkEmptyText(store.price) + ' บาท');
             $("#price_input").val(store.price);
@@ -451,8 +461,8 @@ if (isset($_POST['storeId'])) {
             $('#storeId').val(store.store_market_id);
             $("#pointX").val(store.pointX);
             $("#pointY").val(store.pointY);
-            $("#height").html(store.height + ' เซนติเมตร');
-            $("#width").html(store.width + ' เซนติเมตร');
+            $("#height").html(store.height + ' เมตร');
+            $("#width").html(store.width + ' เมตร');
             $("#water_price").html(checkEmptyText(store.water_price_per_unit) + ' บาท');
             $("#water_price_input").val(store.water_price_per_unit);
             $("#eletric_price").html(checkEmptyText(store.eletric_price_per_unit) + ' บาท');

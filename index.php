@@ -27,7 +27,7 @@ $result = $conn->query($sql);
                 echo '    <div class="card-container">';
                 echo '        <small>ชื่อตลาด</small>';
                 echo '        <h4>' . $row["name"] . '</h4>';
-                echo '        <div class="text-right"><small>เจ้าของตลาด '.$row["first_name"].' '.$row["last_name"].'</small></div>';
+                echo '        <div class="text-right"><small>เจ้าของตลาด '.$row["username"].'</small></div>';
                 echo '    </div>';
                 echo '    </div>';
                 echo '</a>';

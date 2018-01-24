@@ -11,7 +11,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 if (isset($_POST['marketId'])) {
-    // remove my market
+    // remove my market ลบตลาด
     $marketId = $_POST['marketId'];
     $sql = "DELETE FROM markets WHERE markets_id = '$marketId'";
     if ($conn->query($sql) === TRUE) {
@@ -22,7 +22,7 @@ if (isset($_POST['marketId'])) {
     }
 }
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id WHERE userId = '$userId'";
+$sql = "SELECT * FROM markets LEFT JOIN markets_img ON markets.markets_id = markets_img.market_id WHERE userId = '$userId'"; //เลือกตลาดของเรา
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -46,16 +46,16 @@ $result = $conn->query($sql);
 
     <?php
     if ($result->num_rows > 0) {
-        // output data of each row
+        // output data of each row แสดงตาราง
         echo '<table class="table table-bordered">';
         echo ' <thead>';
         echo '  <tr>';
-        echo '    <th class="text-center col-md-1">#</th>';
+        echo '    <th class="text-center col-md-1">ลำดับ</th>';
         echo '    <th class="col-md-2">รูปภาพ</th>';
-        echo '    <th class="col-md-3">ชื่อตลาด</th>';
-        echo '    <th class="col-md-3">ที่อยู่</th>'; 
-        echo '    <th class="col-md-3">รายละเอียด</th>';
-        echo '    <th class="col-md-2">เครื่องมือ</th>';
+        echo '    <th class="col-md-2">ชื่อตลาด</th>';
+        echo '    <th class="col-md-2">ที่อยู่</th>'; 
+        echo '    <th class="col-md-2">รายละเอียด</th>';
+        echo '    <th class="col-md-3">เครื่องมือ</th>';
         echo '  </tr>';
         echo '</thead>';
         echo '<tbody>';

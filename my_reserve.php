@@ -34,7 +34,7 @@ $result = $conn->query($sql);
         echo '<table class="table table-bordered">';
         echo ' <thead>';
         echo '  <tr>';
-        echo '    <th class="text-center col-md-1">#</th>';
+        echo '    <th class="text-center col-md-1">ลำดับ</th>';
         echo '    <th class="col-md-2">รหัสการจอง</th>';
         echo '    <th class="col-md-3">วันที่ทำรายการ</th>';
         echo '    <th class="col-md-3">สถานะ</th>';

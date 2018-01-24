@@ -137,17 +137,19 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
                     <input type="text" class="form-control" placeholder="ชื่อตลาด" name="name" required
                            autocomplete="off" value="<?php echo $myMarket['name']; ?>">
                 </div>
-                <div class="form-group">
-                    <label>รายละเอียด</label>
-                    <textarea type="text" class="form-control" placeholder="รายละเอียด"
-                              name="description"><?php echo $myMarket['description']; ?></textarea>
-                </div>
+
                 <div class="form-group">
                     <label>ที่อยู่</label>
                     <textarea type="text" class="form-control" placeholder="ที่อยู่" name="location">
                         <?php echo $myMarket['location']; ?>
                     </textarea>
                 </div>
+                <div class="form-group">
+                    <label>รายละเอียด</label>
+                    <textarea type="text" class="form-control" placeholder="รายละเอียด"
+                              name="description"><?php echo $myMarket['description']; ?></textarea>
+                </div>
+                
                 <div class="text-right">
                     <button class="btn btn-primary" type="submit">บันทึก</button>
                 </div>

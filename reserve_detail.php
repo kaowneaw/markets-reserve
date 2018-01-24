@@ -15,7 +15,7 @@ if (!isset($_GET['reserveId'])) {
 } else {
 
     $reserveId = $_GET['reserveId'];
-    $sql = "SELECT * FROM (SELECT store_market_id,store_name,type_id,market_type_name,width,height FROM market_store ms INNER JOIN markets_type mt ON ms.type_id = mt.markets_type_id) store 
+    $sql = "SELECT * FROM (SELECT store_market_id,store_name,type_id,market_type_name,width,height,markets.name FROM market_store ms INNER JOIN markets_type mt ON ms.type_id = mt.markets_type_id INNER JOIN markets ON markets.markets_id = ms.markets_id ) store  
     INNER JOIN ( SELECT * FROM store_booking sb INNER JOIN store_booking_detail sbd ON sb.store_booking_id = sbd.booking_id  WHERE store_booking_id = '$reserveId' ) booking ON store.store_market_id = booking.store_id";
 
     $result = $conn->query($sql);
@@ -68,6 +68,14 @@ if (!isset($_GET['reserveId'])) {
             </div>
             <div class="row form-group">
                 <div class="col-md-4">
+                    <label class="control-label">ชื่อตลาด</label>
+                </div>
+                <div class="col-md-8">
+                    <label class="control-label"><?php echo $reserve['name'] ?></label>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-4">
                     <label class="control-label">ประเภท</label>
                 </div>
                 <div class="col-md-8">
@@ -103,7 +111,7 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">ความกว้าง</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['width'] . ' เซนติเมตร' ?></label>
+                    <label class="control-label"><?php echo $reserve['width'] . ' เมตร' ?></label>
                 </div>
             </div>
             <div class="row form-group">
@@ -111,7 +119,7 @@ if (!isset($_GET['reserveId'])) {
                     <label class="control-label">ความยาว</label>
                 </div>
                 <div class="col-md-8">
-                    <label class="control-label"><?php echo $reserve['height'] . ' เซนติเมตร' ?></label>
+                    <label class="control-label"><?php echo $reserve['height'] . ' เมตร' ?></label>
                 </div>
             </div>
             <div class="row form-group">
