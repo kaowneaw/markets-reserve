@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 17, 2018 at 11:11 AM
+-- Generation Time: Jan 26, 2018 at 11:42 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -26,6 +26,7 @@ CREATE TABLE `markets` (
   `map_img` text NOT NULL,
   `userId` int(11) NOT NULL,
   `description` text NOT NULL,
+  `location` varchar(100) NOT NULL,
   `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -33,14 +34,15 @@ CREATE TABLE `markets` (
 -- Dumping data for table `markets`
 --
 
-INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`, `create_date`) VALUES
-(24, 'จตุจักร', 'uploads/1514782329map.jpg', 1, 'ตลาดนัด จตุจักร', '2018-01-01 20:59:23'),
-(31, 'เจเจ', 'uploads/1514815798map.jpg', 1, '', '2018-01-01 21:09:58'),
-(32, 'Jatujak Park Market', 'uploads/1514815851map.jpg', 2, 'เปิดทุกวันหยุดนะคะ', '2018-01-03 22:20:20'),
-(34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '2018-01-02 09:08:37'),
-(35, 'T', 'uploads/1514862187map.jpg', 2, '', '2018-01-02 10:03:06'),
-(36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '2018-01-09 22:16:54'),
-(37, 'a', 'uploads/1516085450map.jpg', 6, 'a', '2018-01-16 13:50:50');
+INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`, `location`, `create_date`) VALUES
+(24, 'จตุจักร', 'uploads/1514782329map.jpg', 1, 'ตลาดนัด จตุจักร', '', '2018-01-01 20:59:23'),
+(31, 'เจเจ', 'uploads/1514815798map.jpg', 1, '', '', '2018-01-01 21:09:58'),
+(32, 'Jatujak Park Market', 'uploads/1514815851map.jpg', 2, 'เปิดทุกวันหยุดนะคะ', '', '2018-01-03 22:20:20'),
+(34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '', '2018-01-02 09:08:37'),
+(35, 'T', 'uploads/1514862187map.jpg', 2, '', '', '2018-01-02 10:03:06'),
+(36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '', '2018-01-09 22:16:54'),
+(37, 'a', 'uploads/1516085450map.jpg', 6, 'a', '', '2018-01-16 13:50:50'),
+(38, 'H', 'uploads/1516940258map.jpg', 5, 'G', 'G', '2018-01-26 11:17:38');
 
 -- --------------------------------------------------------
 
@@ -81,7 +83,8 @@ INSERT INTO `markets_img` (`markets_img_id`, `img_url`, `market_id`) VALUES
 (23, 'uploads/1514816004.jpg', 34),
 (24, 'uploads/1514862187.jpg', 35),
 (25, 'uploads/1515511015.jpg', 36),
-(26, 'uploads/1516085450.jpg', 37);
+(26, 'uploads/1516085450.jpg', 37),
+(27, 'uploads/1516940258.jpg', 38);
 
 -- --------------------------------------------------------
 
@@ -118,6 +121,7 @@ CREATE TABLE `market_store` (
   `pointY` text NOT NULL,
   `width` varchar(20) NOT NULL,
   `height` varchar(20) NOT NULL,
+  `zone` varchar(50) NOT NULL,
   `price` float NOT NULL,
   `description` text NOT NULL,
   `water_price_per_unit` float NOT NULL,
@@ -128,20 +132,21 @@ CREATE TABLE `market_store` (
 -- Dumping data for table `market_store`
 --
 
-INSERT INTO `market_store` (`store_market_id`, `store_name`, `type_id`, `markets_id`, `pointX`, `pointY`, `width`, `height`, `price`, `description`, `water_price_per_unit`, `eletric_price_per_unit`) VALUES
-(27, '', 1, 24, '42.90591805766313', '51.44375646460156', '', '', 150, '', 0, 0),
-(31, '', 1, 24, '36.83611532625189', '49.69619785858537', '', '', 1500, '', 0, 0),
-(32, '', 2, 24, '52.69347496206373', '48.931640968453294', '', '', 3500, '', 0, 0),
-(33, '', 1, 24, '49.12746585735964', '49.259308207081325', '', '', 150, '', 0, 0),
-(35, 'ซอย 899999', 1, 32, '47.365153814319214', '50.81787184523089', '', '', 150, '', 0, 0),
-(36, 'ซอย 8898988', 1, 32, '47.610015174506835', '50.77250982215579', '', '', 150, '', 0, 0),
-(37, 'ซอย 8', 2, 32, '47.823406676783', '50.76072828948087', '', '', 1500, '', 20, 7),
-(38, 'ซอย8', 1, 32, '47.989377845220034', '50.73342289502713', '', '', 120, '', 0, 0),
-(41, 'ซอย 9', 1, 32, '51.17602427921093', '47.83941683969317', '', '', 150, '', 20, 7),
-(42, 'o', 1, 32, '48.193285280728375', '50.77438098670773', '', '', 150, '', 10, 7),
-(43, 'kbank', 1, 36, '47.23065250379362', '45.3273013435449', '', '', 150, '-', 10, 7),
-(44, '1', 1, 37, '45.220030349013655', '39.411566346315965', '1234', '12', 1, '', 1, 1),
-(45, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', 2, '', 2, 2);
+INSERT INTO `market_store` (`store_market_id`, `store_name`, `type_id`, `markets_id`, `pointX`, `pointY`, `width`, `height`, `zone`, `price`, `description`, `water_price_per_unit`, `eletric_price_per_unit`) VALUES
+(27, '', 1, 24, '42.90591805766313', '51.44375646460156', '', '', '', 150, '', 0, 0),
+(31, '', 1, 24, '36.83611532625189', '49.69619785858537', '', '', '', 1500, '', 0, 0),
+(32, '', 2, 24, '52.69347496206373', '48.931640968453294', '', '', '', 3500, '', 0, 0),
+(33, '', 1, 24, '49.12746585735964', '49.259308207081325', '', '', '', 150, '', 0, 0),
+(35, 'ซอย 899999', 1, 32, '47.365153814319214', '50.81787184523089', '', '', '', 150, '', 0, 0),
+(36, 'ซอย 8898988', 1, 32, '47.610015174506835', '50.77250982215579', '', '', '', 150, '', 0, 0),
+(37, 'ซอย 8', 2, 32, '47.823406676783', '50.76072828948087', '', '', '', 1500, '', 20, 7),
+(38, 'ซอย8', 1, 32, '47.989377845220034', '50.73342289502713', '', '', '', 120, '', 0, 0),
+(41, 'ซอย 9', 1, 32, '51.17602427921093', '47.83941683969317', '', '', '', 150, '', 20, 7),
+(42, 'o', 1, 32, '48.193285280728375', '50.77438098670773', '', '', '', 150, '', 10, 7),
+(43, 'kbank', 1, 36, '47.23065250379362', '45.3273013435449', '', '', '', 150, '-', 10, 7),
+(44, '1', 1, 37, '45.220030349013655', '39.411566346315965', '1234', '12', '', 1, '', 1, 1),
+(45, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', '', 2, '', 2, 2),
+(46, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', 'Z', 2, '-', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,8 @@ INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `create_date`, `stat
 (10, 2, '2018-01-09 21:16:21', 'WAIT'),
 (11, 2, '2018-01-09 21:28:28', 'WAIT'),
 (12, 2, '2018-01-09 22:18:54', 'WAIT'),
-(13, 2, '2018-01-16 14:21:59', 'WAIT');
+(13, 2, '2018-01-16 14:21:59', 'WAIT'),
+(14, 2, '2018-01-26 09:28:50', 'WAIT');
 
 -- --------------------------------------------------------
 
@@ -195,7 +201,8 @@ INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `st
 (5, 10, 27, 0, 0, 0, '2018-01-09', '2018-01-09'),
 (6, 11, 33, 0, 0, 0, '2018-01-09', '2018-01-09'),
 (7, 12, 43, 0, 0, 0, '2018-01-09', '2018-01-19'),
-(8, 13, 44, 1, 1, 1, '2018-01-16', '2018-01-16');
+(8, 13, 44, 1, 1, 1, '2018-01-16', '2018-01-16'),
+(9, 14, 44, 1, 1, 1, '2018-01-26', '2018-01-26');
 
 -- --------------------------------------------------------
 
@@ -210,22 +217,29 @@ CREATE TABLE `users` (
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `tel` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `img` text NOT NULL,
   `id_card` varchar(13) NOT NULL,
   `type` varchar(20) NOT NULL,
-  `role` varchar(20) NOT NULL
+  `role` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `id_card`, `type`, `role`) VALUES
-(1, 'yy', '2fb1c5cf58867b5bbc9a1b145a86f3a0', 'yyy', 'yyy', '4545345345', '', 'MERCHANT', 'USER'),
-(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', '', 'MERCHANT', 'USER'),
-(3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', 'MERCHANT', 'USER'),
-(4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '1251514444545', 'MERCHANT', 'USER'),
-(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '67567', 'MARKET', 'USER'),
-(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '1111111', 'MARKET', 'USER');
+INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`) VALUES
+(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
+(3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
+(4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1),
+(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '', '', '', '67567', 'MARKET', 'USER', 1),
+(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1),
+(12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1),
+(13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1),
+(14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 0),
+(15, 'g5', '225bc7ac4aaa1e606a628e990fe2d398', 'g', 'g', '1234', 'fdsgdfgfgfdgfgfdg', 'g@g', 'uploads/1516960638.jpg', '1234', 'MERCHANT', 'USER', 0);
 
 --
 -- Indexes for dumped tables
@@ -281,12 +295,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `markets`
 --
 ALTER TABLE `markets`
-  MODIFY `markets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `markets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `markets_img`
 --
 ALTER TABLE `markets_img`
-  MODIFY `markets_img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `markets_img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `markets_type`
 --
@@ -296,19 +310,19 @@ ALTER TABLE `markets_type`
 -- AUTO_INCREMENT for table `market_store`
 --
 ALTER TABLE `market_store`
-  MODIFY `store_market_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `store_market_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `store_booking`
 --
 ALTER TABLE `store_booking`
-  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `store_booking_detail`
 --
 ALTER TABLE `store_booking_detail`
-  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
