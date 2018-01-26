@@ -14,26 +14,34 @@
             <ul class="nav navbar-nav">
                 <?php
                 if(isset($_SESSION["user"])) {
-                    if($_SESSION["user"]->type == 'MARKET') {
-                        echo '<li class="dropdown">';
-                        echo '   <a href="#" class="dropdown-toggle" data-toggle="dropdown">ตลาด <b class="caret"></b></a>';
-                        echo '   <ul class="dropdown-menu">';
-                        echo '       <li><a href="my_market.php">ตลาดของฉัน</a></li>';
-                        echo '       <li><a href="create_market.php">สร้างตลาด</a></li>';
-                        echo '  </ul>';
-                        echo '</li>';
+                    if($_SESSION["user"]->role == 'USER') {
+                        if($_SESSION["user"]->type == 'MARKET') {
+                            echo '<li class="dropdown">';
+                            echo '   <a href="#" class="dropdown-toggle" data-toggle="dropdown">ตลาด <b class="caret"></b></a>';
+                            echo '   <ul class="dropdown-menu">';
+                            echo '       <li><a href="my_market.php">ตลาดของฉัน</a></li>';
+                            echo '       <li><a href="create_market.php">สร้างตลาด</a></li>';
+                            echo '  </ul>';
+                            echo '</li>';
+                        } else {
+                            echo '<li>';
+                            echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';
+                            echo '</li>';
+                        }
                     } else {
                         echo '<li>';
-                        echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';
+                        echo '   <a href="manage_user.php">จัดการผู้ใช้งาน</a>';
                         echo '</li>';
                     }
+
                 }
                 ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php
                 if (isset($_SESSION["user"]) && $_SESSION["user"]) {
-                    echo '<li><a>user: '.$_SESSION["user"]->username.'</a></li>';
+                    echo '<li><img src="'.$_SESSION["user"]->img.'" width="32px" height="32px" style="margin-top: 10px" class="img-circle"/></a></li>';
+                    echo '<li><a>USER: '.$_SESSION["user"]->username.'</a></li>';
                     echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
                 } else {
                     echo '<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';

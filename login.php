@@ -5,6 +5,7 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 $show_err_msg = false;
+$show_err_msg_active_user = false;
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
 
@@ -17,8 +18,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         while ($obj = mysqli_fetch_object($result)) {
             $_SESSION['user'] = $obj;
         }
-        header('Location: index.php'); // redirect to home page
-        exit(0);
+        if($obj->status == "0") {
+            // ไม่เปิดใช้งาน
+            $show_err_msg_active_user = true;
+        } else {
+            header('Location: index.php'); // redirect to home page
+            exit(0);
+        }
     } else {
         $show_err_msg = true; //ไว้ check show alert message
     }
@@ -34,7 +40,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <title>Market</title>
 </head>
 <body>
-<?php require('./common/nav.php'); ?>
+<?php //require('./common/nav.php'); ?>
 <div class="container">
     <div class="login card">
         <form method="POST">
@@ -56,6 +62,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <?php
         if ($show_err_msg == true) {
             echo '<div class="alert alert-warning" role="alert">Username หรือ Password ไม่ถูกต้อง</div>';
+        }
+        if ($show_err_msg_active_user == true) {
+            echo '<div class="alert alert-warning" role="alert">Account ยังไม่เปิดใช้งาน</div>';
         }
         ?>
     </div>

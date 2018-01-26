@@ -191,7 +191,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     function readURL(input) {
         //display img from file
         if (input.files && input.files[0]) {
-            if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG') {
+            if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG' && input.files[0].name.split('.').pop().toUpperCase() !== 'JPEG') {
                 $("#alert").show();
                 return false;
             }
@@ -210,7 +210,7 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     function readURL2(input) {
         //display img from file
         if (input.files && input.files[0]) {
-            if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG') {
+            if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG' && input.files[0].name.split('.').pop().toUpperCase() !== 'JPEG') {
                 $("#alert2").show();
                 return false;
             }
