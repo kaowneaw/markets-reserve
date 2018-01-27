@@ -12,7 +12,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT * FROM store_booking WHERE user_id = '$userId'";
+$sql = "SELECT * FROM store_booking INNER JOIN markets ON markets.markets_id = store_booking.market_id  WHERE user_id = '$userId'";
 $result = $conn->query($sql);
 
 ?>
@@ -36,6 +36,7 @@ $result = $conn->query($sql);
         echo '  <tr>';
         echo '    <th class="text-center col-md-1">ลำดับ</th>';
         echo '    <th class="col-md-2">รหัสการจอง</th>';
+        echo '    <th class="col-md-2">ชื่อตลาด</th>';
         echo '    <th class="col-md-3">วันที่ทำรายการ</th>';
         echo '    <th class="col-md-3">สถานะ</th>';
         echo '    <th class="col-md-3">เครื่องมือ</th>';
@@ -48,6 +49,7 @@ $result = $conn->query($sql);
             echo '  <tr>';
             echo '    <td class="text-center">' . $count . '</td>';
             echo '    <td>' . $row["store_booking_id"] . '</td>';
+            echo '    <td>' . $row["name"] . '</td>';
             echo '    <td>' . $row["create_date"] . '</td>';
             if($row["status"] === 'WAIT') {
                 echo '    <td>รอการชำระเงิน</td>';

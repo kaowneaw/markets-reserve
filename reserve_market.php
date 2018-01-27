@@ -61,7 +61,7 @@ if (isset($_POST['storeId'])) {
     $water_price_per_unit = $_POST['water_price_per_unit'];
     $eletric_price_per_unit = $_POST['eletric_price_per_unit'];
 
-    $sql = "INSERT INTO store_booking (user_id, create_date, status) VALUES ('$userId', now(), 'WAIT')";
+    $sql = "INSERT INTO store_booking (user_id, market_id,create_date, status) VALUES ('$userId', '$marketId', now(), 'WAIT')";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
         $sql = "INSERT INTO store_booking_detail (booking_id, store_id, price, water_price_per_unit, eletric_price_per_unit,start_date,end_date) VALUES ('$last_id', '$store_id', '$price', '$water_price_per_unit', '$eletric_price_per_unit', '$start_date', '$end_date')";
