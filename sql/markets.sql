@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 26, 2018 at 11:42 AM
--- Server version: 5.6.35
+-- Host: 127.0.0.1
+-- Generation Time: Jan 31, 2018 at 04:55 PM
+-- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `markets`
@@ -157,6 +165,7 @@ INSERT INTO `market_store` (`store_market_id`, `store_name`, `type_id`, `markets
 CREATE TABLE `store_booking` (
   `store_booking_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `market_id` int(11) NOT NULL,
   `create_date` datetime NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -165,14 +174,8 @@ CREATE TABLE `store_booking` (
 -- Dumping data for table `store_booking`
 --
 
-INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `create_date`, `status`) VALUES
-(8, 2, '2018-01-09 20:14:38', 'WAIT'),
-(9, 2, '2018-01-09 21:13:11', 'WAIT'),
-(10, 2, '2018-01-09 21:16:21', 'WAIT'),
-(11, 2, '2018-01-09 21:28:28', 'WAIT'),
-(12, 2, '2018-01-09 22:18:54', 'WAIT'),
-(13, 2, '2018-01-16 14:21:59', 'WAIT'),
-(14, 2, '2018-01-26 09:28:50', 'WAIT');
+INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `market_id`, `create_date`, `status`) VALUES
+(0, 2, 36, '2018-01-27 08:51:26', 'WAIT');
 
 -- --------------------------------------------------------
 
@@ -196,13 +199,7 @@ CREATE TABLE `store_booking_detail` (
 --
 
 INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `store_id`, `price`, `water_price_per_unit`, `eletric_price_per_unit`, `start_date`, `end_date`) VALUES
-(3, 8, 31, 0, 0, 0, '2018-01-09', '2018-01-12'),
-(4, 9, 31, 0, 0, 0, '2018-01-09', '2018-01-09'),
-(5, 10, 27, 0, 0, 0, '2018-01-09', '2018-01-09'),
-(6, 11, 33, 0, 0, 0, '2018-01-09', '2018-01-09'),
-(7, 12, 43, 0, 0, 0, '2018-01-09', '2018-01-19'),
-(8, 13, 44, 1, 1, 1, '2018-01-16', '2018-01-16'),
-(9, 14, 44, 1, 1, 1, '2018-01-26', '2018-01-26');
+(0, 0, 43, 150, 10, 7, '2018-01-27', '2018-01-27');
 
 -- --------------------------------------------------------
 
@@ -231,14 +228,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`) VALUES
-(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
+(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', 'ryrytytytyrtytry', 'e@gmail.com', 'uploads/1517019159.jpg', '11321324434', 'MERCHANT', 'USER', 1),
 (3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
 (4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1),
 (5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '', '', '', '67567', 'MARKET', 'USER', 1),
 (6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1),
 (12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1),
 (13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1),
-(14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 0),
+(14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 1),
 (15, 'g5', '225bc7ac4aaa1e606a628e990fe2d398', 'g', 'g', '1234', 'fdsgdfgfgfdgfgfdg', 'g@g', 'uploads/1516960638.jpg', '1234', 'MERCHANT', 'USER', 0);
 
 --
@@ -285,7 +282,8 @@ ALTER TABLE `store_booking_detail`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`users_id`);
+  ADD PRIMARY KEY (`users_id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -312,17 +310,11 @@ ALTER TABLE `markets_type`
 ALTER TABLE `market_store`
   MODIFY `store_market_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
--- AUTO_INCREMENT for table `store_booking`
---
-ALTER TABLE `store_booking`
-  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `store_booking_detail`
---
-ALTER TABLE `store_booking_detail`
-  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
