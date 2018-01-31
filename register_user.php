@@ -3,7 +3,8 @@ ob_start(); // ใช้เมื่อเราต้องเปลี่ย�
 
 require('./common/header.php');
 require('./common/db_connect.php');
-
+$hasError = false;
+$error = '';
 if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['idcard']) && isset($_POST['username']) && isset($_POST['password'])) {
     // upload img cover
     if (isset($_FILES["fileImg"]) && $_FILES["fileImg"]['error'] == 0) { //มีไฟล์มั้ย
@@ -41,7 +42,9 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['idc
         echo "New record created successfully";
         header('Location: login.php'); // redirect to register page
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $hasError = true;
+        $error = $conn->error;
+        echo "Error: ".$conn->error;
     }
 }
 
@@ -103,6 +106,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['idc
                 <input type="password"id="password" name="password" class="form-control" placeholder="Password" required>
             </div>
             <div class="form-group text-right">
+                <?php  if($hasError) echo '<span class="text-danger">'.$error.'</span>' ?>
                 <button type="submit" class="btn btn-primary">ยืนยัน</button>
             </div>
         </form>

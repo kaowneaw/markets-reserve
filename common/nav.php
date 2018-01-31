@@ -42,6 +42,7 @@
                 if (isset($_SESSION["user"]) && $_SESSION["user"]) {
                     echo '<li><img src="'.$_SESSION["user"]->img.'" width="32px" height="32px" style="margin-top: 10px" class="img-circle"/></a></li>';
                     echo '<li><a>USER: '.$_SESSION["user"]->username.'</a></li>';
+                    echo '<li><a href="edit_user.php?userId='.$_SESSION["user"]->users_id.'">แก้ไขโปรไฟล์</a></li>';
                     echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
                 } else {
                     echo '<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>';
