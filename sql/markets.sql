@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 31, 2018 at 04:55 PM
--- Server version: 10.1.26-MariaDB
+-- Host: localhost:3306
+-- Generation Time: Feb 02, 2018 at 09:28 AM
+-- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `markets`
@@ -35,6 +27,7 @@ CREATE TABLE `markets` (
   `userId` int(11) NOT NULL,
   `description` text NOT NULL,
   `location` varchar(100) NOT NULL,
+  `deposit` float NOT NULL,
   `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -42,15 +35,16 @@ CREATE TABLE `markets` (
 -- Dumping data for table `markets`
 --
 
-INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`, `location`, `create_date`) VALUES
-(24, 'จตุจักร', 'uploads/1514782329map.jpg', 1, 'ตลาดนัด จตุจักร', '', '2018-01-01 20:59:23'),
-(31, 'เจเจ', 'uploads/1514815798map.jpg', 1, '', '', '2018-01-01 21:09:58'),
-(32, 'Jatujak Park Market', 'uploads/1514815851map.jpg', 2, 'เปิดทุกวันหยุดนะคะ', '', '2018-01-03 22:20:20'),
-(34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '', '2018-01-02 09:08:37'),
-(35, 'T', 'uploads/1514862187map.jpg', 2, '', '', '2018-01-02 10:03:06'),
-(36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '', '2018-01-09 22:16:54'),
-(37, 'a', 'uploads/1516085450map.jpg', 6, 'a', '', '2018-01-16 13:50:50'),
-(38, 'H', 'uploads/1516940258map.jpg', 5, 'G', 'G', '2018-01-26 11:17:38');
+INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`, `location`, `deposit`, `create_date`) VALUES
+(24, 'จตุจักร', 'uploads/1514782329map.jpg', 1, 'ตลาดนัด จตุจักร', '', 0, '2018-01-01 20:59:23'),
+(31, 'เจเจ', 'uploads/1514815798map.jpg', 1, '', '', 0, '2018-01-01 21:09:58'),
+(32, 'Jatujak Park Market', 'uploads/1514815851map.jpg', 2, 'เปิดทุกวันหยุดนะคะ', '', 0, '2018-01-03 22:20:20'),
+(34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '', 0, '2018-01-02 09:08:37'),
+(35, 'T', 'uploads/1514862187map.jpg', 2, '', '', 0, '2018-01-02 10:03:06'),
+(36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '', 0, '2018-01-09 22:16:54'),
+(37, 'a', 'uploads/1516085450map.jpg', 6, 'a', '', 0, '2018-01-16 13:50:50'),
+(38, 'H', 'uploads/1516940258map.jpg', 5, 'G', 'G', 1000, '2018-02-01 14:57:27'),
+(39, 'q', 'uploads/1517471749map.jpeg', 5, '1', '1', 1000, '2018-02-01 14:55:48');
 
 -- --------------------------------------------------------
 
@@ -92,7 +86,8 @@ INSERT INTO `markets_img` (`markets_img_id`, `img_url`, `market_id`) VALUES
 (24, 'uploads/1514862187.jpg', 35),
 (25, 'uploads/1515511015.jpg', 36),
 (26, 'uploads/1516085450.jpg', 37),
-(27, 'uploads/1516940258.jpg', 38);
+(27, 'uploads/1516940258.jpg', 38),
+(28, 'uploads/1517471749.jpeg', 39);
 
 -- --------------------------------------------------------
 
@@ -159,6 +154,28 @@ INSERT INTO `market_store` (`store_market_id`, `store_name`, `type_id`, `markets
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment_info`
+--
+
+CREATE TABLE `payment_info` (
+  `payment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `account_name` varchar(50) NOT NULL,
+  `account_id` varchar(20) NOT NULL,
+  `account_bank` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_info`
+--
+
+INSERT INTO `payment_info` (`payment_id`, `user_id`, `account_name`, `account_id`, `account_bank`) VALUES
+(1, 5, 'ggggggggg', '2321324142411', 'กสิกรไทย'),
+(2, 5, 'gggg', '23123232323', 'กสิกรไทย');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `store_booking`
 --
 
@@ -175,7 +192,8 @@ CREATE TABLE `store_booking` (
 --
 
 INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `market_id`, `create_date`, `status`) VALUES
-(0, 2, 36, '2018-01-27 08:51:26', 'WAIT');
+(1, 2, 37, '2018-02-01 14:47:56', 'WAIT'),
+(2, 2, 37, '2018-02-01 15:12:53', 'WAIT');
 
 -- --------------------------------------------------------
 
@@ -199,7 +217,8 @@ CREATE TABLE `store_booking_detail` (
 --
 
 INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `store_id`, `price`, `water_price_per_unit`, `eletric_price_per_unit`, `start_date`, `end_date`) VALUES
-(0, 0, 43, 150, 10, 7, '2018-01-27', '2018-01-27');
+(1, 1, 46, 2, 2, 2, '2018-02-01', '2018-02-01'),
+(2, 2, 44, 1, 1, 1, '2018-02-01', '2018-02-01');
 
 -- --------------------------------------------------------
 
@@ -231,7 +250,7 @@ INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_nam
 (2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', 'ryrytytytyrtytry', 'e@gmail.com', 'uploads/1517019159.jpg', '11321324434', 'MERCHANT', 'USER', 1),
 (3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
 (4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1),
-(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '', '', '', '67567', 'MARKET', 'USER', 1),
+(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '', 'g@r.com', 'uploads/1517557096.jpg', '67567', 'MARKET', 'USER', 1),
 (6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1),
 (12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1),
 (13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1),
@@ -267,6 +286,12 @@ ALTER TABLE `market_store`
   ADD PRIMARY KEY (`store_market_id`);
 
 --
+-- Indexes for table `payment_info`
+--
+ALTER TABLE `payment_info`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
 -- Indexes for table `store_booking`
 --
 ALTER TABLE `store_booking`
@@ -293,12 +318,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `markets`
 --
 ALTER TABLE `markets`
-  MODIFY `markets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `markets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `markets_img`
 --
 ALTER TABLE `markets_img`
-  MODIFY `markets_img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `markets_img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `markets_type`
 --
@@ -310,11 +335,22 @@ ALTER TABLE `markets_type`
 ALTER TABLE `market_store`
   MODIFY `store_market_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
+-- AUTO_INCREMENT for table `payment_info`
+--
+ALTER TABLE `payment_info`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `store_booking`
+--
+ALTER TABLE `store_booking`
+  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `store_booking_detail`
+--
+ALTER TABLE `store_booking_detail`
+  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
