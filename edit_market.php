@@ -71,10 +71,11 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $location = $_POST['location'];
+    $deposit = $_POST['deposit'];
     if ($targetFileMap == null) {
-        $sql = "UPDATE markets SET name = '$name', description = '$description', location = '$location', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', description = '$description', location = '$location', create_date = now(), deposit = '$deposit' WHERE markets_id = '$marketId';";
     } else {
-        $sql = "UPDATE markets SET name = '$name', map_img = '$targetFileMap', description = '$description', location = '$location', create_date = now() WHERE markets_id = '$marketId';";
+        $sql = "UPDATE markets SET name = '$name', map_img = '$targetFileMap', description = '$description', location = '$location', create_date = now(), deposit = '$deposit' WHERE markets_id = '$marketId';";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -137,12 +138,15 @@ if (isset($_POST['name']) && isset($_POST['description'])) {
                     <input type="text" class="form-control" placeholder="ชื่อตลาด" name="name" required
                            autocomplete="off" value="<?php echo $myMarket['name']; ?>">
                 </div>
+                <div class="form-group">
+                    <label>กำหนดเงินมัดจำ *(กรณีจองรายเดือน)</label>
+                    <input type="number" oninput="this.value = Math.abs(this.value)" min="0" class="form-control" placeholder="จำนวนเงิน" name="deposit" value="<?php echo $myMarket['deposit']; ?>" required
+                           autocomplete="off">
+                </div>
 
                 <div class="form-group">
                     <label>ที่อยู่</label>
-                    <textarea type="text" class="form-control" placeholder="ที่อยู่" name="location">
-                        <?php echo $myMarket['location']; ?>
-                    </textarea>
+                    <textarea type="text" class="form-control" placeholder="ที่อยู่" name="location"><?php echo $myMarket['location']; ?></textarea>
                 </div>
                 <div class="form-group">
                     <label>รายละเอียด</label>

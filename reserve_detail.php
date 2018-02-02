@@ -43,90 +43,102 @@ if (!isset($_GET['reserveId'])) {
     <div id="container" class="panel card">
         <div class="card-body">
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ชื่อ</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['store_name'] ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">วันที่เริ่มต้น</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['start_date'] ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">วันที่สิ้นสุด</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['end_date'] ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ชื่อตลาด</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['name'] ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ประเภท</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['market_type_name'] ?></label>
                 </div>
             </div>
+            <?php
+            if ($reserve['type_id'] != 1) {
+                echo '<div class="row form-group">';
+                echo '   <div class="col-xs-4">';
+                echo '    <label class="control-label">ชำระเงินมัดจำ</label>';
+                echo '   </div>';
+                echo '    <div class="col-xs-8">';
+                echo '      <label class="control-label">'.$reserve['price'] .' บาท</label>';
+                echo '    </div>';
+                echo '</div>';
+            }
+            ?>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ค่าเช่า</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['price'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ค่าน้ำ/หน่วย</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['water_price_per_unit'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ค่าไฟ/หน่วย</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['eletric_price_per_unit'] . ' บาท' ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ความกว้าง</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['width'] . ' เมตร' ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">ความยาว</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['height'] . ' เมตร' ?></label>
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">สถานะ</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label">
                         <?php
                         if($reserve["status"] === 'WAIT') {
@@ -139,10 +151,10 @@ if (!isset($_GET['reserveId'])) {
                 </div>
             </div>
             <div class="row form-group">
-                <div class="col-md-4">
+                <div class="col-xs-4">
                     <label class="control-label">วันที่ทำรายการ</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-xs-8">
                     <label class="control-label"><?php echo $reserve['create_date'] ?></label>
                 </div>
             </div>

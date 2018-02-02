@@ -59,8 +59,9 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
     $name = $_POST['name'];
     $description = $_POST['description'];
     $location = $_POST['location'];
+    $deposit = $_POST['deposit'];
     $userId = $_SESSION["user"]->users_id;
-    $sql = "INSERT INTO markets (name, map_img, userId, description, location, create_date) VALUES ('$name', '$targetFileMap', '$userId', '$description','$location', now());";
+    $sql = "INSERT INTO markets (name, map_img, userId, description, location, create_date, deposit) VALUES ('$name', '$targetFileMap', '$userId', '$description','$location', now(), '$deposit');";
     if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id; // get last market id insert
 
@@ -112,6 +113,11 @@ if (isset($_POST['name']) && isset($_POST['description']) && isset($_FILES["file
                 <div class="form-group">
                     <label>ชื่อตลาด</label>
                     <input type="text" class="form-control" placeholder="ชื่อตลาด" name="name" required
+                           autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label>กำหนดเงินมัดจำ *(กรณีจองรายเดือน)</label>
+                    <input type="number" oninput="this.value = Math.abs(this.value)" min="0" class="form-control" placeholder="จำนวนเงิน" name="deposit" required
                            autocomplete="off">
                 </div>
                 <div class="form-group">

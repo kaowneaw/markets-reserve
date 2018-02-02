@@ -63,7 +63,8 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['idc
     }
 
     if ($conn->query($sql) === TRUE) {
-        header('Location: manage_user.php');
+        echo '<script>window.history.back();window.history.back();</script>';
+//        header('Location: manage_user.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

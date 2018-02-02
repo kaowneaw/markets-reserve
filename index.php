@@ -23,7 +23,11 @@ $result = $conn->query($sql);
                 echo '<div class="col-md-4 form-group">';
                 echo '<a href="reserve_market.php?marketId='.$row['markets_id'].'&startDate='.date("d/m/Y").'&endDate='.date("d/m/Y").'">';
                 echo '    <div class="card">';
-                echo '      <img src="' . $row['img_url'] . '">';
+                if (file_exists($row['img_url'])) { // check have real file
+                    echo '      <img src="' . $row['img_url'] . '">';
+                } else {
+                    echo '      <img src="img/store-default.png">';
+                }
                 echo '    <div class="card-container">';
                 echo '        <small>ชื่อตลาด</small>';
                 echo '        <h4>' . $row["name"] . '</h4>';

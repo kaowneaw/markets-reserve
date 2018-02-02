@@ -116,7 +116,9 @@ if (isset($_POST['storeId'])) {
             </div>
         </div>
         <div class="col-md-4">
-            <button id="searchDate" class="btn btn-default">ตกลง</button>
+            <div class="form-group">
+                <button id="searchDate" class="btn btn-default">ตกลง</button>
+            </div>
         </div>
     </div>
     <div class="pull-left form-group">
@@ -206,10 +208,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ความกว้าง</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="width"></label>
                                 <input type="hidden" id="width_input" class="form-control" placeholder="ความกว้าง" name="width" required>
                             </div>
@@ -217,10 +219,10 @@ if (isset($_POST['storeId'])) {
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-xs-4">
                                 <label for="price">ความยาว</label>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-xs-8">
                                 <label id="height"></label>
                                 <input type="hidden" id="height_input" class="form-control" placeholder="ความยาว" name="height" required>
                             </div>
