@@ -63,8 +63,19 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['idc
     }
 
     if ($conn->query($sql) === TRUE) {
+        if($_SESSION["user"]->users_id == $userId) {
+            // update session my user
+            $sql = "SELECT * FROM users WHERE users_id = '$userId' limit 1";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($obj = mysqli_fetch_object($result)) {
+                    $_SESSION['user'] = $obj;
+                }
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
         echo '<script>window.history.back();window.history.back();</script>';
-//        header('Location: manage_user.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

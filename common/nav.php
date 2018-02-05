@@ -23,6 +23,7 @@
                             echo '       <li><a href="create_market.php">สร้างตลาด</a></li>';
                             echo '  </ul>';
                             echo '</li>';
+                            echo '<li class="dropdown"><a href="my_account_bank.php">ข้อมูลบัญชีธนาคาร</a></li>';
                         } else {
                             echo '<li>';
                             echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';
@@ -42,9 +43,6 @@
                 if (isset($_SESSION["user"]) && $_SESSION["user"]) {
                     echo '<li><img src="'.$_SESSION["user"]->img.'" width="32px" height="32px" style="margin-top: 10px" class="img-circle"/></a></li>';
                     echo '<li><a>USER: '.$_SESSION["user"]->username.'</a></li>';
-                    if($_SESSION["user"]->type == 'MARKET') {
-                        echo '<li><a href="my_account_bank.php">ข้อมูลบัญชีธนาคาร</a></li>';
-                    }
                     echo '<li><a href="edit_user.php?userId='.$_SESSION["user"]->users_id.'">แก้ไขโปรไฟล์</a></li>';
                     echo '<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
                 } else {

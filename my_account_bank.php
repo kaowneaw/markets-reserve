@@ -25,7 +25,7 @@ if (!$_SESSION["user"]) {  //check session
 
 
 if (isset($_POST['payment_id'])) {
-    // remove my market ลบตลาด
+    // remove ธนาคาร
     $payment_id = $_POST['payment_id'];
     $sql = "DELETE FROM payment_info WHERE payment_id = '$payment_id'";
     if ($conn->query($sql) === TRUE) {

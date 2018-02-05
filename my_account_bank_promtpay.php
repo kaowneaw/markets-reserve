@@ -13,23 +13,34 @@ if (!$_SESSION["user"]) {  //check session
     exit;
 }
 
+$userId = $_SESSION['user']->users_id;
+$sql = "SELECT * FROM users WHERE users_id = '$userId' limit 1";
+$result = $conn->query($sql);
+$userObj = '';
+if ($result->num_rows > 0) {
+    while ($obj = mysqli_fetch_object($result)) {
+        $userObj = $obj;
+    }
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+// generate prompt pay qr code
 $PromptPayQR = new PromptPayQR(); // new object
 $PromptPayQR->size = 8; // Set QR code size to 8
-$PromptPayQR->id = '0841079779'; // PromptPay ID
-$PromptPayQR->amount = 200.25; // Set amount (not necessary)
-//  echo '<img src="' . $PromptPayQR->generate() . '" />';
-
-$userId = $_SESSION['user']->users_id;
-$sql = "SELECT * FROM payment_info WHERE user_id  = ".$userId;
-$result = $conn->query($sql);
+$PromptPayQR->id = $_SESSION['user']->tel; // PromptPay ID
+$PromptPayQR->amount = 1;
+$qrSrc = $PromptPayQR->generate();
 
 
-if (isset($_POST['payment_id'])) {
-    // remove my market ลบตลาด
-    $payment_id = $_POST['payment_id'];
-    $sql = "DELETE FROM payment_info WHERE payment_id = '$payment_id'";
+if(isset($_POST['isUseQR'])) {
+    $isUseQr = $_POST['isUseQR']; // 0 = use 1 = not use
+    $isUseQr = 1 - $isUseQr; // สลับ status
+    $sql = "UPDATE users SET isUserPromtPay = '$isUseQr' WHERE users_id = '$userId';";
     if ($conn->query($sql) === TRUE) {
-        header('Location: my_account_bank.php');
+        echo $sql;
+        header('Location: my_account_bank_promtpay.php');
         exit;
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -49,58 +60,37 @@ if (isset($_POST['payment_id'])) {
     <div class="row">
         <div class="col-md-12">
             <h3 class="pull-left text-white">รายการบัญชีธนาคาร</h3>
-            <h3 class="pull-right">
-                <button class="btn btn-success " onclick="add()">เพิ่มบัญชีธนาคาร</button>
-            </h3>
         </div>
     </div>
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#">Promptpay QR Code</a></li>
+        <li class="active"><a href="#">PromptPay QR Code</a></li>
         <li><a href="my_account_bank.php">รายการบัญชีธนาคาร</a></li>
     </ul>
-    <div id="container">
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<div class="panel card">';
-                echo '    <div class="card-body">';
-                echo '        <div class="row form-group">';
-                echo '            <div class="col-xs-4">';
-                echo '                <label class="control-label">ชื่อบัญชี</label>';
-                echo '            </div>';
-                echo '            <div class="col-xs-8">';
-                echo '                <label class="control-label">' . $row['account_name'] . '</label>';
-                echo '            </div>';
-                echo '    </div>';
-                echo '    <div class="row form-group">';
-                echo '            <div class="col-xs-4">';
-                echo '                <label class="control-label">เลขที่บัญชี</label>';
-                echo '            </div>';
-                echo '            <div class="col-xs-8">';
-                echo '                <label class="control-label">' . $row['account_id'] . '</label>';
-                echo '            </div>';
-                echo '    </div>';
-                echo '    <div class="row">';
-                echo '            <div class="col-xs-4">';
-                echo '                <label class="control-label">ธนาคาร</label>';
-                echo '            </div>';
-                echo '            <div class="col-xs-8">';
-                echo '                <label class="control-label">' . $row['account_bank'] . '</label>';
-                echo '            </div>';
-                echo '            </div>';
-                echo '    </div>';
-                echo '    <div class="row form-group text-right">';
-                echo '      <div class="col-xs-12">';
-                echo '        <form method="post" onsubmit="return confirmRemove(this);">';
-                echo '          <input value="' . $row["payment_id"] . '" name="payment_id" class="hide">';
-                echo '          <button class="btn btn-danger pull-right" style="margin-right: 15px;" type="submit">ลบ</button>';
-                echo '        </form>';
-                echo '      </div>';
-                echo '    </div>';
-                echo '</div>';
-            }
-        }
-        ?>
+    <div id="container" class="panel">
+        <div class="card-body">
+            <div class="form-group">* กรุณาใช้เบอร์โทรศัพท์ของ PromptPay</div>
+            <form method="POST">
+                <div>
+                    <input type ="hidden" name="isUseQR" value="<?php echo $userObj->isUserPromtPay ?>">
+                    <?php
+                        if($userObj->isUserPromtPay == 0) {
+                            echo '<button type="submit" class="btn btn-default pull-left">เปิดใช้งาน</button>';
+                        } else {
+                            echo '<button type="submit" class="btn btn-default pull-left">ปิดใช้งาน</button>';
+                        }
+                    ?>
+                </div>
+            </form>
+            <div class="row">
+                <?php
+                if($qrSrc == null) {
+                    echo '<div class="text-center">เบอร์โทรศัพธ์ PromptPay ไม่ถูกต้อง กรุณาแก้ไขโปรไฟล์</div>';
+                } else {
+                    echo '<div class="text-center"><img id="qr-preview" src="'.$qrSrc.'"></div>';
+                }
+                ?>
+            </div>
+        </div>
     </div>
 </div>
 </body>
@@ -109,8 +99,6 @@ if (isset($_POST['payment_id'])) {
     .card-body {
         padding: 25px;
     }
-
-
 </style>
 <script>
     function add() {
