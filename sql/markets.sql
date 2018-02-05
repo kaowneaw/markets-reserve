@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 02, 2018 at 09:28 AM
+-- Generation Time: Feb 05, 2018 at 09:10 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -239,23 +239,24 @@ CREATE TABLE `users` (
   `id_card` varchar(13) NOT NULL,
   `type` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
-  `status` int(1) NOT NULL
+  `status` int(1) NOT NULL,
+  `isUserPromtPay` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`) VALUES
-(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', 'ryrytytytyrtytry', 'e@gmail.com', 'uploads/1517019159.jpg', '11321324434', 'MERCHANT', 'USER', 1),
-(3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0),
-(4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1),
-(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '657676', '', 'g@r.com', 'uploads/1517557096.jpg', '67567', 'MARKET', 'USER', 1),
-(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1),
-(12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1),
-(13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1),
-(14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 1),
-(15, 'g5', '225bc7ac4aaa1e606a628e990fe2d398', 'g', 'g', '1234', 'fdsgdfgfgfdgfgfdg', 'g@g', 'uploads/1516960638.jpg', '1234', 'MERCHANT', 'USER', 0);
+INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`, `isUserPromtPay`) VALUES
+(2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', 'ryrytytytyrtytry', 'e@gmail.com', 'uploads/1517019159.jpg', '11321324434', 'MERCHANT', 'USER', 1, 0),
+(3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0, 0),
+(4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1, 0),
+(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '0859827882', '', 'g@r.com', 'uploads/1517815714.jpg', '67567', 'MARKET', 'USER', 1, 0),
+(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1, 0),
+(12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1, 0),
+(13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1, 0),
+(14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 1, 0),
+(15, 'g5', '225bc7ac4aaa1e606a628e990fe2d398', 'g', 'g', '1234', 'fdsgdfgfgfdgfgfdg', 'g@g', 'uploads/1516960638.jpg', '1234', 'MERCHANT', 'USER', 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -338,7 +339,7 @@ ALTER TABLE `market_store`
 -- AUTO_INCREMENT for table `payment_info`
 --
 ALTER TABLE `payment_info`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `store_booking`
 --
