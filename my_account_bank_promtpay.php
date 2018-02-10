@@ -37,7 +37,7 @@ $qrSrc = $PromptPayQR->generate();
 if(isset($_POST['isUseQR'])) {
     $isUseQr = $_POST['isUseQR']; // 0 = use 1 = not use
     $isUseQr = 1 - $isUseQr; // สลับ status
-    $sql = "UPDATE users SET isUserPromtPay = '$isUseQr' WHERE users_id = '$userId';";
+    $sql = "UPDATE users SET isUsePromtPay = '$isUseQr' WHERE users_id = '$userId';";
     if ($conn->query($sql) === TRUE) {
         echo $sql;
         header('Location: my_account_bank_promtpay.php');
@@ -68,15 +68,15 @@ if(isset($_POST['isUseQR'])) {
     </ul>
     <div id="container" class="panel">
         <div class="card-body">
-            <div class="form-group">* กรุณาใช้เบอร์โทรศัพท์ของ PromptPay</div>
+            <div class="form-group">* กรุณาใช้เบอร์โทรศัพท์ที่ลงทะเบียนกับ PromptPay ในข้อมูลโปรไฟล์ของท่าน</div>
             <form method="POST">
                 <div>
-                    <input type ="hidden" name="isUseQR" value="<?php echo $userObj->isUserPromtPay ?>">
+                    <input type ="hidden" name="isUseQR" value="<?php echo $userObj->isUsePromtPay ?>">
                     <?php
-                        if($userObj->isUserPromtPay == 0) {
-                            echo '<button type="submit" class="btn btn-default pull-left">เปิดใช้งาน</button>';
+                        if($userObj->isUsePromtPay == 0) {
+                            echo '<button type="submit" class="btn btn-success pull-left">เปิดใช้งาน</button>';
                         } else {
-                            echo '<button type="submit" class="btn btn-default pull-left">ปิดใช้งาน</button>';
+                            echo '<button type="submit" class="btn btn-warning pull-left">ปิดใช้งาน</button>';
                         }
                     ?>
                 </div>
@@ -84,7 +84,7 @@ if(isset($_POST['isUseQR'])) {
             <div class="row">
                 <?php
                 if($qrSrc == null) {
-                    echo '<div class="text-center">เบอร์โทรศัพธ์ PromptPay ไม่ถูกต้อง กรุณาแก้ไขโปรไฟล์</div>';
+                    echo '<div class="text-center">เบอร์โทรศัพธ์ที่ลงทะเบียนกับ PromptPay ไม่ถูกต้อง กรุณาแก้ไขโปรไฟล์ของท่าน</div>';
                 } else {
                     echo '<div class="text-center"><img id="qr-preview" src="'.$qrSrc.'"></div>';
                 }

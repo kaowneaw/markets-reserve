@@ -13,12 +13,6 @@ if (!$_SESSION["user"]) {  //check session
     exit;
 }
 
-    $PromptPayQR = new PromptPayQR(); // new object
-    $PromptPayQR->size = 8; // Set QR code size to 8
-    $PromptPayQR->id = '0841079779'; // PromptPay ID
-    $PromptPayQR->amount = 200.25; // Set amount (not necessary)
-//  echo '<img src="' . $PromptPayQR->generate() . '" />';
-
     $userId = $_SESSION['user']->users_id;
     $sql = "SELECT * FROM payment_info WHERE user_id  = ".$userId;
     $result = $conn->query($sql);
@@ -63,7 +57,7 @@ if (isset($_POST['payment_id'])) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="panel card">';
-                    echo '    <div class="card-body">';
+                    echo '    <div class="card-body" style="padding-bottom: 0px">';
                     echo '        <div class="row form-group">';
                     echo '            <div class="col-xs-4">';
                     echo '                <label class="control-label">ชื่อบัญชี</label>';

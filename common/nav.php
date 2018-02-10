@@ -23,7 +23,8 @@
                             echo '       <li><a href="create_market.php">สร้างตลาด</a></li>';
                             echo '  </ul>';
                             echo '</li>';
-                            echo '<li class="dropdown"><a href="my_account_bank.php">ข้อมูลบัญชีธนาคาร</a></li>';
+                            echo '<li><a href="my_account_bank.php">ข้อมูลบัญชีธนาคาร</a></li>';
+                            echo '<li><a href="report_transfer_list.php">รายการแจ้งโอนเงิน</a></li>';
                         } else {
                             echo '<li>';
                             echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';

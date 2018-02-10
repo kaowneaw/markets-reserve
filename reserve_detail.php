@@ -15,7 +15,7 @@ if (!isset($_GET['reserveId'])) {
 } else {
 
     $reserveId = $_GET['reserveId'];
-    $sql = "SELECT * FROM (SELECT store_market_id,store_name,type_id,market_type_name,width,height,markets.name FROM market_store ms INNER JOIN markets_type mt ON ms.type_id = mt.markets_type_id INNER JOIN markets ON markets.markets_id = ms.markets_id ) store  
+    $sql = "SELECT * FROM (SELECT deposit,store_market_id,store_name,type_id,market_type_name,width,height,markets.name FROM market_store ms INNER JOIN markets_type mt ON ms.type_id = mt.markets_type_id INNER JOIN markets ON markets.markets_id = ms.markets_id ) store  
     INNER JOIN ( SELECT * FROM store_booking sb INNER JOIN store_booking_detail sbd ON sb.store_booking_id = sbd.booking_id  WHERE store_booking_id = '$reserveId' ) booking ON store.store_market_id = booking.store_id";
 
     $result = $conn->query($sql);
@@ -39,7 +39,7 @@ if (!isset($_GET['reserveId'])) {
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title text-white">รายการจอง</h3>
+    <h3 class="card-title text-white form-group">รายการจอง <a href="<?php  echo 'payment.php?reserveId='.$reserveId ?>" class="btn btn-default pull-right">ชำระเงิน</a></h3>
     <div id="container" class="panel card">
         <div class="card-body">
             <div class="row form-group">
@@ -89,7 +89,7 @@ if (!isset($_GET['reserveId'])) {
                 echo '    <label class="control-label">ชำระเงินมัดจำ</label>';
                 echo '   </div>';
                 echo '    <div class="col-xs-8">';
-                echo '      <label class="control-label">'.$reserve['price'] .' บาท</label>';
+                echo '      <label class="control-label">'.$reserve['deposit'] .' บาท</label>';
                 echo '    </div>';
                 echo '</div>';
             }

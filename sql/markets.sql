@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 05, 2018 at 09:10 AM
--- Server version: 5.6.35
+-- Host: 127.0.0.1
+-- Generation Time: Feb 10, 2018 at 02:21 PM
+-- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `markets`
@@ -42,7 +50,7 @@ INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`,
 (34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '', 0, '2018-01-02 09:08:37'),
 (35, 'T', 'uploads/1514862187map.jpg', 2, '', '', 0, '2018-01-02 10:03:06'),
 (36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '', 0, '2018-01-09 22:16:54'),
-(37, 'a', 'uploads/1516085450map.jpg', 6, 'a', '', 0, '2018-01-16 13:50:50'),
+(37, 'a', 'uploads/1516085450map.jpg', 6, 'Yeah', 'No', 200, '2018-02-07 10:55:53'),
 (38, 'H', 'uploads/1516940258map.jpg', 5, 'G', 'G', 1000, '2018-02-01 14:57:27'),
 (39, 'q', 'uploads/1517471749map.jpeg', 5, '1', '1', 1000, '2018-02-01 14:55:48');
 
@@ -171,7 +179,31 @@ CREATE TABLE `payment_info` (
 
 INSERT INTO `payment_info` (`payment_id`, `user_id`, `account_name`, `account_id`, `account_bank`) VALUES
 (1, 5, 'ggggggggg', '2321324142411', 'กสิกรไทย'),
-(2, 5, 'gggg', '23123232323', 'กสิกรไทย');
+(2, 5, 'gggg', '23123232323', 'กสิกรไทย'),
+(3, 6, 'ggg', '121212', 'ธนาคารกรุงเทพ'),
+(4, 6, 'sd', '121212', 'ธนาคารยูโอบี');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_transfer`
+--
+
+CREATE TABLE `report_transfer` (
+  `report_transfer_id` int(11) NOT NULL,
+  `date_time` datetime NOT NULL,
+  `bank_account_from` varchar(50) NOT NULL,
+  `bank_account_to` varchar(50) NOT NULL,
+  `attachment` varchar(50) NOT NULL,
+  `booking_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `report_transfer`
+--
+
+INSERT INTO `report_transfer` (`report_transfer_id`, `date_time`, `bank_account_from`, `bank_account_to`, `attachment`, `booking_id`) VALUES
+(9, '2018-02-08 22:14:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518102903.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -192,8 +224,10 @@ CREATE TABLE `store_booking` (
 --
 
 INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `market_id`, `create_date`, `status`) VALUES
-(1, 2, 37, '2018-02-01 14:47:56', 'WAIT'),
-(2, 2, 37, '2018-02-01 15:12:53', 'WAIT');
+(1, 2, 37, '2018-02-01 14:47:56', 'REPORTED'),
+(2, 2, 37, '2018-02-01 15:12:53', 'WAIT'),
+(3, 2, 32, '2018-02-07 13:14:32', 'WAIT'),
+(4, 2, 37, '2018-02-07 13:15:27', 'WAIT');
 
 -- --------------------------------------------------------
 
@@ -218,7 +252,9 @@ CREATE TABLE `store_booking_detail` (
 
 INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `store_id`, `price`, `water_price_per_unit`, `eletric_price_per_unit`, `start_date`, `end_date`) VALUES
 (1, 1, 46, 2, 2, 2, '2018-02-01', '2018-02-01'),
-(2, 2, 44, 1, 1, 1, '2018-02-01', '2018-02-01');
+(2, 2, 44, 1, 1, 1, '2018-02-01', '2018-02-01'),
+(3, 3, 41, 150, 20, 7, '2018-02-07', '2018-02-07'),
+(4, 4, 46, 2, 2, 2, '2018-02-07', '2018-02-07');
 
 -- --------------------------------------------------------
 
@@ -240,19 +276,19 @@ CREATE TABLE `users` (
   `type` varchar(20) NOT NULL,
   `role` varchar(20) NOT NULL,
   `status` int(1) NOT NULL,
-  `isUserPromtPay` int(11) NOT NULL
+  `isUsePromtPay` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`, `isUserPromtPay`) VALUES
+INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_name`, `tel`, `address`, `email`, `img`, `id_card`, `type`, `role`, `status`, `isUsePromtPay`) VALUES
 (2, 'k1', '225bc7ac4aaa1e606a628e990fe2d398', 'panya', 'n', '0859827882', 'ryrytytytyrtytry', 'e@gmail.com', 'uploads/1517019159.jpg', '11321324434', 'MERCHANT', 'USER', 1, 0),
 (3, 'k2', '225bc7ac4aaa1e606a628e990fe2d398', 'qq', 'qq', '0859827882', '', '', '', '', 'MERCHANT', 'USER', 0, 0),
 (4, 'k3', '225bc7ac4aaa1e606a628e990fe2d398', 'k3', 'wewqe', '0859827882', '', '', '', '1251514444545', 'MERCHANT', 'USER', 1, 0),
-(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '0859827882', '', 'g@r.com', 'uploads/1517815714.jpg', '67567', 'MARKET', 'USER', 1, 0),
-(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '111111111', '', '', '', '1111111', 'MARKET', 'USER', 1, 0),
+(5, 'k5', '225bc7ac4aaa1e606a628e990fe2d398', 'k5', 'qwe', '085982788211111', '', 'g@r.com', 'uploads/1517815714.jpg', '67567', 'MARKET', 'USER', 1, 0),
+(6, 'k4', '225bc7ac4aaa1e606a628e990fe2d398', 'k4', 'k4', '0859827882', '', 'h@gmail.com', '', '1111111', 'MARKET', 'USER', 1, 1),
 (12, 'g1', '225bc7ac4aaa1e606a628e990fe2d398', 'qqqH', 'wqwqwqw', '2323233', '777777', 'e@gmail.com', 'uploads/1516959403.jpeg', '2324342345', 'MERCHANT', 'USER', 1, 0),
 (13, 'g2', '225bc7ac4aaa1e606a628e990fe2d398', 'aAA', 'AAA', '11111', 'sfdsfsdfsfdsf', '1111@gmail.com', 'uploads/1516952149.jpg', '11111', 'MERCHANT', 'USER', 1, 0),
 (14, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'admin', '123456789', 'admin', 'admin@gmail.com', 'uploads/1516952322.jpg', '1111111111111', 'ADMIN', 'ADMIN', 1, 0),
@@ -291,6 +327,12 @@ ALTER TABLE `market_store`
 --
 ALTER TABLE `payment_info`
   ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `report_transfer`
+--
+ALTER TABLE `report_transfer`
+  ADD PRIMARY KEY (`report_transfer_id`);
 
 --
 -- Indexes for table `store_booking`
@@ -339,19 +381,28 @@ ALTER TABLE `market_store`
 -- AUTO_INCREMENT for table `payment_info`
 --
 ALTER TABLE `payment_info`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `report_transfer`
+--
+ALTER TABLE `report_transfer`
+  MODIFY `report_transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `store_booking`
 --
 ALTER TABLE `store_booking`
-  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `store_booking_detail`
 --
 ALTER TABLE `store_booking_detail`
-  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
