@@ -24,7 +24,8 @@ if (isset($_POST['account_name']) && isset($_POST['account_id']) && isset($_POST
         $account_id = $_POST['account_id'];
         $account_bank = $_POST['account_bank'];
         $userId = $_SESSION["user"]->users_id;
-        $sql = "INSERT INTO payment_info (account_name, account_id, account_bank, user_id) VALUES ('$account_name', '$account_id', '$account_bank', '$userId');";
+        $status= $_POST['status'];
+        $sql = "INSERT INTO payment_info (account_name, account_id, account_bank, user_id,status) VALUES ('$account_name', '$account_id', '$account_bank', '$userId','$status');";
         if ($conn->query($sql) === TRUE) {
             echo "New record created successfully";
             header('Location: my_account_bank.php'); // redirect to my_account_bank page
@@ -58,6 +59,7 @@ if (isset($_POST['account_name']) && isset($_POST['account_id']) && isset($_POST
                 <label for="lastname">เลขที่บัญชี</label>
                 <input type="text" id="account_id" name="account_id" class="form-control" placeholder="เลขที่บัญชี" required>
             </div>
+
             <div class="form-group">
                 <label>ธนาคาร</label>
                 <select type="text" id="account_bank" name="account_bank" class="form-control" placeholder="ธนาคาร" required>
@@ -78,6 +80,13 @@ if (isset($_POST['account_name']) && isset($_POST['account_id']) && isset($_POST
                     <option>ธนาคารอิสลามแห่งประเทศไทย</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="status">สถานะ</label>
+                <input type="text"  name="status" class="form-control" placeholder="สถานะ" required>
+            </div>
+
+
             <div class="form-group text-right">
                 <?php  if($hasError) echo '<span class="text-danger">'.$error.'</span>' ?>
                 <button type="submit" class="btn btn-primary">ยืนยัน</button>

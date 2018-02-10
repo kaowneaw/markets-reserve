@@ -17,7 +17,7 @@ if (!isset($_GET['reserveId'])) {
     header('Location: index.php');
 } else {
 
-    $reserveId = $_GET['reserveId'];
+    $reserveId = $_GET['reserveId'];// reserveId = store_booking_id
     $sql = "SELECT * FROM (SELECT markets.markets_id,markets.userId,deposit,store_market_id,store_name,type_id,market_type_name,markets.name FROM market_store ms INNER JOIN markets_type mt ON ms.type_id = mt.markets_type_id INNER JOIN markets ON markets.markets_id = ms.markets_id ) store  
      INNER JOIN ( SELECT * FROM store_booking sb INNER JOIN store_booking_detail sbd ON sb.store_booking_id = sbd.booking_id WHERE store_booking_id = '$reserveId' ) booking ON store.store_market_id = booking.store_id INNER JOIN users on users.users_id = store.userId";
 

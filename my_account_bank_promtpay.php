@@ -14,23 +14,23 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION['user']->users_id;
-$sql = "SELECT * FROM users WHERE users_id = '$userId' limit 1";
-$result = $conn->query($sql);
-$userObj = '';
-if ($result->num_rows > 0) {
-    while ($obj = mysqli_fetch_object($result)) {
-        $userObj = $obj;
-    }
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+// $sql = "SELECT * FROM users WHERE users_id = '$userId' limit 1";
+// $result = $conn->query($sql);
+// $userObj = '';
+// if ($result->num_rows > 0) {
+//     while ($obj = mysqli_fetch_object($result)) {
+//         $userObj = $obj;
+//     }
+// } else {
+//     echo "Error: " . $sql . "<br>" . $conn->error;
+// }
 
 
 // generate prompt pay qr code
 $PromptPayQR = new PromptPayQR(); // new object
 $PromptPayQR->size = 8; // Set QR code size to 8
 $PromptPayQR->id = $_SESSION['user']->tel; // PromptPay ID
-$PromptPayQR->amount = 1;
+// $PromptPayQR->amount = 1;
 $qrSrc = $PromptPayQR->generate();
 
 
@@ -39,7 +39,7 @@ if(isset($_POST['isUseQR'])) {
     $isUseQr = 1 - $isUseQr; // สลับ status
     $sql = "UPDATE users SET isUsePromtPay = '$isUseQr' WHERE users_id = '$userId';";
     if ($conn->query($sql) === TRUE) {
-        echo $sql;
+        $_SESSION['user']->isUsePromtPay = $isUseQr;
         header('Location: my_account_bank_promtpay.php');
         exit;
     } else {
@@ -71,9 +71,9 @@ if(isset($_POST['isUseQR'])) {
             <div class="form-group">* กรุณาใช้เบอร์โทรศัพท์ที่ลงทะเบียนกับ PromptPay ในข้อมูลโปรไฟล์ของท่าน</div>
             <form method="POST">
                 <div>
-                    <input type ="hidden" name="isUseQR" value="<?php echo $userObj->isUsePromtPay ?>">
+                    <input type ="hidden" name="isUseQR" value="<?php echo $_SESSION['user']->isUsePromtPay ?>">
                     <?php
-                        if($userObj->isUsePromtPay == 0) {
+                        if($_SESSION['user']->isUsePromtPay == 0) {
                             echo '<button type="submit" class="btn btn-success pull-left">เปิดใช้งาน</button>';
                         } else {
                             echo '<button type="submit" class="btn btn-warning pull-left">ปิดใช้งาน</button>';

@@ -12,7 +12,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT * FROM store_booking INNER JOIN markets ON markets.markets_id = store_booking.market_id  WHERE user_id = '$userId'";
+$sql = "SELECT *,store_booking.create_date as booking_created FROM store_booking INNER JOIN markets ON markets.markets_id = store_booking.market_id  WHERE user_id = '$userId'";
 $result = $conn->query($sql);
 
 ?>
@@ -50,7 +50,7 @@ $result = $conn->query($sql);
             echo '    <td class="text-center">' . $count . '</td>';
             echo '    <td>' . $row["store_booking_id"] . '</td>';
             echo '    <td>' . $row["name"] . '</td>';
-            echo '    <td>' . $row["create_date"] . '</td>';
+            echo '    <td>' . $row["booking_created"] . '</td>';
             if($row["status"] === 'WAIT') {
                 echo '    <td>รอการชำระเงิน</td>';
             } else  if($row["status"] === 'REPORTED') {
