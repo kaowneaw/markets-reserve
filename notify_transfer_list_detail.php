@@ -39,6 +39,17 @@ if (!isset($_GET['reserveId'])) {
     } else {
         echo "No Results";
     }
+
+    if(isset($_POST['approvePayment'])) {
+        $reserveId = $_POST['approvePayment'];
+        $sql = "UPDATE store_booking SET status = 'APPROVE' WHERE store_booking_id = ".$reserveId; // update สถานะ เป็นจ่ายเงินแล้ว
+        if ($conn->query($sql) === TRUE) {
+            header('Location: notify_transfer_list.php'); // redirect to page
+        } else {
+            $hasError = true;
+            $error = $conn->error;
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -158,10 +169,10 @@ if (!isset($_GET['reserveId'])) {
                                 <?php
                                 if($reserve["status"] === 'WAIT') {
                                     echo 'รอการชำระเงิน';
-                                } else if($reserve["status"] === 'REPORTED') {
+                                } else if($reserve["status"] === 'REPORTED'){
                                     echo 'แจ้งโอนเงินแล้ว';
-                                } else {
-                                    echo $reserve['status'];
+                                } else if ($reserve["status"] === 'APPROVE') {
+                                    echo 'ชำระเงินแล้ว';
                                 }
                                 ?>
                             </label>
@@ -181,7 +192,14 @@ if (!isset($_GET['reserveId'])) {
             <div class="col-md-6">
                 <div class="panel">
                     <div class="text-right">
-                        <button class="btn btn-success">ยืนยันการชำระเงิน</button>
+                        <form method="POST">
+                            <input type="hidden" value="<?php echo $reserveId; ?>" name="approvePayment">
+                            <?php
+                                if($reserve["status"] === 'REPORTED') {
+                                    echo '<button class="btn btn-success">ยืนยันการชำระเงิน</button>';
+                                }
+                             ?>
+                        </form>
                     </div>
                     &nbsp;
                     <div class="row form-group">

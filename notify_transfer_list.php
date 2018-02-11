@@ -12,7 +12,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT *,store_booking.create_date as booking_created FROM store_booking INNER JOIN markets ON markets.markets_id = store_booking.market_id  WHERE user_id = '$userId' ORDER BY store_booking.store_booking_id DESC";
+$sql = "SELECT * FROM report_transfer rt INNER JOIN store_booking sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'REPORTED'";
 $result = $conn->query($sql);
 
 ?>
@@ -26,8 +26,10 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title text-white">รายการจองของฉัน</h3>
-
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน</a></li>
+        <li><a href="notify_transfer_list_history.php">ประวัติรายการแจ้งโอนเงิน</a></li>
+    </ul>
     <?php
     if ($result->num_rows > 0) {
         // output data of each row
@@ -35,10 +37,10 @@ $result = $conn->query($sql);
         echo ' <thead>';
         echo '  <tr>';
         echo '    <th class="text-center col-md-1">ลำดับ</th>';
-        echo '    <th class="col-md-2">รหัสการจอง</th>';
-        echo '    <th class="col-md-2">ชื่อตลาด</th>';
-        echo '    <th class="col-md-3">วันที่ทำรายการ</th>';
-        echo '    <th class="col-md-3">สถานะ</th>';
+        echo '    <th class="col-md-2">โอนจากธนาคาร</th>';
+        echo '    <th class="col-md-2">โอนเข้าบัญชีธนาคาร</th>';
+        echo '    <th class="col-md-2">ชื่อผู้โอน</th>';
+        echo '    <th class="col-md-3">วัน-เวลาที่ทำรายการโอนเงิน</th>';
         echo '    <th class="col-md-3">เครื่องมือ</th>';
         echo '  </tr>';
         echo '</thead>';
@@ -48,17 +50,11 @@ $result = $conn->query($sql);
             $count++;
             echo '  <tr>';
             echo '    <td class="text-center">' . $count . '</td>';
-            echo '    <td>' . $row["store_booking_id"] . '</td>';
-            echo '    <td>' . $row["name"] . '</td>';
-            echo '    <td>' . $row["booking_created"] . '</td>';
-            if($row["status"] === 'WAIT') {
-                echo '    <td class="text-warning">รอการชำระเงิน</td>';
-            } else  if($row["status"] === 'REPORTED') {
-                echo '    <td>แจ้งโอนเงินแล้ว</td>';
-            } else if($row["status"] === 'APPROVE'){
-                echo '    <td class="text-success">ชำระเงินแล้ว</td>';
-            }
-            echo '    <td><button class="btn btn-primary pull-left" onclick="view(' . $row["store_booking_id"] . ')" style="padding: 5px 25px;">ดู</button></td>';
+            echo '    <td>' . $row["bank_account_from"] . '</td>';
+            echo '    <td>' . $row["bank_account_to"] . '</td>';
+            echo '    <td>' . $row["first_name"].' '.$row["last_name"]. '</td>';
+            echo '    <td>' . $row["date_time"] . '</td>';
+            echo '    <td><button class="btn btn-primary pull-left" onclick="view(' . $row["booking_id"] . ')" style="padding: 5px 25px;">ดู</button></td>';
             echo '  </tr>';
         }
         echo '</tbody>';
@@ -75,6 +71,6 @@ $result = $conn->query($sql);
 </style>
 <script>
     function view(id) {
-        window.location.href = "reserve_detail.php?reserveId=" + id;
+        window.location.href = "notify_transfer_list_detail.php?reserveId=" + id;
     }
 </script>

@@ -12,7 +12,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT * FROM report_transfer rt INNER JOIN store_booking sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'REPORTED'";
+$sql = "SELECT * FROM report_transfer rt INNER JOIN store_booking sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'APPROVE'";
 $result = $conn->query($sql);
 
 ?>
@@ -26,8 +26,10 @@ $result = $conn->query($sql);
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title text-white">รายการแจ้งโอนเงิน</h3>
-
+    <ul class="nav nav-tabs">
+        <li><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน</a></li>
+        <li class="active"><a href="notify_transfer_list_history.php">ประวัติรายการแจ้งโอนเงิน</a></li>
+    </ul>
     <?php
     if ($result->num_rows > 0) {
         // output data of each row
@@ -69,6 +71,6 @@ $result = $conn->query($sql);
 </style>
 <script>
     function view(id) {
-        window.location.href = "report_transfer_list_detail.php?reserveId=" + id;
+        window.location.href = "notify_transfer_list_detail.php?reserveId=" + id;
     }
 </script>

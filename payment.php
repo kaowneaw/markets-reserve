@@ -75,6 +75,7 @@ if($reserveData['isUsePromtPay'] == '1') {
                                 echo '<div class="col-xs-8">';
                                 echo '    <h3><label class="control-label">'. $reserveData['deposit'] . ' บาท</label></h3>';
                                 echo '</div>';
+                                echo '<div class="col-xs-12"><label class="control-label">* หลังจากจ่ายเงินมัดจำแล้ว กรุณาไปทำสัญญากับเจ้าของตลาดด้วย</label></div>';
                             } else {
                                 echo '<div class="col-xs-4">';
                                 echo '    <h3><label class="control-label">ค่าเช่า</label></h3>';
@@ -84,7 +85,7 @@ if($reserveData['isUsePromtPay'] == '1') {
                                 echo '</div>';
                             }
                             ?>
-                            <div class="col-xs-12 text-right"><a  href="report_transfer.php?reserveId=<?php echo $reserveId?>" class="btn btn-success">แจ้งโอนเงิน</a></div>
+                            <div class="col-xs-12 text-right"><a href="notify_transfer.php?reserveId=<?php echo $reserveId?>" class="btn btn-success">แจ้งโอนเงิน</a></div>
                         </div>
                     </div>
                 </div>
@@ -139,6 +140,20 @@ if($reserveData['isUsePromtPay'] == '1') {
     </div>
 </div>
 </body>
+<!--modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center"><i class="fa fa-check-circle-o text-success" aria-hidden="true"></i> <br> หลังจากจ่ายเงินมัดจำแล้ว <br> กรุณาไปทำสัญญากับเจ้าของตลาดด้วย</h3>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
 <style>
     .card-body {
@@ -152,4 +167,13 @@ if($reserveData['isUsePromtPay'] == '1') {
     function confirmRemove() {
         return confirm('ต้องการลบออกใช่ไหม ?');
     }
+
+    var typeMarket = "<?php echo $reserveData['type_id']; ?>";
+    if(typeMarket != "1") { // ไม่เท่ากับการจองรายวัน
+        $('#myModal').modal('show');
+        setTimeout(function () {
+            $('#myModal').modal('hide');
+        }, 3000); // 3 second
+    }
+
 </script>

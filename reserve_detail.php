@@ -39,7 +39,14 @@ if (!isset($_GET['reserveId'])) {
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title text-white form-group">รายการจอง <a href="<?php  echo 'payment.php?reserveId='.$reserveId ?>" class="btn btn-default pull-right">ชำระเงิน</a></h3>
+    <h3 class="card-title text-white form-group">รายการจอง
+        <?php
+            if($reserve["status"] === 'WAIT') {
+                echo '<a href="payment.php?reserveId='.$reserveId.'" class="btn btn-default pull-right">ชำระเงิน</a>';
+            }
+        ?>
+
+    </h3>
     <div id="container" class="panel card">
         <div class="card-body">
             <div class="row form-group">
@@ -143,8 +150,10 @@ if (!isset($_GET['reserveId'])) {
                         <?php
                         if($reserve["status"] === 'WAIT') {
                             echo 'รอการชำระเงิน';
-                        } else {
-                            echo $reserve['status'];
+                        } else if($reserve["status"] === 'REPORTED'){
+                            echo 'แจ้งโอนเงินแล้ว';
+                        } else if ($reserve["status"] === 'APPROVE') {
+                            echo 'ชำระเงินแล้ว';
                         }
                         ?>
                     </label>
