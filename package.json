@@ -18,8 +18,8 @@
   "homepage": "https://github.com/kaowneaw/markets-reserve#readme",
   "dependencies": {
     "bootstrap": "^3.3.0",
+    "chart.js": "^2.7.1",
     "font-awesome": "^4.7.0",
-    "fusioncharts": "^3.12.2",
     "jquery": "^3.2.1"
   }
 }

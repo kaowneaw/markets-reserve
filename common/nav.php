@@ -36,7 +36,7 @@
                         echo '   <a href="manage_user.php">จัดการผู้ใช้งาน</a>';
                         echo '</li>';
                         echo '<li>';
-                        echo '   <a href="report_user.php">รายงานผู้ใช้งาน</a>';
+                        echo '   <a href="reports.php">รายงาน</a>';
                         echo '</li>';
                     }
 

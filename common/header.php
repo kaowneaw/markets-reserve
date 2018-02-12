@@ -14,6 +14,4 @@
 <script type="text/javascript" src="./libs/planit/js/planit.min.js"></script>
 <script type="text/javascript" src="./libs/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="./libs/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-<script type="text/javascript" src="./node_modules/fusioncharts/fusioncharts.js" ></script>
-<script type="text/javascript" src="./node_modules/fusioncharts/fusioncharts.charts.js" ></script>
-<script type="text/javascript" src="./node_modules/fusioncharts/fusioncharts.maps.js" ></script>
+<script type="text/javascript" src="./node_modules/chart.js/dist/Chart.min.js" charset="UTF-8"></script>
