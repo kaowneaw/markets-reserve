@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2018 at 03:11 PM
+-- Generation Time: Feb 13, 2018 at 03:24 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -21,6 +21,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `markets`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract`
+--
+
+CREATE TABLE `contract` (
+  `contract_id` int(11) NOT NULL,
+  `contract_img` text NOT NULL,
+  `store_booking_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -205,7 +217,8 @@ CREATE TABLE `report_transfer` (
 INSERT INTO `report_transfer` (`report_transfer_id`, `date_time`, `bank_account_from`, `bank_account_to`, `attachment`, `booking_id`) VALUES
 (9, '2018-02-08 22:14:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518102903.jpg', 1),
 (10, '2018-02-11 17:00:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518343247.jpg', 5),
-(11, '2018-02-11 19:46:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518353223.jpg', 4);
+(11, '2018-02-11 19:46:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518353223.jpg', 4),
+(12, '2018-02-13 21:12:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518531169.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -228,10 +241,10 @@ CREATE TABLE `store_booking` (
 INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `market_id`, `create_date`, `status`) VALUES
 (1, 2, 37, '2018-02-01 14:47:56', 'APPROVE'),
 (2, 2, 37, '2018-02-01 15:12:53', 'WAIT'),
-(3, 2, 32, '2018-02-07 13:14:32', 'WAIT'),
-(4, 2, 37, '2018-02-07 13:15:27', 'REPORTED'),
+(3, 2, 32, '2018-02-07 13:14:32', 'REPORTED'),
+(4, 2, 37, '2018-02-07 13:15:27', 'APPROVE'),
 (5, 2, 37, '2018-02-11 16:01:21', 'APPROVE'),
-(6, 2, 37, '2018-02-11 20:14:39', 'WAIT');
+(6, 2, 37, '2018-02-11 20:14:39', 'CANCEL');
 
 -- --------------------------------------------------------
 
@@ -261,6 +274,33 @@ INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `st
 (4, 4, 46, 2, 2, 2, '2018-02-07', '2018-02-07'),
 (5, 5, 44, 1, 1, 1, '2018-02-11', '2018-02-11'),
 (6, 6, 46, 2, 2, 2, '2018-02-11', '2018-02-11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `t` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `t`) VALUES
+(1, 'Hello'),
+(2, 'Hello'),
+(3, 'Hello'),
+(4, 'Hello'),
+(5, 'Hello'),
+(6, 'Hello'),
+(7, 'Hello'),
+(8, 'Hello'),
+(9, 'Hello'),
+(10, 'Hello');
 
 -- --------------------------------------------------------
 
@@ -303,6 +343,12 @@ INSERT INTO `users` (`users_id`, `username`, `password`, `first_name`, `last_nam
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `contract`
+--
+ALTER TABLE `contract`
+  ADD PRIMARY KEY (`contract_id`);
 
 --
 -- Indexes for table `markets`
@@ -353,6 +399,12 @@ ALTER TABLE `store_booking_detail`
   ADD PRIMARY KEY (`store_booking_detail_id`);
 
 --
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -363,6 +415,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `contract`
+--
+ALTER TABLE `contract`
+  MODIFY `contract_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `markets`
 --
@@ -392,7 +449,7 @@ ALTER TABLE `payment_info`
 -- AUTO_INCREMENT for table `report_transfer`
 --
 ALTER TABLE `report_transfer`
-  MODIFY `report_transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `report_transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `store_booking`
 --
@@ -403,6 +460,11 @@ ALTER TABLE `store_booking`
 --
 ALTER TABLE `store_booking_detail`
   MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `users`
 --
