@@ -154,6 +154,8 @@ if (!isset($_GET['reserveId'])) {
                             echo 'แจ้งโอนเงินแล้ว';
                         } else if ($reserve["status"] === 'APPROVE') {
                             echo 'ชำระเงินแล้ว';
+                        }else if ($reserve["status"] === 'CANCEL') {
+                            echo 'ยกเลิกการจอง';
                         }
                         ?>
                     </label>

@@ -28,7 +28,7 @@ $result = $conn->query($sql);
 <div class="container">
     <ul class="nav nav-tabs">
         <li><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน</a></li>
-        <li class="active"><a href="notify_transfer_list_history.php">ประวัติรายการแจ้งโอนเงิน</a></li>
+        <li class="active"><a href="notify_transfer_list_history.php">ประวัติรายการชำระเงิน</a></li>
     </ul>
     <?php
     if ($result->num_rows > 0) {
@@ -36,7 +36,7 @@ $result = $conn->query($sql);
         echo '<table class="table table-bordered">';
         echo ' <thead>';
         echo '  <tr>';
-        echo '    <th class="text-center col-md-1">ลำดับ</th>';
+        echo '    <th class="text-center col-md-1">รหัสการจอง</th>';
         echo '    <th class="col-md-2">โอนจากธนาคาร</th>';
         echo '    <th class="col-md-2">โอนเข้าบัญชีธนาคาร</th>';
         echo '    <th class="col-md-2">ชื่อผู้โอน</th>';
@@ -49,7 +49,7 @@ $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
             $count++;
             echo '  <tr>';
-            echo '    <td class="text-center">' . $count . '</td>';
+            echo '    <td class="text-center">' . $row["store_booking_id"] . '</td>';
             echo '    <td>' . $row["bank_account_from"] . '</td>';
             echo '    <td>' . $row["bank_account_to"] . '</td>';
             echo '    <td>' . $row["first_name"].' '.$row["last_name"]. '</td>';

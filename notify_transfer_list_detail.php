@@ -62,7 +62,14 @@ if (!isset($_GET['reserveId'])) {
 <body>
 <?php require('./common/nav.php'); ?>
 <div class="container">
-    <h3 class="card-title text-white form-group">รายละเอียดการแจ้งโอนเงิน</h3>
+    <div class="row">
+        <div class="col-xs-6">
+            <h3 class="card-title text-white form-group">รายละเอียดการแจ้งโอนเงิน</h3>
+        </div>
+        <div class="col-xs-6 text-right">
+            <button class="btn btn-success form-group" id="addContract" style="margin-top: 10px">เพิ่มรูปสัญญาเช่า</button>
+        </div>
+    </div>
     <div id="container">
         <div class="row">
             <div class="col-md-6">
@@ -238,6 +245,35 @@ if (!isset($_GET['reserveId'])) {
     </div>
 </div>
 </body>
+<!-- Modal popup-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">เพิ่มรูปสัญญาเช่า</h4>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form">
+                    <label><i class="fa fa-file-image-o" aria-hidden="true"></i> รูปสัญญาเช่า</label>
+                    <div class="img-area-wrapper text-center"><img id="image_preview_cover" alt="IMG PREVIEW"></div>
+                    <div class="form-group">
+                        <input type='file' id="fileContract" class="form-group" name="fileContract"/>
+                        <div class="alert alert-warning" role="alert" id="alert" style="display: none">
+                            <strong>ไฟล์ไม่สนับสนุน</strong> กรุณาเลือกไฟล์นามสกุล .jpg
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <button class="btn btn-primary" type="submit">บันทึก</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
 <style>
     .card-body {
@@ -248,5 +284,9 @@ if (!isset($_GET['reserveId'])) {
     }
 </style>
 <script>
-
+    $(document).ready(function () {
+        $("#addContract").click(function () {
+            $('#myModal').modal('show');
+        });
+    });
 </script>

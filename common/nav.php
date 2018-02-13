@@ -30,6 +30,9 @@
                             echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';
                             echo '</li>';
                         }
+                        echo '<li>';
+                        echo '   <a href="contract.php">ใบสัญญา</a>';
+                        echo '</li>';
                     } else {
                         // role admin
                         echo '<li>';
