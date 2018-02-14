@@ -50,6 +50,40 @@ if (!isset($_GET['reserveId'])) {
             $error = $conn->error;
         }
     }
+
+
+    // upload สัญญา
+    if(isset($_FILES['fileContract'])) {
+        // upload img map
+        if (isset($_FILES["fileContract"]) && $_FILES["fileContract"]['error'] == 0) {
+            $extensionImgMap = pathinfo($_FILES["fileContract"]["name"], PATHINFO_EXTENSION);
+            if (strtolower($extensionImgMap) != "jpg" && strtolower($extensionImgMap) != "jpeg" && strtolower($extensionImgMap) != "png") {
+                echo "<script type='text/javascript'>window.alert('รูปแผนที่ตลาด สนับสนุนเฉพาะไฟล์ประเภท JPG JPEG และ PNG');window.location.href='notify_transfer_list_detail.php';</script>";
+                return false;
+            }
+
+            $newFilenameMap = round(microtime(true)) . 'map.' . $extensionImgMap; //สร้างชื่อไฟล์รอ หน่วยไมโคร
+            $targetFileMap = "uploads/" . $newFilenameMap;
+
+            if (move_uploaded_file($_FILES["fileContract"]["tmp_name"], $targetFileMap)) {
+
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+                return false;
+            }
+        }else {
+            echo "<script type='text/javascript'>window.alert('กรุณาเลือกรูปแผนที่ตลาด');window.location.href='notify_transfer_list_detail.php';</script>";
+            return false;
+        }
+
+        $sql = "INSERT INTO `contract` (`contract_img`, `store_booking_id`) VALUES ('$targetFileMap', '$reserveId');";
+        if ($conn->query($sql) === TRUE) {
+            header('Location: notify_transfer_list_detail.php?reserveId=' . $reserveId);
+            exit;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -255,13 +289,13 @@ if (!isset($_GET['reserveId'])) {
                 <h4 class="modal-title" id="myModalLabel">เพิ่มรูปสัญญาเช่า</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form">
+                <form method="POST" id="form" enctype="multipart/form-data">
                     <label><i class="fa fa-file-image-o" aria-hidden="true"></i> รูปสัญญาเช่า</label>
                     <div class="img-area-wrapper text-center"><img id="image_preview_cover" alt="IMG PREVIEW"></div>
                     <div class="form-group">
                         <input type='file' id="fileContract" class="form-group" name="fileContract"/>
                         <div class="alert alert-warning" role="alert" id="alert" style="display: none">
-                            <strong>ไฟล์ไม่สนับสนุน</strong> กรุณาเลือกไฟล์นามสกุล .jpg
+                            <strong>ไฟล์ไม่สนับสนุน</strong> กรุณาเลือกไฟล์นามสกุล .jpg .jpeg .png
                         </div>
                     </div>
                     <div class="row">
@@ -276,6 +310,15 @@ if (!isset($_GET['reserveId'])) {
 </div>
 </html>
 <style>
+    .img-area-wrapper {
+        margin-bottom: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 420px;
+    }
+    .img-area-wrapper img {
+        max-width: 420px;
+    }
     .card-body {
         padding: 25px;
     }
@@ -288,5 +331,27 @@ if (!isset($_GET['reserveId'])) {
         $("#addContract").click(function () {
             $('#myModal').modal('show');
         });
+
+        $("#fileContract").change(function () {
+            readURL(this);
+        });
     });
+
+    function readURL(input) {
+        //display img from file
+        if (input.files && input.files[0]) {
+            if (input.files[0].name.split('.').pop().toUpperCase() !== 'JPG' && input.files[0].name.split('.').pop().toUpperCase() !== 'JPEG' && input.files[0].name.split('.').pop().toUpperCase() !== 'PNG') {
+                $("#alert").show();
+                return false;
+            }
+            $("#alert").hide();
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview_cover').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
