@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2018 at 03:24 PM
+-- Generation Time: Feb 15, 2018 at 04:25 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -62,7 +62,7 @@ INSERT INTO `markets` (`markets_id`, `name`, `map_img`, `userId`, `description`,
 (34, 'เจเจกรีน', 'uploads/1514816004map.jpg', 2, 'หฟกหก', '', 0, '2018-01-02 09:08:37'),
 (35, 'T', 'uploads/1514862187map.jpg', 2, '', '', 0, '2018-01-02 10:03:06'),
 (36, 'จตุกจักร 2 หมอชิต', 'uploads/1515511015map.jpg', 2, 'มาคร้า', '', 0, '2018-01-09 22:16:54'),
-(37, 'a', 'uploads/1516085450map.jpg', 6, 'Yeah', 'No', 200, '2018-02-07 10:55:53'),
+(37, 'a', 'uploads/1518705351map.jpg', 6, 'Yeah', 'No', 200, '2018-02-15 21:35:51'),
 (38, 'H', 'uploads/1516940258map.jpg', 5, 'G', 'G', 1000, '2018-02-01 14:57:27'),
 (39, 'q', 'uploads/1517471749map.jpeg', 5, '1', '1', 1000, '2018-02-01 14:55:48');
 
@@ -105,7 +105,7 @@ INSERT INTO `markets_img` (`markets_img_id`, `img_url`, `market_id`) VALUES
 (23, 'uploads/1514816004.jpg', 34),
 (24, 'uploads/1514862187.jpg', 35),
 (25, 'uploads/1515511015.jpg', 36),
-(26, 'uploads/1516085450.jpg', 37),
+(26, 'uploads/1518705351.jpg', 37),
 (27, 'uploads/1516940258.jpg', 38),
 (28, 'uploads/1517471749.jpeg', 39);
 
@@ -168,8 +168,7 @@ INSERT INTO `market_store` (`store_market_id`, `store_name`, `type_id`, `markets
 (42, 'o', 1, 32, '48.193285280728375', '50.77438098670773', '', '', '', 150, '', 10, 7),
 (43, 'kbank', 1, 36, '47.23065250379362', '45.3273013435449', '', '', '', 150, '-', 10, 7),
 (44, '1', 1, 37, '45.220030349013655', '39.411566346315965', '1234', '12', '', 1, '', 1, 1),
-(45, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', '', 2, '', 2, 2),
-(46, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', 'Z', 2, '-', 2, 2);
+(45, '2', 2, 37, '48.10318664643399', '38.17231495531951', '2', '2', '', 2, '', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -184,16 +183,6 @@ CREATE TABLE `payment_info` (
   `account_id` varchar(20) NOT NULL,
   `account_bank` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `payment_info`
---
-
-INSERT INTO `payment_info` (`payment_id`, `user_id`, `account_name`, `account_id`, `account_bank`) VALUES
-(1, 5, 'ggggggggg', '2321324142411', 'กสิกรไทย'),
-(2, 5, 'gggg', '23123232323', 'กสิกรไทย'),
-(3, 6, 'ggg', '121212', 'ธนาคารกรุงเทพ'),
-(4, 6, 'sd', '121212', 'ธนาคารยูโอบี');
 
 -- --------------------------------------------------------
 
@@ -210,16 +199,6 @@ CREATE TABLE `report_transfer` (
   `booking_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `report_transfer`
---
-
-INSERT INTO `report_transfer` (`report_transfer_id`, `date_time`, `bank_account_from`, `bank_account_to`, `attachment`, `booking_id`) VALUES
-(9, '2018-02-08 22:14:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518102903.jpg', 1),
-(10, '2018-02-11 17:00:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518343247.jpg', 5),
-(11, '2018-02-11 19:46:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518353223.jpg', 4),
-(12, '2018-02-13 21:12:00', 'ธนาคารกรุงเทพ', 'ธนาคารกรุงเทพ', 'uploads/1518531169.jpg', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -233,18 +212,6 @@ CREATE TABLE `store_booking` (
   `create_date` datetime NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `store_booking`
---
-
-INSERT INTO `store_booking` (`store_booking_id`, `user_id`, `market_id`, `create_date`, `status`) VALUES
-(1, 2, 37, '2018-02-01 14:47:56', 'APPROVE'),
-(2, 2, 37, '2018-02-01 15:12:53', 'WAIT'),
-(3, 2, 32, '2018-02-07 13:14:32', 'REPORTED'),
-(4, 2, 37, '2018-02-07 13:15:27', 'APPROVE'),
-(5, 2, 37, '2018-02-11 16:01:21', 'APPROVE'),
-(6, 2, 37, '2018-02-11 20:14:39', 'CANCEL');
 
 -- --------------------------------------------------------
 
@@ -262,45 +229,6 @@ CREATE TABLE `store_booking_detail` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `store_booking_detail`
---
-
-INSERT INTO `store_booking_detail` (`store_booking_detail_id`, `booking_id`, `store_id`, `price`, `water_price_per_unit`, `eletric_price_per_unit`, `start_date`, `end_date`) VALUES
-(1, 1, 46, 2, 2, 2, '2018-02-01', '2018-02-01'),
-(2, 2, 44, 1, 1, 1, '2018-02-01', '2018-02-01'),
-(3, 3, 41, 150, 20, 7, '2018-02-07', '2018-02-07'),
-(4, 4, 46, 2, 2, 2, '2018-02-07', '2018-02-07'),
-(5, 5, 44, 1, 1, 1, '2018-02-11', '2018-02-11'),
-(6, 6, 46, 2, 2, 2, '2018-02-11', '2018-02-11');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test`
---
-
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
-  `t` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `test`
---
-
-INSERT INTO `test` (`id`, `t`) VALUES
-(1, 'Hello'),
-(2, 'Hello'),
-(3, 'Hello'),
-(4, 'Hello'),
-(5, 'Hello'),
-(6, 'Hello'),
-(7, 'Hello'),
-(8, 'Hello'),
-(9, 'Hello'),
-(10, 'Hello');
 
 -- --------------------------------------------------------
 
@@ -399,12 +327,6 @@ ALTER TABLE `store_booking_detail`
   ADD PRIMARY KEY (`store_booking_detail_id`);
 
 --
--- Indexes for table `test`
---
-ALTER TABLE `test`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -419,7 +341,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `contract`
 --
 ALTER TABLE `contract`
-  MODIFY `contract_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `contract_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `markets`
 --
@@ -444,32 +366,39 @@ ALTER TABLE `market_store`
 -- AUTO_INCREMENT for table `payment_info`
 --
 ALTER TABLE `payment_info`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `report_transfer`
 --
 ALTER TABLE `report_transfer`
-  MODIFY `report_transfer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `report_transfer_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `store_booking`
 --
 ALTER TABLE `store_booking`
-  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `store_booking_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `store_booking_detail`
 --
 ALTER TABLE `store_booking_detail`
-  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `test`
---
-ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `store_booking_detail_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;COMMIT;
+  MODIFY `users_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `resetReserve` ON SCHEDULE EVERY 1 HOUR STARTS '2018-02-15 22:22:21' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN 
+
+UPDATE store_booking  SET status = 'CANCEL' WHERE create_date < date_sub(now(),interval 24 hour);
+
+END$$
+
+DELIMITER ;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

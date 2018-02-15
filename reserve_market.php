@@ -40,7 +40,7 @@ if (!isset($_GET['marketId'])) {
 
     // get store
     $sql = "SELECT *,CASE WHEN store_booking_detail_id IS NULL THEN 'true'ELSE 'false' END as available  FROM market_store ms  
-    LEFT JOIN (SELECT store_booking_detail_id,store_id,start_date,end_date FROM store_booking_detail WHERE start_date <= '$start_date' AND end_date >= '$end_date') as store_detail
+    LEFT JOIN (SELECT store_booking_detail_id,store_id,start_date,end_date FROM store_booking_detail INNER JOIN store_booking ON store_booking_detail.booking_id = store_booking.store_booking_id WHERE store_booking.status != 'CANCEL' AND start_date <= '$start_date' AND end_date >= '$end_date') as store_detail
     ON ms.store_market_id = store_detail.store_id WHERE ms.markets_id = '$marketId' GROUP BY store_market_id";
     $result = $conn->query($sql);
     $stores = array();

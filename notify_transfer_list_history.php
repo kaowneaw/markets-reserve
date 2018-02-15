@@ -12,7 +12,7 @@ if (!$_SESSION["user"]) {  //check session
 }
 
 $userId = $_SESSION["user"]->users_id;
-$sql = "SELECT * FROM report_transfer rt INNER JOIN (SELECT store_booking.*,markets.userId,markets.name as market_name FROM store_booking INNER JOIN markets ON store_booking.market_id = markets.markets_id WHERE markets.userId = '$userId') sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'APPROVE'";
+$sql = "SELECT * FROM report_transfer rt INNER JOIN (SELECT store_booking.*,markets.userId,markets.name as market_name FROM store_booking INNER JOIN markets ON store_booking.market_id = markets.markets_id WHERE markets.userId = '$userId') sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'APPROVE' ORDER BY rt.report_transfer_id DESC";
 $result = $conn->query($sql);
 
 ?>

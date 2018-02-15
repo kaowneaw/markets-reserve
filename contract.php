@@ -3,6 +3,11 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 
+if (!$_SESSION["user"]) {  //check session
+    header("Location: login.php"); //ไม่พบผู้ใช้กระโดดกลับไปหน้า login form
+    exit;
+}
+
 $sql = "SELECT * FROM contract INNER JOIN store_booking ON contract.store_booking_id = store_booking.store_booking_id INNER JOIN users ON users.users_id = store_booking.user_id INNER JOIN store_booking_detail sbd ON sbd.booking_id = store_booking.store_booking_id INNER JOIN markets ON markets.markets_id = store_booking.market_id ";
 $result = $conn->query($sql);
 ?>

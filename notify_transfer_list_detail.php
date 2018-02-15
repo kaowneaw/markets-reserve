@@ -111,7 +111,6 @@ if (!isset($_GET['reserveId'])) {
             }
         }
 
-
     }
 }
 ?>
@@ -131,7 +130,7 @@ if (!isset($_GET['reserveId'])) {
         </div>
         <div class="col-xs-6 text-right">
             <?php
-            if($reserve['markets_type_id'] != '1') {
+            if($reserve['type_id'] != '1' && $reserve['status'] == 'APPROVE') { // ไม่เท่ากับประเภทรายเดือน และต้องสถานะชำระเงินแล้ว
                 if($contractData == null) {
                     echo '<button class="btn btn-success form-group" id="addContract" style="margin-top: 10px">เพิ่มรูปสัญญาเช่า</button>';
                 } else {
