@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="pull-left text-white">รายการสัญญาเช่า</h3>
+            <h3 class="pull-left text-white">รายการสัญญาเช่า <small class="text-white">* เพิ่มเอกสารสัญญาเช่าได้ที่หน้าประวัติการชำระเงิน</small></h3>
         </div>
     </div>
         <?php
@@ -70,7 +70,7 @@ $result = $conn->query($sql);
 </html>
 <style>
     .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);,
         transition: 0.3s;
         background-color: white;
         border-radius: 4px;
