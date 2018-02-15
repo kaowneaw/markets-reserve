@@ -40,6 +40,23 @@ if (!isset($_GET['reserveId'])) {
         echo "No Results";
     }
 
+
+    // select contract
+    $sql = "SELECT * FROM contract WHERE store_booking_id = ".$reserve["store_booking_id"];
+    $result = $conn->query($sql);
+    $contractData = null;
+    if ($result->num_rows > 0) {
+        //แสดงว่ามีการ upload สัญญาแล้ว
+        while ($row = $result->fetch_assoc()) {
+            $contractData= $row; // ข้อมูลแจ้งโอนเงิน
+        }
+    } else {
+        //แสดงว่ายังไม่มีการ upload สัญญา
+        $contractData = null;
+    }
+
+
+
     if(isset($_POST['approvePayment'])) {
         $reserveId = $_POST['approvePayment'];
         $sql = "UPDATE store_booking SET status = 'APPROVE' WHERE store_booking_id = ".$reserveId; // update สถานะ เป็นจ่ายเงินแล้ว
@@ -76,13 +93,25 @@ if (!isset($_GET['reserveId'])) {
             return false;
         }
 
-        $sql = "INSERT INTO `contract` (`contract_img`, `store_booking_id`) VALUES ('$targetFileMap', '$reserveId');";
-        if ($conn->query($sql) === TRUE) {
-            header('Location: notify_transfer_list_detail.php?reserveId=' . $reserveId);
-            exit;
+        if($contractData == null) {
+            $sql = "INSERT INTO `contract` (`contract_img`, `store_booking_id`) VALUES ('$targetFileMap', '$reserveId');";
+            if ($conn->query($sql) === TRUE) {
+                header('Location: notify_transfer_list_detail.php?reserveId=' . $reserveId);
+                exit;
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "UPDATE `contract` SET `contract_img` = '$targetFileMap' WHERE `contract`.`contract_id` = ".$contractData['contract_id'];
+            if ($conn->query($sql) === TRUE) {
+                header('Location: notify_transfer_list_detail.php?reserveId=' . $reserveId);
+                exit;
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
+
+
     }
 }
 ?>
@@ -101,7 +130,15 @@ if (!isset($_GET['reserveId'])) {
             <h3 class="card-title text-white form-group">รายละเอียดการแจ้งโอนเงิน</h3>
         </div>
         <div class="col-xs-6 text-right">
-            <button class="btn btn-success form-group" id="addContract" style="margin-top: 10px">เพิ่มรูปสัญญาเช่า</button>
+            <?php
+            if($reserve['markets_type_id'] != '1') {
+                if($contractData == null) {
+                    echo '<button class="btn btn-success form-group" id="addContract" style="margin-top: 10px">เพิ่มรูปสัญญาเช่า</button>';
+                } else {
+                    echo '<button class="btn btn-warning form-group" id="addContract" style="margin-top: 10px">แก้ไขรูปสัญญาเช่า</button>';
+                }
+            }
+            ?>
         </div>
     </div>
     <div id="container">

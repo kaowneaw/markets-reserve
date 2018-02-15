@@ -3,7 +3,7 @@ require('./common/header.php');
 require('./common/db_connect.php');
 session_start(); // Starting Session
 
-$sql = "SELECT * FROM contract INNER JOIN store_booking ON contract.store_booking_id = store_booking.store_booking_id INNER JOIN markets ON markets.markets_id = store_booking.market_id ";
+$sql = "SELECT * FROM contract INNER JOIN store_booking ON contract.store_booking_id = store_booking.store_booking_id INNER JOIN users ON users.users_id = store_booking.user_id INNER JOIN store_booking_detail sbd ON sbd.booking_id = store_booking.store_booking_id INNER JOIN markets ON markets.markets_id = store_booking.market_id ";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,10 @@ $result = $conn->query($sql);
             echo ' <thead>';
             echo '  <tr>';
             echo '    <th class="text-center col-xs-1">ลำดับ</th>';
-            echo '    <th class="col-xs-9">สัญญาเช่า</th>';
+            echo '    <th class="col-xs-3">สัญญาเช่า</th>';
+            echo '    <th class="col-xs-2">ผู้เช่า</th>';
+            echo '    <th class="col-xs-2">วันเริ่มต้น</th>';
+            echo '    <th class="col-xs-2">วันสิ้นสุด</th>';
             echo '    <th class="col-xs-2">เครื่องมือ</th>';
             echo '  </tr>';
             echo '</thead>';
@@ -39,8 +42,11 @@ $result = $conn->query($sql);
                 echo '  <tr>';
                 echo '    <td class="text-center">' . $count . '</td>';
                 echo '    <td>ตลาด ' . $row["name"] . '</td>';
+                echo '    <td>' . $row["first_name"].' '. $row["last_name"]. '</td>';
+                echo '    <td>' . $row["start_date"] . '</td>';
+                echo '    <td>' . $row["end_date"] . '</td>';
                 echo '    <td>';
-                echo '      <button class="btn btn-primary pull-left" onclick="view(\''.$row["contract_img"].'\')" style="margin-right: 5px;">ดู</button>';
+                echo '      <button class="btn btn-primary pull-left" onclick="view(\''.$row["contract_img"].'\')" style="margin-right: 5px;">ดูรูปสัญญา</button>';
                 echo '    </td>';
                 echo '  </tr>';
             }
