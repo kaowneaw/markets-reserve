@@ -407,7 +407,7 @@ if (isset($_POST['storeId'])) {
                 stores[i].color = '#ff3300';
             }
         }
-//คลุมทั้งแผนที่
+        //คลุมทั้งแผนที่
         p = planit.new({
             container: 'wrapper-map',
             image: {
@@ -428,8 +428,21 @@ if (isset($_POST['storeId'])) {
                 // p.zoomable.zoomIn();
             }
         });
+
+        //set delay for dom loaded
+        setTimeout(function () {
+            var index = 0;
+            $(".planit-marker").each(function () {
+                var store = stores[index];
+                // resize marker
+                $(this).width(store.size_marker);
+                $(this).height(store.size_marker);
+                $(this).css({'transform' : 'rotate('+ store.angle_marker +'deg)'});
+                index++;
+            });
+        }, 500)
     }
-//setค่าในpopup
+    //setค่าในpopup
     function setValuePopup(index) {
         if (index == null) {
             // marker new add

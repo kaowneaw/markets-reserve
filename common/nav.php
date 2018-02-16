@@ -24,7 +24,21 @@
                             echo '  </ul>';
                             echo '</li>';
                             echo '<li><a href="my_account_bank_promtpay.php">ข้อมูลบัญชีธนาคาร</a></li>';
-                            echo '<li><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน</a></li>';
+                            $NavuserId = $_SESSION["user"]->users_id;
+                            $Navsql = "SELECT * FROM report_transfer rt INNER JOIN (SELECT store_booking.*,markets.userId,markets.name as market_name FROM store_booking INNER JOIN markets ON store_booking.market_id = markets.markets_id WHERE markets.userId = '$NavuserId') sb ON rt.booking_id = sb.store_booking_id INNER JOIN users ON users.users_id = sb.user_id WHERE sb.status = 'REPORTED' ORDER BY rt.report_transfer_id DESC";
+                            $Navresult = $conn->query($Navsql);
+
+                            if($Navresult->num_rows > 0) {
+                                echo '<li><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน <div class="noti">'.$Navresult->num_rows.'</div></a></li>';
+                            } else {
+                                echo '<li><a href="notify_transfer_list.php">รายการแจ้งโอนเงิน </a></li>';
+                            }
+                            echo '<li class="dropdown">';
+                            echo '   <a href="#" class="dropdown-toggle" data-toggle="dropdown">รายงาน <b class="caret"></b></a>';
+                            echo '   <ul class="dropdown-menu">';
+                            echo '       <li><a href="report_income.php">รายงานรายได้</a></li>';
+                            echo '  </ul>';
+                            echo '</li>';
                         } else {
                             echo '<li>';
                             echo '   <a href="my_reserve.php">รายการจองของฉัน</a>';
@@ -62,3 +76,16 @@
         </div>
     </div>
 </nav>
+<style>
+    .noti {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        background-color: red;
+        border-radius: 50%;
+        font-size: 12px;
+        padding-top: 3px;
+        color:white;
+        display: inline-block;
+    }
+</style>

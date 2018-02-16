@@ -68,7 +68,7 @@
     width: 30px;
     height: 30px;
     z-index: 99;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
     background: #FC5B3F;
     -webkit-touch-callout: none;
     -webkit-user-select: none;

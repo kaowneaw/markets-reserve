@@ -21,8 +21,8 @@ if (!$_SESSION["user"]) {  //check session
                 array_push($roles, $row);
             }
         }
-        $roles = json_encode($roles); //แปลงเป็น json format เอาไปใช้ใน javascript
     }
+    $roles = json_encode($roles); //แปลงเป็น json format เอาไปใช้ใน javascript
 ?>
 <!DOCTYPE html>
 <html>

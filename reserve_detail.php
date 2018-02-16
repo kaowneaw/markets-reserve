@@ -37,7 +37,7 @@ if (!isset($_GET['reserveId'])) {
     <title>Market</title>
 </head>
 <body>
-<?php require('./common/nav.php'); ?>
+<?php //require('./common/nav.php'); ?>
 <div class="container">
     <h3 class="card-title text-white form-group">รายการจอง
         <?php

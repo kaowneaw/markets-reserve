@@ -48,6 +48,25 @@ if (!isset($_GET['reserveId'])) {
        if ($conn->query($sql) === TRUE) {
            $sql = "UPDATE store_booking SET status = 'REPORTED' WHERE store_booking_id = ".$reserveId; // update สถานะ เป็นแจ้งโอนแล้ว
            if ($conn->query($sql) === TRUE) {
+
+               define('LINE_API',"https://notify-api.line.me/api/notify");
+               define('LINE_TOKEN','Bec68EdgZ8BqW1aKbfqZecOB30flVXGqW1MAZAs3027');
+               $message = "Website to manage market space zone "."\n"."มีรายการแจ้งโอนเงิน ".$account_bank_to." กรุณาเข้าไปทำการตรวจสอบ";
+               $queryData = array('message' => $message);
+               $queryData = http_build_query($queryData, '', '&');
+               $headerOptions = array(
+                   'http' => array(
+                       'method' => 'POST',
+                       'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
+                           . "Authorization: Bearer " . LINE_TOKEN . "\r\n"
+                           . "Content-Length: " . strlen($queryData) . "\r\n",
+                       'content' => $queryData
+                   )
+               );
+               $context = stream_context_create($headerOptions);
+               $result = file_get_contents(LINE_API, FALSE, $context);
+               $res = json_decode($result);
+
                header('Location: my_reserve.php'); // redirect to page
            } else {
                $hasError = true;
@@ -58,6 +77,7 @@ if (!isset($_GET['reserveId'])) {
            $error = $conn->error;
        }
    }
+
 }
 ?>
 <!DOCTYPE html>

@@ -55,13 +55,15 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     $eletric_price = $_POST['eletric_price'];
     $height = $_POST['height'];
     $width = $_POST['width'];
+    $size_marker = $_POST['sizeMarkerForm'];
+    $angleMarkerForm = $_POST['angleMarkerForm'];
 
     if($action === "แก้ไข") {
         $sql = "UPDATE market_store SET store_name = '$store_name',type_id = '$type', price = '$price', description = '$desc', zone = '$zone', water_price_per_unit = '$water_price',eletric_price_per_unit = '$eletric_price',width = '$width', height = '$height' WHERE store_market_id = '$id';";
     }else if($action === "ลบ") {
         $sql = "DELETE FROM market_store WHERE store_market_id = '$id'";
     }else if($action === "บันทึก") {
-        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, width, height, price, description, zone, markets_id, water_price_per_unit, eletric_price_per_unit) VALUES ('$store_name','$type', '$pointX', '$pointY', '$width', '$height', '$price', '$desc','$zone', '$marketId', '$water_price', '$eletric_price')";
+        $sql = "INSERT INTO market_store (store_name,type_id, pointX, pointY, width, height, price, description, zone, markets_id, water_price_per_unit, eletric_price_per_unit, size_marker, angle_marker) VALUES ('$store_name','$type', '$pointX', '$pointY', '$width', '$height', '$price', '$desc','$zone', '$marketId', '$water_price', '$eletric_price', '$size_marker', '$angleMarkerForm')";
     }
 
     if ($conn->query($sql) === TRUE) {
@@ -85,6 +87,15 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
     <h3 class="card-title text-white">กำหนดตำแหน่งร้านค้า
         <small class="text-white">(*คลิกบนแผนที่เพื่อเพิ่มตำแหน่งร้าน)</small>
     </h3>
+    <div class="row text-white" id="option-marker">
+        <div class="col-xs-12 form-group">*กำหนดตัวเลือกของหมุด</div>
+        <div class="col-xs-12">
+            <label class="pull-left margin-right-15">ขนาดของหมุด</label>
+            <div class="pull-left margin-right-15"><input id="size_marker" oninput="this.value = Math.abs(this.value)" class="form-control" type="number" value="20"></div>
+            <label class="pull-left margin-right-15">องศา</label>
+            <div class="pull-left margin-right-15"><input id="angleMarker" class="form-control" type="number" value="0"></div>
+        </div>
+    </div>
     <div class="map-area-wrapper" id="wrapper-map">
         <img id="image_upload_preview"/>
     </div>
@@ -196,12 +207,15 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     </div>
                     <div class="hide">
                         <!--not display-->
-                        <input type="text" name="storeId" id="storeId" required>
-                        <input type="text" name="pointX" id="pointX" required>
-                        <input type="text" name="pointY" id="pointY" required>
+                        <input type="hidden" name="storeId" id="storeId" required>
+                        <input type="hidden" name="pointX" id="pointX" required>
+                        <input type="hidden" name="pointY" id="pointY" required>
+
+                        <input type="hidden" name="sizeMarkerForm" id="sizeMarkerForm" required>
+                        <input type="hidden" name="angleMarkerForm" id="angleMarkerForm" required>
                     </div>
                     <div class="text-right">
-                        <input id="update" class="btn btn-warning" type="submit" name="action" value="บันทึก"/>
+                        <input id="update" class="btn btn-warning" type="submit" name="action" value="แก้ไข"/>
                         <input id="del" class="btn btn-danger" type="submit" name="action" value="ลบ" />
                         <input id="save" class="btn btn-primary" type="submit" name="action" value="บันทึก" />
                     </div>
@@ -224,12 +238,32 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
         display: none;
     }
 
+    .margin-right-15 {
+        margin-right: 15px;
+    }
+
+    .ft-controls {
+        background-color: green;
+    }
+
 </style>
 <script>
     $(document).ready(function () {
+        $("#option-marker").hide();
         initPlanit();
-    });
+        $('#size_marker ,#angleMarker').on('input', function() {
+            // do something
+            var size = $("#size_marker").val();
+            var angle = $("#angleMarker").val();
 
+            $("#sizeMarkerForm").val(size);
+            $("#angleMarkerForm").val(angle);
+
+            $(markerLastedAdd).width(size).height(size);
+            $(markerLastedAdd).css({'transform' : 'rotate('+ angle +'deg)'}); //rotate
+        });
+    });
+    var markerLastedAdd = null;
     var addMode = true;
     var stores = [];
     function initPlanit() {
@@ -242,12 +276,11 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             stores[i].size = 20;
             stores[i].id = i + 1; // cannot set zero
         }
-
+        console.log(stores);
         p = planit.new({
             container: 'wrapper-map',
             image: {
-                url: "<?php echo $img; ?>",
-                zoom: true
+                url: "<?php echo $img; ?>"
             },
             markers: stores,
             markerDragEnd: function (event, marker) {
@@ -265,7 +298,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                     $('#del,#update').show();
                     setValuePopup(marker.id());
                 }
-                p.centerOn(marker.position());
+                // p.centerOn(marker.position());
                 $('#myModal').modal('show');
             },
             canvasClick: function (event, coords) {
@@ -277,10 +310,31 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
                         color: '#12abe3',
                         draggable: true
                     });
+                    markerLastedAdd = $(".planit-markers-container .planit-marker").last(); // marker planit lasted add
+
+                    var size = $("#sizeMarker").val();
+                    var angle = $("#angleMarker").val();
+
+                    $("#sizeMarkerForm").val(size);
+                    $("#angleMarkerForm").val(angle);
+                    $("#option-marker").show();
                 }
                 addMode = false;
             }
         });
+
+        //set delay for dom loaded
+        setTimeout(function () {
+            var index = 0;
+            $(".planit-marker").each(function () {
+                var store = stores[index];
+                // resize marker
+                $(this).width(store.size_marker);
+                $(this).height(store.size_marker);
+                $(this).css({'transform' : 'rotate('+ store.angle_marker +'deg)'});
+                index++;
+            });
+        }, 500)
     }
 
 
@@ -304,6 +358,7 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             $("#width").val('');
             $("#height").val('');
             $("#zone").val('');
+
         } else {
             var store = stores[index-1];
             $("#store_name").val(store.store_name);
@@ -320,6 +375,5 @@ if (isset($_POST['price']) && isset($_POST['type']) && isset($_POST['pointX']) &
             $("#eletric_price").val(store.eletric_price_per_unit);
         }
     }
-
 
 </script>
