@@ -1,0 +1,1353 @@
+{
+	"info": {
+		"_postman_id": "37db0333-936c-4e4b-9da7-df282c4d9d67",
+		"name": "ftc-online-account-opening",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mobile",
+			"item": [
+				{
+					"name": "otp/request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "80c08bd6-b1d5-4a6b-b407-8dbb8933b64e",
+								"exec": [
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"pac\", data.pac);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"deviceId\": \"deviceIdNote\",\r\n    \"mobileNo\": \"0819131887\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/otp/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"otp",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "underConstruction",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/underConstruction",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"underConstruction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "* "
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, PUT, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Authorization, Content-Type, sessionRef"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "3600"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Feb 2019 06:34:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"underConstruction\": {\n        \"id\": 205,\n        \"appCode\": \"MyFund\",\n        \"topic\": null,\n        \"detail\": null,\n        \"message\": null,\n        \"footer\": null,\n        \"status\": \"Disable\",\n        \"startDate\": 1551067860000,\n        \"endDate\": null\n    },\n    \"responseCode\": \"00000\",\n    \"responseMessage\": \"SUCCESS\"\n}"
+						}
+					]
+				},
+				{
+					"name": "top/verify",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "77cbe13d-b1e2-46aa-b85c-d7c048e55698",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"deviceId\": \"deviceIdNote\",\r\n    \"pac\": \"{{pac}}\",\r\n    \"otpFromMobile\":\"608615\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/otp/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"otp",
+								"verify"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "underConstruction",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/underConstruction",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"underConstruction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "* "
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, PUT, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Authorization, Content-Type, sessionRef"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "3600"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Feb 2019 06:34:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"underConstruction\": {\n        \"id\": 205,\n        \"appCode\": \"MyFund\",\n        \"topic\": null,\n        \"detail\": null,\n        \"message\": null,\n        \"footer\": null,\n        \"status\": \"Disable\",\n        \"startDate\": 1551067860000,\n        \"endDate\": null\n    },\n    \"responseCode\": \"00000\",\n    \"responseMessage\": \"SUCCESS\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Portal",
+			"item": [
+				{
+					"name": "accountOpening",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1f71cbc8-5f79-4570-bf56-0186b5ccdb76",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mobileNumber\": \"0111111111\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/manageaccount/accountOpening",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"manageaccount",
+								"accountOpening"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "underConstruction",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/underConstruction",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"underConstruction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "* "
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, PUT, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Authorization, Content-Type, sessionRef"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "3600"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "X-Total-Count"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json;charset=UTF-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 04 Feb 2019 06:34:39 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"underConstruction\": {\n        \"id\": 205,\n        \"appCode\": \"MyFund\",\n        \"topic\": null,\n        \"detail\": null,\n        \"message\": null,\n        \"footer\": null,\n        \"status\": \"Disable\",\n        \"startDate\": 1551067860000,\n        \"endDate\": null\n    },\n    \"responseCode\": \"00000\",\n    \"responseMessage\": \"SUCCESS\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Lookup",
+			"item": [
+				{
+					"name": "Cache Evict",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/cacheEvict/360",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"cacheEvict",
+								"360"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Title TH",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/titleth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"titleth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Title EN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/titleen",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"titleen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Nation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/nation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"nation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/country",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Occupation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/occupation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"occupation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Income",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/income",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"income"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Province",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/province",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"province"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : Distinct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/distinct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"distinct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : SubDistinct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9081/ftc-online-account-opening/lookup/subdistinct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9081",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"subdistinct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lookup : SubDistinct By Distinct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\"code\" : \"01\", \"value\" : \"นาย\"},\r\n{\"code\" : \"04\", \"value\" : \"น.ส.\"},\r\n{\"code\" : \"05\", \"value\" : \"นาง\"},\r\n{\"code\" : \"0A\", \"value\" : \"นาวาอากาศตรีหญิง\"},\r\n{\"code\" : \"0B\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"0C\", \"value\" : \"นาวาอากาศเอกหญิง\"},\r\n{\"code\" : \"0D\", \"value\" : \"เรือตรีหญิง\"},\r\n{\"code\" : \"0E\", \"value\" : \"เรือโทหญิง\"},\r\n{\"code\" : \"0F\", \"value\" : \"เรือเอกหญิง\"},\r\n{\"code\" : \"0G\", \"value\" : \"นาวาตรีหญิง\"},\r\n{\"code\" : \"0H\", \"value\" : \"นาวาโทหญิง\"},\r\n{\"code\" : \"0I\", \"value\" : \"นาวาเอกหญิง\"},\r\n{\"code\" : \"0L\", \"value\" : \"ทันตแพทย์\"},\r\n{\"code\" : \"0M\", \"value\" : \"ทันตแพทย์หญิง\"},\r\n{\"code\" : \"0N\", \"value\" : \"พันจ่าอากาศตรี\"},\r\n{\"code\" : \"0O\", \"value\" : \"พันจ่าอากาศโท\"},\r\n{\"code\" : \"0P\", \"value\" : \"พันจ่าอากาศเอก\"},\r\n{\"code\" : \"0Q\", \"value\" : \"สิบตำรวจตรี\"},\r\n{\"code\" : \"0R\", \"value\" : \"สิบตำรวจโท\"},\r\n{\"code\" : \"0S\", \"value\" : \"สิบตำรวจเอก\"},\r\n{\"code\" : \"0T\", \"value\" : \"สิบตรี\"},\r\n{\"code\" : \"0U\", \"value\" : \"สิบโท\"},\r\n{\"code\" : \"0V\", \"value\" : \"สิบเอก\"},\r\n{\"code\" : \"0W\", \"value\" : \"จ่าสิบตรี\"},\r\n{\"code\" : \"0X\", \"value\" : \"จ่าสิบโท\"},\r\n{\"code\" : \"0Y\", \"value\" : \"จ่าสิบเอก\"},\r\n{\"code\" : \"0Z\", \"value\" : \"จ่าตรี\"},\r\n{\"code\" : \"12\", \"value\" : \"คุณหญิง\"},\r\n{\"code\" : \"13\", \"value\" : \"น.พ.\"},\r\n{\"code\" : \"14\", \"value\" : \"แพทย์หญิง\"},\r\n{\"code\" : \"15\", \"value\" : \"ร้อยตรี\"},\r\n{\"code\" : \"16\", \"value\" : \"ร้อยโท\"},\r\n{\"code\" : \"17\", \"value\" : \"ร้อยเอก\"},\r\n{\"code\" : \"18\", \"value\" : \"พันตรี\"},\r\n{\"code\" : \"19\", \"value\" : \"พันโท\"},\r\n{\"code\" : \"1A\", \"value\" : \"จ่าโท\"},\r\n{\"code\" : \"1B\", \"value\" : \"จ่าเอก\"},\r\n{\"code\" : \"1C\", \"value\" : \"จ่าอากาศตรี\"},\r\n{\"code\" : \"1D\", \"value\" : \"จ่าอากาศโท\"},\r\n{\"code\" : \"1E\", \"value\" : \"จ่าอากาศเอก\"},\r\n{\"code\" : \"1F\", \"value\" : \"ดาบตำรวจหญิง\"},\r\n{\"code\" : \"1K\", \"value\" : \"พลตรีหม่อมราชวงศ์\"},\r\n{\"code\" : \"1L\", \"value\" : \"พันตรีนายแพทย์\"},\r\n{\"code\" : \"1M\", \"value\" : \"ศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1N\", \"value\" : \"ศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1O\", \"value\" : \"รองศาสตราจารย์แพทย์หญิง\"},\r\n{\"code\" : \"1P\", \"value\" : \"รองศาสตราจารย์ทันตแพทย์\"},\r\n{\"code\" : \"1Q\", \"value\" : \"จ่าสิบตรีหญิง\"},\r\n{\"code\" : \"1T\", \"value\" : \"รองศาสตราจารย์นายแพทย์\"},\r\n{\"code\" : \"1V\", \"value\" : \"พันจ่าเอก\"},\r\n{\"code\" : \"1W\", \"value\" : \"จ่าสิบตำรวจ\"},\r\n{\"code\" : \"1X\", \"value\" : \"พันจ่าเอกหญิง\"},\r\n{\"code\" : \"20\", \"value\" : \"พันเอก\"},\r\n{\"code\" : \"21\", \"value\" : \"พลตรี\"},\r\n{\"code\" : \"22\", \"value\" : \"พลโท\"},\r\n{\"code\" : \"23\", \"value\" : \"พลเอก\"},\r\n{\"code\" : \"24\", \"value\" : \"ร้อยตำรวจตรี\"},\r\n{\"code\" : \"25\", \"value\" : \"ร้อยตำรวจโท\"},\r\n{\"code\" : \"26\", \"value\" : \"ร้อยตำรวจเอก\"},\r\n{\"code\" : \"27\", \"value\" : \"พันตำรวจตรี\"},\r\n{\"code\" : \"28\", \"value\" : \"พันตำรวจโท\"},\r\n{\"code\" : \"29\", \"value\" : \"พันตำรวจเอก\"},\r\n{\"code\" : \"2A\", \"value\" : \"ม.จ.หญิง\"},\r\n{\"code\" : \"2B\", \"value\" : \"พระ\"},\r\n{\"code\" : \"2C\", \"value\" : \"พระอาจารย์\"},\r\n{\"code\" : \"2D\", \"value\" : \"พระครู\"},\r\n{\"code\" : \"2E\", \"value\" : \"พ.อ. พิเศษหญิง\"},\r\n{\"code\" : \"2F\", \"value\" : \"พระปลัด\"},\r\n{\"code\" : \"2H\", \"value\" : \"พระมหา\"},\r\n{\"code\" : \"2I\", \"value\" : \"ว่าที่ร้อยโท\"},\r\n{\"code\" : \"2K\", \"value\" : \"ว่าที่พันตำรวจตรี\"},\r\n{\"code\" : \"2L\", \"value\" : \"ว่าที่พันตำรวจโท\"},\r\n{\"code\" : \"2V\", \"value\" : \"ท่านผู้หญิง ม.ล.\"},\r\n{\"code\" : \"2W\", \"value\" : \"พลตรีหญิง\"},\r\n{\"code\" : \"30\", \"value\" : \"พลตำรวจตรี\"},\r\n{\"code\" : \"31\", \"value\" : \"พลตำรวจโท\"},\r\n{\"code\" : \"32\", \"value\" : \"พลตำรวจเอก\"},\r\n{\"code\" : \"33\", \"value\" : \"เรืออากาศตรี\"},\r\n{\"code\" : \"34\", \"value\" : \"เรืออากาศโท\"},\r\n{\"code\" : \"35\", \"value\" : \"เรืออากาศเอก\"},\r\n{\"code\" : \"36\", \"value\" : \"นาวาอากาศตรี\"},\r\n{\"code\" : \"37\", \"value\" : \"นาวาอากาศโท\"},\r\n{\"code\" : \"38\", \"value\" : \"นาวาอากาศเอก\"},\r\n{\"code\" : \"39\", \"value\" : \"พลอากาศตรี\"},\r\n{\"code\" : \"3I\", \"value\" : \"สิบตำรวจตรีหญิง\"},\r\n{\"code\" : \"3J\", \"value\" : \"พันจ่าตรี\"},\r\n{\"code\" : \"3K\", \"value\" : \"สิบตำรวจโทหญิง\"},\r\n{\"code\" : \"3L\", \"value\" : \"พันจ่าโท\"},\r\n{\"code\" : \"3M\", \"value\" : \"พันอากาศเอก\"},\r\n{\"code\" : \"3N\", \"value\" : \"พันอากาศตรี\"},\r\n{\"code\" : \"3O\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3P\", \"value\" : \"พันจ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"3Q\", \"value\" : \"เจ้านาง\"},\r\n{\"code\" : \"3R\", \"value\" : \"จ่าสิบตำรวจหญิง\"},\r\n{\"code\" : \"3S\", \"value\" : \"สิบตำรวจเอกหญิง\"},\r\n{\"code\" : \"3T\", \"value\" : \"จ่าสิบเอกหญิง\"},\r\n{\"code\" : \"3U\", \"value\" : \"พันอากาศเอกหญิง\"},\r\n{\"code\" : \"3V\", \"value\" : \"ว่าที่ร้อยเอก\"},\r\n{\"code\" : \"3Y\", \"value\" : \"ว่าที่ร้อยตรีหญิง\"},\r\n{\"code\" : \"3Z\", \"value\" : \"จ่าตรีหญิง\"},\r\n{\"code\" : \"40\", \"value\" : \"พลอากาศโท\"},\r\n{\"code\" : \"41\", \"value\" : \"พลอากาศเอก\"},\r\n{\"code\" : \"42\", \"value\" : \"เรือตรี\"},\r\n{\"code\" : \"43\", \"value\" : \"เรือโท\"},\r\n{\"code\" : \"44\", \"value\" : \"เรือเอก\"},\r\n{\"code\" : \"45\", \"value\" : \"นาวาตรี\"},\r\n{\"code\" : \"46\", \"value\" : \"นาวาโท\"},\r\n{\"code\" : \"47\", \"value\" : \"นาวาเอก\"},\r\n{\"code\" : \"48\", \"value\" : \"พลเรือตรี\"},\r\n{\"code\" : \"49\", \"value\" : \"พลเรือโท\"},\r\n{\"code\" : \"4A\", \"value\" : \"ม.ร.ว.หญิง\"},\r\n{\"code\" : \"4B\", \"value\" : \"ว่าที่พันตำรวจโทหญิง\"},\r\n{\"code\" : \"4G\", \"value\" : \"สิบโทหญิง\"},\r\n{\"code\" : \"4I\", \"value\" : \"จ่าอากาศเอกหญิง\"},\r\n{\"code\" : \"4K\", \"value\" : \"สิบตรีหญิง\"},\r\n{\"code\" : \"4O\", \"value\" : \"จ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"4P\", \"value\" : \"จ่าอากาศโทหญิง\"},\r\n{\"code\" : \"4R\", \"value\" : \"มว.ต.หญิง\"},\r\n{\"code\" : \"4S\", \"value\" : \"ว่าที่เรือโท\"},\r\n{\"code\" : \"4T\", \"value\" : \"พลโทหญิง\"},\r\n{\"code\" : \"50\", \"value\" : \"พลเรือเอก\"},\r\n{\"code\" : \"53\", \"value\" : \"ท่านผู้หญิง\"},\r\n{\"code\" : \"54\", \"value\" : \"ว่าที่ร้อยตรี\"},\r\n{\"code\" : \"55\", \"value\" : \"ว่าที่ร้อยตำรวจตรี\"},\r\n{\"code\" : \"56\", \"value\" : \"ว่าที่เรืออากาศตรี\"},\r\n{\"code\" : \"57\", \"value\" : \"ว่าที่เรือตรี\"},\r\n{\"code\" : \"5B\", \"value\" : \"ว่าที่พันตรี\"},\r\n{\"code\" : \"5F\", \"value\" : \"จ่าโทหญิง\"},\r\n{\"code\" : \"64\", \"value\" : \"เภสัชกรหญิง\"},\r\n{\"code\" : \"65\", \"value\" : \"ร้อยตรีหญิง\"},\r\n{\"code\" : \"66\", \"value\" : \"ร้อยโทหญิง\"},\r\n{\"code\" : \"67\", \"value\" : \"ร้อยเอกหญิง\"},\r\n{\"code\" : \"68\", \"value\" : \"พันตรีหญิง\"},\r\n{\"code\" : \"69\", \"value\" : \"พันโทหญิง\"},\r\n{\"code\" : \"6B\", \"value\" : \"จ่าเอกหญิง\"},\r\n{\"code\" : \"6C\", \"value\" : \"จ่าสิบโทหญิง\"},\r\n{\"code\" : \"70\", \"value\" : \"พันเอกหญิง\"},\r\n{\"code\" : \"7B\", \"value\" : \"พลเรือตรีหญิง\"},\r\n{\"code\" : \"91\", \"value\" : \"ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"92\", \"value\" : \"ร้อยตำรวจโทหญิง\"},\r\n{\"code\" : \"93\", \"value\" : \"ร้อยตำรวจเอกหญิง\"},\r\n{\"code\" : \"94\", \"value\" : \"พันตำรวจตรีหญิง\"},\r\n{\"code\" : \"95\", \"value\" : \"พันตำรวจโทหญิง\"},\r\n{\"code\" : \"96\", \"value\" : \"พันตำรวจเอกหญิง\"},\r\n{\"code\" : \"97\", \"value\" : \"เรืออากาศตรีหญิง\"},\r\n{\"code\" : \"98\", \"value\" : \"เรืออากาศโทหญิง\"},\r\n{\"code\" : \"99\", \"value\" : \"เรืออากาศเอกหญิง\"},\r\n{\"code\" : \"9A\", \"value\" : \"พันเอกนายแพทย์\"},\r\n{\"code\" : \"A1\", \"value\" : \"MR.\"},\r\n{\"code\" : \"A3\", \"value\" : \"MISS\"},\r\n{\"code\" : \"A4\", \"value\" : \"MRS.\"},\r\n{\"code\" : \"AI\", \"value\" : \"เรือตรีนายแพทย์\"},\r\n{\"code\" : \"AL\", \"value\" : \"ว่าที่ร้อยตำรวจตรีหญิง\"},\r\n{\"code\" : \"AM\", \"value\" : \"พันจ่าอากาศโทหญิง\"},\r\n{\"code\" : \"AN\", \"value\" : \"พลอากาศตรีหญิง\"},\r\n{\"code\" : \"AR\", \"value\" : \"พันจ่าอากาศตรีหญิง\"},\r\n{\"code\" : \"AS\", \"value\" : \"ว่าที่ น.ต.หญิง\"},\r\n{\"code\" : \"AT\", \"value\" : \"นรต.\"},\r\n{\"code\" : \"AX\", \"value\" : \"พันจ่าโทหญิง\"},\r\n{\"code\" : \"AY\", \"value\" : \"นาวาอากาศโทหญิง\"},\r\n{\"code\" : \"B4\", \"value\" : \"พันอากาศโทหญิง\"},\r\n{\"code\" : \"B5\", \"value\" : \"ว่าที่เรือเอกหญิง\"},\r\n{\"code\" : \"B7\", \"value\" : \"พันจ่าตรีหญิง\"},\r\n{\"code\" : \"B8\", \"value\" : \"ว่าที่พันตำรวจเอก\"},\r\n{\"code\" : \"G3\", \"value\" : \"สิบเอกหญิง\"},\r\n{\"code\" : \"PB\", \"value\" : \"จ.ส.ต.หญิง\"},\r\n{\"code\" : \"PD\", \"value\" : \"น.ต.หญิง\"},\r\n{\"code\" : \"PF\", \"value\" : \"น.ท.หญิง\"},\r\n{\"code\" : \"PH\", \"value\" : \"น.อ.หญิง\"},\r\n{\"code\" : \"PJ\", \"value\" : \"นายกองโท\"},\r\n{\"code\" : \"PK\", \"value\" : \"นายหมู่ใหญ่\"},\r\n{\"code\" : \"PL\", \"value\" : \"พ.อ.ต.หญิง\"},\r\n{\"code\" : \"PP\", \"value\" : \"ร.ต.หญิง\"},\r\n{\"code\" : \"PR\", \"value\" : \"ร.ท.หญิง\"},\r\n{\"code\" : \"PU\", \"value\" : \"ร.อ.หญิง\"},\r\n{\"code\" : \"PW\", \"value\" : \"ว่าที่ร.ต.หญิง\"},\r\n{\"code\" : \"PZ\", \"value\" : \"ว่าที่พตอ.หญิง\"}\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://app-ftc-doc-01.tisconetdev.com:8095/ftc-online-account-opening/lookup/distinct/6608/subdistinct",
+							"protocol": "http",
+							"host": [
+								"app-ftc-doc-01",
+								"tisconetdev",
+								"com"
+							],
+							"port": "8095",
+							"path": [
+								"ftc-online-account-opening",
+								"lookup",
+								"distinct",
+								"6608",
+								"subdistinct"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Account Online Check DOPA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": \"1234567899136\",\r\n    \"firstName\": \"คนไทย\",\r\n    \"lastName\": \"รักกัน\",\r\n    \"birthDate\": \"25161014\",\r\n    \"laser\": \"ME0111111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://app-ftc-doc-01.tisconetdev.com:8095/ftc-online-account-opening/guest/dopa",
+					"protocol": "http",
+					"host": [
+						"app-ftc-doc-01",
+						"tisconetdev",
+						"com"
+					],
+					"port": "8095",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"dopa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Online Check Blacklist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": \"1234567899136\",\r\n    \"firstName\": \"คนไทย\",\r\n    \"lastName\": \"รักกัน\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/blacklist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"blacklist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account Online Check LED",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": \"1234567899136\",\r\n    \"firstName\": \"คนไทย\",\r\n    \"lastName\": \"รักกัน\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/led",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"led"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Manage Account : Openning",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pid\": \"1234567899136\",\r\n    \"firstName\": \"คนไทย\",\r\n    \"lastName\": \"รักกัน\",\r\n    \"birthDate\": \"25161014\",\r\n    \"laser\": \"ME0111111111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://app-ftc-doc-01.tisconetdev.com:8095/ftc-online-account-opening/manageaccount/accountOpening",
+					"protocol": "http",
+					"host": [
+						"app-ftc-doc-01",
+						"tisconetdev",
+						"com"
+					],
+					"port": "8095",
+					"path": [
+						"ftc-online-account-opening",
+						"manageaccount",
+						"accountOpening"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Manage Account : Openning ToDo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountOpeningStatus\": {\n        \"status\": {\n            \"code\": \"01\",\n            \"name\": \"ส่งคำขอเปิดบัญชี\"\n        },\n        \"dopa\": true,\n        \"led\": true,\n        \"backList\": null,\n        \"confirmEMail\": false,\n        \"bindBankAccount\": null,\n        \"verifyData\": false,\n        \"identityConfirmation\": false,\n        \"identityConfirmationBy\": \"devwrptest5\",\n        \"identityConfirmationDate\": \"2020-04-10T05:52:19.749+0000\"\n    },\n    \"customerInfo\": {\n        \"titleTh\": {\n            \"code\": \"01\",\n            \"name\": \"นาย\"\n        },\n        \"firstNameTh\": \"ลงทุน\",\n        \"lastNameTh\": \"เก่งมาก\",\n        \"titleEn\": {\n            \"code\": \"01\",\n            \"name\": \"MR.\"\n        },\n        \"firstNameEn\": \"Longtun\",\n        \"lastNameEn\": \"Kengmak\",\n        \"nationality\": {\n            \"code\": \"01\",\n            \"name\": \"ไทย\"\n        },\n        \"gender\": {\n            \"code\": \"01\",\n            \"name\": \"ชาย\"\n        },\n        \"birthDay\": \"2020-04-10T05:52:19.749+0000\",\n        \"age\": \"33\",\n        \"educationLevel\": {\n            \"code\": \"01\",\n            \"name\": \"ปริญญาตรี\"\n        },\n        \"annualIncome\": {\n            \"code\": \"01\",\n            \"name\": \"100,000 - 300,000 บาท\"\n        },\n        \"maritalStatus\": {\n            \"code\": \"01\",\n            \"name\": \"โสด\"\n        },\n        \"mobileNumber\": \"08 1234 5678\",\n        \"emailAddress\": \"longtun.k@gmail.com\"\n    },\n    \"cardInfo\": {\n        \"cardImage\": \"cardImage\",\n        \"idNo\": \"3 8940 46960 15 6\",\n        \"dateOfExpiry\": \"2020-04-10T05:52:19.749+0000\",\n        \"laserId\": \"AB1-234567-89\"\n    },\n    \"permanentAddress\": {\n        \"asPermanent\": false,\n        \"detail\": \"99 ซอย ติวานนท์ 3 ถนน ติวานนท์\",\n        \"subDistrict\": \"ตลาดขวัญ\",\n        \"district\": \"เมือง\",\n        \"province\": \"นนทบุรี\",\n        \"postalCode\": \"11000\"\n    },\n    \"currentAddress\": {\n        \"asPermanent\": false,\n        \"detail\": \"99 ซอย ติวานนท์ 3 ถนน ติวานนท์\",\n        \"subDistrict\": \"ตลาดขวัญ\",\n        \"district\": \"เมือง\",\n        \"province\": \"นนทบุรี\",\n        \"postalCode\": \"11000\"\n    },\n    \"mailingAddress\": {\n        \"asPermanent\": false,\n        \"detail\": \"99 ซอย ติวานนท์ 3 ถนน ติวานนท์\",\n        \"subDistrict\": \"ตลาดขวัญ\",\n        \"district\": \"เมือง\",\n        \"province\": \"นนทบุรี\",\n        \"postalCode\": \"11000\"\n    },\n    \"bankAccountInfomation\": {\n        \"bank\": {\n            \"code\": \"01\",\n            \"name\": \"กสิกรไทย\"\n        },\n        \"branch\": {\n            \"code\": \"01\",\n            \"name\": \"เซ็นทรัล\"\n        },\n        \"bankAccountNo\": \"123 4 56789 0\",\n        \"acountType\": {\n            \"code\": \"01\",\n            \"name\": \"ออมทรัพย์\"\n        }\n    },\n    \"financialAndInvesmentInformation\": {\n        \"purposeOfAccountOpenningSaving\": true,\n        \"purposeOfAccountOpenningInvestment\": true,\n        \"purposeOfAccountOpenningTaxBenefit\": false,\n        \"purposeOfAccountOpenningsOther\": \"\",\n        \"sourceOfFundSaving\": true,\n        \"sourceOfFundSelfOwnedBusiness\": true,\n        \"sourceOfFundSalaryAllowance\": false,\n        \"sourceOfFundInvestmentEarningInheritance\": false,\n        \"sourceOfFundOther\": \"\",\n        \"sourceOfIncomeFromOverseas\": [],\n        \"relatedToPoliticallyExposedPerson\": \"โน้ต\"\n    },\n    \"lastUpdate\": \"2020-04-10T05:52:19.749+0000\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/manageaccount/accountOpening/todo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"manageaccount",
+						"accountOpening",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Payload By PK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"9999001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/payload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"payload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step Initial",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idCardImage",
+							"type": "file",
+							"src": "/C:/Users/wachirasak/Desktop/Test OCR/ID-3.jpg"
+						},
+						{
+							"key": "guestModel",
+							"value": "{\n\t\"deviceId\": \"a91d8f36646b3m97\",\n    \"fatca\": { \n        \"usCitizenFlag\": false,  \n        \"usCardFlag\": false, \n        \"usTaxFlag\": false\n    },\n    \"customerInfo\": {\n    \t\"titleTh\": {\"code\":\"01\"},\n        \"firstNameTh\": \"วชิรศักดิ์\",\n        \"lastNameTh\": \"พักอยู่\",\n        \"birthDay\": \"1982-08-28\",\n        \"nationality\": {\"code\":\"1T1\"},\n        \"country\": {\"code\":\"2A2\"}\n    },\n    \"cardInfo\": {\n        \"idNo\": \"3660800205242\",\n        \"dateOfExpiry\": \"2020-04-10\",\n        \"laserId\": \"ME0117525916\"\n    }\n}",
+							"contentType": "application/json",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/person",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step Upload Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deviceId",
+							"value": "a91d8f36646b3m99",
+							"type": "text"
+						},
+						{
+							"key": "idCardImage",
+							"type": "file",
+							"src": "/C:/Users/wachirasak/Desktop/Test OCR/ID-3.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/uimage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"uimage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step Download Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9-MTEST\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/dimage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"dimage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceId\": \"a91d8f36646b3m99\",\n    \"fatca\": {\n        \"usCitizenFlag\": false,\n        \"usCardFlag\": false,\n        \"usTaxFlag\": false\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9-MTEST\",\n    \"fatca\": { \n        \"usCitizenFlag\": false,  \n        \"usCardFlag\": false, \n        \"usTaxFlag\": false\n    },\n    \"customerInfo\": {\n    \t\"titleTh\": {\"code\":\"01\"},\n        \"firstNameTh\": \"วชิรศักดิ์\",\n        \"lastNameTh\": \"พักอยู่\",\n        \"birthDay\": \"1982-08-28\",\n        \"nationality\": {\"code\":\"01\"},\n        \"country\": {\"code\":\"01\"}\n    },\n    \"cardInfo\": {\n        \"idNo\": \"3660800205242\",\n        \"dateOfExpiry\": \"2020-04-10\",\n        \"laserId\": \"ME0117525916\",\n        \"cardImage\": \"{{idCardImage}}\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 9,\n    \"permanentAddress\": {\n    \t\"asPermanent\" : false,\n    \t\"asCurrent\" : false,\n        \"subDistrictCode\": {\"code\":\"01\"},\n        \"districtCode\": {\"code\":\"01\"},\n        \"provinceCode\": {\"code\":\"01\"},\n        \"postalCode\": \"10120\",\n        \"detail\": \"1111\",\n        \"subDistrict\": null,\n        \"district\": null,\n        \"province\": null\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 21,\n    \"currentAddress\": {\n    \t\"asPermanent\" : true,\n    \t\"asCurrent\" : false,\n        \"subDistrictValue\": {\n            \"distinctCode\": \"6608\",\n            \"subDistinctCode\": \"660801\",\n            \"subDistinctName\": \"ทับคล้อ\",\n            \"zipCode\": \"66150\"\n        },\n        \"districtValue\": {\n            \"provinceCode\": \"66\",\n            \"distinctCode\": \"6608\",\n            \"distinctName\": \"ทับคล้อ\"\n        },\n        \"provinceValue\": {\n            \"provinceCode\": \"66\",\n            \"provinceName\": \"พิจิตร\"\n        },\n        \"detail\": \"ทดสอบMapping2\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 9,\n    \"mailingAddress\": {\n    \t\"asPermanent\" : false,\n    \t\"asCurrent\" : true,\n        \"subDistrictCode\": {\"code\":\"03\"},\n        \"districtCode\": {\"code\":\"03\"},\n        \"provinceCode\": {\"code\":\"03\"},\n        \"postalCode\": \"10123\",\n        \"detail\": \"3333\",\n        \"subDistrict\": null,\n        \"district\": null,\n        \"province\": null\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 7",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"deviceId\": \"a91d8f36646b34c9\",\n    \"id\": 21,\n    \"financialAndInvesmentInformation\": {\n        \"purposeOfAccountOpenningSaving\": false,\n        \"purposeOfAccountOpenningInvestment\": false,\n        \"purposeOfAccountOpenningTaxBenefit\": false,\n        \"purposeOfAccountOpenningsOther\": \"gggg\",\n        \"sourceOfFundSaving\": false,\n        \"sourceOfFundSelfOwnedBusiness\": false,\n        \"sourceOfFundSalaryAllowance\": false,\n        \"sourceOfFundInvestmentEarningInheritance\": false,\n        \"sourceOfFundOther\": \"ขโมย\",\n        \"annualIncome\": {\n            \"code\": \"01\",\n            \"name\": \"01\"\n        },\n        \"occupation\": {\n            \"code\": \"01\",\n            \"name\": \"01\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Open Step 8",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 21,\n    \"financialAndInvesmentInformation\": {\n        \"sourceOfIncomeFromOverseas\": [\n            {\n                \"code\": \"03\",\n                \"name\": \"03\"\n            },\n            {\n                \"code\": \"02\",\n                \"name\": \"02\"\n            },\n            {\n                \"code\": \"01\",\n                \"name\": \"01\"\n            }\n        ],\n        \"relatedToPoliticallyExposedPerson\": \"นายก\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9081",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"step",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guest : Execute Send Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 21,\n    \"customerInfo\": {\n        \"emailAddress\": \"supako@tisco.co.th\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://app-ftc-doc-01.tisconetdev.com:8095/ftc-online-account-opening/guest/mail",
+					"protocol": "http",
+					"host": [
+						"app-ftc-doc-01",
+						"tisconetdev",
+						"com"
+					],
+					"port": "8095",
+					"path": [
+						"ftc-online-account-opening",
+						"guest",
+						"mail"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
