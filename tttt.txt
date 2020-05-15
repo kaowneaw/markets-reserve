@@ -958,8 +958,20 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n    \"fatca\": { \n        \"usCitizenFlag\": false,  \n        \"usCardFlag\": false, \n        \"usTaxFlag\": false\n    },\n    \"customerInfo\": {\n    \t\"titleTh\": {\"code\":\"01\"},\n        \"firstNameTh\": \"วชิรศักดิ์\",\n        \"lastNameTh\": \"พักอยู่\",\n        \"birthDay\": \"1982-08-28\",\n        \"nationality\": {\"code\":\"01\"},\n        \"country\": {\"code\":\"01\"}\n    },\n    \"cardInfo\": {\n        \"idNo\": \"3660800205242\",\n        \"dateOfExpiry\": \"2020-04-10\",\n        \"laserId\": \"ME0117525916\",\n        \"cardImage\": \"{{idCardImage}}\"\n    }\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "idCardImage",
+							"type": "file",
+							"src": "/C:/Users/wachirasak/Desktop/Test OCR/ID-3.jpg"
+						},
+						{
+							"key": "guestModel",
+							"value": "{\n\t\"deviceId\": \"a91d8f36646b3m97\",\n    \"fatca\": { \n        \"usCitizenFlag\": false,  \n        \"usCardFlag\": false, \n        \"usTaxFlag\": false\n    },\n    \"customerInfo\": {\n    \t\"titleTh\": {\"code\":\"01\"},\n        \"firstNameTh\": \"วชิรศักดิ์\",\n        \"lastNameTh\": \"พักอยู่\",\n        \"birthDay\": \"1982-08-28\",\n        \"nationality\": {\"code\":\"1T1\"},\n        \"country\": {\"code\":\"2A2\"}\n    },\n    \"cardInfo\": {\n        \"idNo\": \"3660800205242\",\n        \"dateOfExpiry\": \"2020-04-10\",\n        \"laserId\": \"ME0117525916\"\n    }\n}",
+							"contentType": "application/json",
+							"type": "text"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -967,7 +979,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/initial",
+					"raw": "http://localhost:9081/ftc-online-account-opening/guest/step/person",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -977,7 +989,7 @@
 						"ftc-online-account-opening",
 						"guest",
 						"step",
-						"initial"
+						"person"
 					]
 				}
 			},
@@ -1187,7 +1199,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 9,\n    \"currentAddress\": {\n    \t\"asPermanent\" : true,\n    \t\"asCurrent\" : false,\n        \"subDistrictCode\": {\"code\":\"02\"},\n        \"districtCode\": {\"code\":\"02\"},\n        \"provinceCode\": {\"code\":\"02\"},\n        \"postalCode\": \"10121\",\n        \"detail\": \"2222\",\n        \"subDistrict\": null,\n        \"district\": null,\n        \"province\": null\n    }\n}",
+					"raw": "{\n\t\"deviceId\": \"a91d8f36646b34c9\",\n\t\"id\": 21,\n    \"currentAddress\": {\n    \t\"asPermanent\" : true,\n    \t\"asCurrent\" : false,\n        \"subDistrictValue\": {\n            \"distinctCode\": \"6608\",\n            \"subDistinctCode\": \"660801\",\n            \"subDistinctName\": \"ทับคล้อ\",\n            \"zipCode\": \"66150\"\n        },\n        \"districtValue\": {\n            \"provinceCode\": \"66\",\n            \"distinctCode\": \"6608\",\n            \"distinctName\": \"ทับคล้อ\"\n        },\n        \"provinceValue\": {\n            \"provinceCode\": \"66\",\n            \"provinceName\": \"พิจิตร\"\n        },\n        \"detail\": \"ทดสอบMapping2\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
